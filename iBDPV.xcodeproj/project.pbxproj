@@ -1,0 +1,273 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84CA4559126A30AE00A46E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA4558126A30AE00A46E6B /* UIKit.framework */; };
+		84CA455B126A30AE00A46E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA455A126A30AE00A46E6B /* Foundation.framework */; };
+		84CA455D126A30AE00A46E6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA455C126A30AE00A46E6B /* CoreGraphics.framework */; };
+		84CA4562126A30AE00A46E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84CA4560126A30AE00A46E6B /* InfoPlist.strings */; };
+		84CA4564126A30AE00A46E6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4563126A30AE00A46E6B /* main.m */; };
+		84CA4567126A30AE00A46E6B /* iBDPVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4566126A30AE00A46E6B /* iBDPVAppDelegate.m */; };
+		84CA456A126A30AE00A46E6B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA4568126A30AE00A46E6B /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		84CA4555126A30AE00A46E6B /* iBDPV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBDPV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CA4558126A30AE00A46E6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		84CA455A126A30AE00A46E6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		84CA455C126A30AE00A46E6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		84CA455E126A30AE00A46E6B /* iBDPV-Info.plist */ = {isa = PBXFileReference; path = "iBDPV-Info.plist"; sourceTree = "<group>"; };
+		84CA455F126A30AE00A46E6B /* iBDPV_Prefix.pch */ = {isa = PBXFileReference; path = iBDPV_Prefix.pch; sourceTree = "<group>"; };
+		84CA4561126A30AE00A46E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84CA4563126A30AE00A46E6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84CA4565126A30AE00A46E6B /* iBDPVAppDelegate.h */ = {isa = PBXFileReference; path = iBDPVAppDelegate.h; sourceTree = "<group>"; };
+		84CA4566126A30AE00A46E6B /* iBDPVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iBDPVAppDelegate.m; sourceTree = "<group>"; };
+		84CA4569126A30AE00A46E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84CA4552126A30AE00A46E6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84CA4559126A30AE00A46E6B /* UIKit.framework in Frameworks */,
+				84CA455B126A30AE00A46E6B /* Foundation.framework in Frameworks */,
+				84CA455D126A30AE00A46E6B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84CA4546126A30AD00A46E6B = {
+			isa = PBXGroup;
+			children = (
+				84CA454D126A30AE00A46E6B /* Classes */,
+				84CA454E126A30AE00A46E6B /* Other Sources */,
+				84CA454F126A30AE00A46E6B /* Resources */,
+				84CA4550126A30AE00A46E6B /* Frameworks */,
+				84CA4556126A30AE00A46E6B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84CA454D126A30AE00A46E6B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84CA4565126A30AE00A46E6B /* iBDPVAppDelegate.h */,
+				84CA4566126A30AE00A46E6B /* iBDPVAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		84CA454E126A30AE00A46E6B /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				84CA455F126A30AE00A46E6B /* iBDPV_Prefix.pch */,
+				84CA4563126A30AE00A46E6B /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		84CA454F126A30AE00A46E6B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84CA455E126A30AE00A46E6B /* iBDPV-Info.plist */,
+				84CA4560126A30AE00A46E6B /* InfoPlist.strings */,
+				84CA4568126A30AE00A46E6B /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		84CA4550126A30AE00A46E6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84CA4558126A30AE00A46E6B /* UIKit.framework */,
+				84CA455A126A30AE00A46E6B /* Foundation.framework */,
+				84CA455C126A30AE00A46E6B /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84CA4556126A30AE00A46E6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84CA4555126A30AE00A46E6B /* iBDPV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84CA4554126A30AE00A46E6B /* iBDPV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84CA456D126A30AE00A46E6B /* Build configuration list for PBXNativeTarget "iBDPV" */;
+			buildPhases = (
+				84CA4551126A30AE00A46E6B /* Sources */,
+				84CA4552126A30AE00A46E6B /* Frameworks */,
+				84CA4553126A30AE00A46E6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iBDPV;
+			productName = iBDPV;
+			productReference = 84CA4555126A30AE00A46E6B /* iBDPV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84CA4548126A30AD00A46E6B /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 84CA454B126A30AD00A46E6B /* Build configuration list for PBXProject "iBDPV" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 84CA4546126A30AD00A46E6B;
+			productRefGroup = 84CA4556126A30AE00A46E6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84CA4554126A30AE00A46E6B /* iBDPV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84CA4553126A30AE00A46E6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84CA4562126A30AE00A46E6B /* InfoPlist.strings in Resources */,
+				84CA456A126A30AE00A46E6B /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84CA4551126A30AE00A46E6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84CA4564126A30AE00A46E6B /* main.m in Sources */,
+				84CA4567126A30AE00A46E6B /* iBDPVAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		84CA4560126A30AE00A46E6B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84CA4561126A30AE00A46E6B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		84CA4568126A30AE00A46E6B /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84CA4569126A30AE00A46E6B /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84CA456B126A30AE00A46E6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Debug;
+		};
+		84CA456C126A30AE00A46E6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Release;
+		};
+		84CA456E126A30AE00A46E6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
+				INFOPLIST_FILE = "iBDPV-Info.plist";
+				PRODUCT_NAME = iBDPV;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		84CA456F126A30AE00A46E6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
+				INFOPLIST_FILE = "iBDPV-Info.plist";
+				PRODUCT_NAME = iBDPV;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84CA454B126A30AD00A46E6B /* Build configuration list for PBXProject "iBDPV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84CA456B126A30AE00A46E6B /* Debug */,
+				84CA456C126A30AE00A46E6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84CA456D126A30AE00A46E6B /* Build configuration list for PBXNativeTarget "iBDPV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84CA456E126A30AE00A46E6B /* Debug */,
+				84CA456F126A30AE00A46E6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84CA4548126A30AD00A46E6B /* Project object */;
+}
