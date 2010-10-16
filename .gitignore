@@ -10,5 +10,8 @@ WorkspaceState.xcuserstate
 *.perspective
 *.perspectivev3
 
+YourProjectName.xcodeproj/xcuserdata/*
+YourProjectName.xcodeproj/project.xcworkspace/xcuserdata/*
+
 *.mode1v3
 *.mode2v3
