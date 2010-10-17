@@ -518,7 +518,7 @@ NSString* md5( NSString *str )
                                initWithTitle:@"IMPOSSIBLE"
                                message:@"Pas de connexion Serveur - Proposer Annuler"
                                delegate:self
-                               cancelButtonTitle:@"Cancel"
+                               cancelButtonTitle:@"Annuler"
                                otherButtonTitles:nil]
                               autorelease];
         
@@ -619,6 +619,17 @@ NSString* md5( NSString *str )
     
 }
 
+
+
+
+
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
+
 //-------------------------------------------------------------------------
 // End tag
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
@@ -648,8 +659,24 @@ NSString* md5( NSString *str )
         NSLog(@"Code_retour: %@",sCodeRetour);
         
         
+        
         NSLog(@"Ce test d'erreur devrait être mis ailleur et pas dans le Parsing !!!!");
 
+        
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        
+        
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------
+        
+        
         iEtatConnexion = CNX_OK;
         UIAlertView *alert;
         switch (iCodeRetour)
@@ -658,10 +685,10 @@ NSString* md5( NSString *str )
                 NSLog (@"Version obsolète non acceptée. Il faut upgrader iBDPV");
                 alert = [[[UIAlertView alloc] 
                                        initWithTitle:@"Version iBDPV obsolète"
-                                       message:@"Il est nécessaire de télécharger la nouvelle version.\nProposer 'Annuler' et 'AppStore'. Rajouter les num de version dans l'alert"
+                                       message:@"Il est nécessaire de télécharger la nouvelle version.\nRajouter les num de version dans l'alert"
                                        delegate:self
-                                       cancelButtonTitle:@"Cancel"
-                                       otherButtonTitles:nil]
+                                       cancelButtonTitle:@"Pas maintenant"
+                                       otherButtonTitles:@"Télécharger",nil]
                                       autorelease];
                 [alert show];
 
@@ -671,10 +698,10 @@ NSString* md5( NSString *str )
                 NSLog (@"Version ancienne, mais toujours acceptée par iBDPV");
                 alert = [[[UIAlertView alloc] 
                                        initWithTitle:@"Bad connexion"
-                                       message:@"Une version plus récente d'iBDPV est disponible.\nProposer 'Plus tard' et 'AppStore'. Rajouter les num de version dans l'alert"
+                                       message:@"Une version plus récente d'iBDPV est disponible.\nRajouter les num de version dans l'alert"
                                        delegate:self
-                                       cancelButtonTitle:@"Ok"
-                                       otherButtonTitles:nil]
+                                       cancelButtonTitle:@"Plus tard"
+                                       otherButtonTitles: @"Télécharger",nil]
                                       autorelease];
                 [alert show];
 
