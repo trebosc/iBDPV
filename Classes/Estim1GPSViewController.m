@@ -218,11 +218,16 @@
     else
         {
         //Custom MKAnnotationView
+        /*
         AddressAnnotationView *pinView=[[AddressAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
         pinView.pinColor=MKPinAnnotationColorPurple;
         pinView.draggable=YES;
-        //MKPinAnnotationView *pinView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
-        return pinView;
+        */
+            
+        //Standard View
+        MKPinAnnotationView *pinView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
+        
+            return pinView;
         }
     
     
