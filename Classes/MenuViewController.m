@@ -202,7 +202,7 @@ NSString* md5( NSString *str )
 //        NSLog(@"  sHeure: %@",sHeure);
         
         NSString *uniqueIdentifier_a_convertir = [NSString  stringWithFormat:@"%@%@",uniqueIdentifier,sHeure];
-        NSLog(@"  uniqueIdentifier_a_convertir: %@",uniqueIdentifier_a_convertir);
+//        NSLog(@"  uniqueIdentifier_a_convertir: %@",uniqueIdentifier_a_convertir);
         
         uniqueIdentifierMD5 = md5(uniqueIdentifier_a_convertir);
 //        NSLog(@"  UID du device MD5: %@",uniqueIdentifierMD5);
@@ -255,7 +255,7 @@ NSString* md5( NSString *str )
 //    NSLog(@"apres NSURLConnection");
     iEtatConnexion = CNX_DEBUT;
 
-    NSLog(@"Est-ce qu'il faut prévoir un timeout sur la connexion avec un NSTimer qui arrête tout ?");
+    NSLog(@"ATD - Prévoir un timeout sur la connexion avec un NSTimer qui arrête tout ?");
     
     if (theConnection) {
         // Create the NSMutableData to hold the received data.
@@ -297,7 +297,7 @@ NSString* md5( NSString *str )
      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:receivedData];
      
 //     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
-     NSLog(@"Aucun rapport, mais voir Dictionary keys for the UIRequiredDeviceCapabilities key");
+     NSLog(@"ATD - ucun rapport, mais voir Dictionary keys for the UIRequiredDeviceCapabilities key");
     
     
      //---------------------------------------------------
@@ -634,11 +634,11 @@ NSString* md5( NSString *str )
 //******************************************************************************************
 // Cette fonction est appelée chaque fois qu'un bouton est appuyé dans une AlertView
 - (void) alertView:(UIAlertView *)_actionSheet clickedButtonAtIndex:(NSInteger)_buttonIndex {
-    NSLog(@"ALERTVIEW %@",_actionSheet.title);
     
    //POUR CHOSIR LA ALERTBOX if ([_actionSheet.title isEqualToString:@"Nouvelle version iBDPV disponible"]) {
         if (_buttonIndex == 1) {
             // do something for second button
+            NSLog(@"ATD - Activer la bonne URL pour l'app Store");
             //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/ibdpv/id385946729?mt=8"]];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/fr/app/spacemap/id391743932?mt=8"]];
         } // Fin du if (_buttonIndex == 1) {
