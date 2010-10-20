@@ -21,6 +21,8 @@
 @synthesize imageView;
 @synthesize imageWidth;
 
+
+
 - (void)layoutAnimated:(BOOL)fp8 {
 	[super layoutAnimated:fp8];
 	[self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y - imageExtHeight/2, self.frame.size.width, self.frame.size.height + imageExtHeight)];

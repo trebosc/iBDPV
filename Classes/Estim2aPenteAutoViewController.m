@@ -30,6 +30,7 @@
 #pragma mark -
 
 
+
 - init {
 	if (self = [super init]) {
         NSLog(@"init : Appelé une seule fois .... a mettre ailleurs ? ou faire le setDelegate dans le viewWillAppear ?");

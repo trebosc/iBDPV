@@ -17,6 +17,12 @@
 #import <CommonCrypto/CommonDigest.h>
 
 @synthesize userData;
+@synthesize Num_version_act;
+@synthesize Num_version_min;
+@synthesize sCodeRetour;
+@synthesize iCodeRetour;
+@synthesize sTexte_erreur;
+
 
 // Différent état de la connexion au serveur BDPV.fr
 const int CNX_RIEN = 0;
@@ -33,7 +39,7 @@ NSString* md5( NSString *str )
     const char *cStr = [str UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, strlen(cStr), result );
-    NSLog(@"Mettre dans une classe OUTILS  avec cryptage signature");
+    NSLog(@"ATD - Mettre dans une classe OUTILS  avec cryptage signature");
     
     return [NSString  stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
@@ -42,38 +48,25 @@ NSString* md5( NSString *str )
             result[8], result[9], result[10], result[11], result[12],
             result[13], result[14], result[15]
             ];
-}
+} //Fin du NSString* md5( NSString *str )
 
 
 
  - init {
- if (self = [super init]) {
-     NSLog(@"Premiere initialisation");
-     iEtatConnexion = CNX_RIEN;
- }
- return self;
- }
+         if (self = [super init]) {
+        //     NSLog(@"Premiere initialisation");
+             iEtatConnexion = CNX_RIEN;
+         } // Fin du if (self = [super init]) {
+     return self;
+ } // Fin du - init {
 
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-		NSLog(@"initWithNibName");
-		
-				
-		
-    }
-    return self;
-}
-*/
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     //[super viewDidLoad];
-    NSLog(@"viewDidLoad: MenuViewController");
+//    NSLog(@"viewDidLoad: MenuViewController");
 	
 	// Création par programme de la hiérarchie de vues (p34) 
     
@@ -112,7 +105,8 @@ NSString* md5( NSString *str )
 	[btnFichesProches addTarget:self action:@selector(actFichesProches:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnFichesProches];
 	[btnFichesProches release];
-	
+
+/*
 	// ----- Bouton Options
 	btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*2, btnWidth, btnHeight);
 	UIButton *btnOptions=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
@@ -121,6 +115,7 @@ NSString* md5( NSString *str )
 	[btnOptions addTarget:self action:@selector(actOptions:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnOptions];
 	[btnOptions release];
+*/
 	
 	// ----- Bouton A propos
 	btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*3, btnWidth, btnHeight);
@@ -132,7 +127,6 @@ NSString* md5( NSString *str )
 	[btnAPropos release];
 
     NSLog (@"Rajouter le numéro de version actelle sous les boutons");
-    NSLog (@"et indiquer (lien cliquable ?)  'obsolète' ou 'nouvelle version disponible'");
     
 	// 3. Assignation de la vue racine à la propriété view du controlleur
 	self.view=rootView;
@@ -168,7 +162,7 @@ NSString* md5( NSString *str )
 	//UIDeviceFamily (Number or Array - iPhone OS) specifies the underlying hardware type on which this application is designed to run.
 	// Important: Do not insert this key manually into your Info.plist files. Xcode inserts it automatically based on the value in the Targeted Device Family build setting.
 	//You should use that build setting to change the value of the key.
-    NSLog(@"Voir les commentaires dans ReachabilityAppDelegate.m");
+    NSLog(@"Voir les commentaires dans MenuViewCnotroller.m");
 	//UIRequiredDeviceCapabilities
 	// wifi  et/ou 3G ??
 	// accelerometer
@@ -180,7 +174,7 @@ NSString* md5( NSString *str )
     
     NSString *sVersion;
     sVersion = [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
-    NSLog(@"Num_versionUID (trouvé dans le .plist): %@",sVersion);
+//    NSLog(@"Num_versionUID (trouvé dans le .plist): %@",sVersion);
     
     //-----------------------------------------------------------------------
     // Récupération de diverses informations sur le disque de l'Iphone
@@ -193,38 +187,38 @@ NSString* md5( NSString *str )
     
     NSString *uniqueIdentifierMD5;
     if (fileContents == nil) {
-        NSLog(@"Pas de fichier - On doit générer un ID Unique");
+//        NSLog(@"Pas de fichier - On doit générer un ID Unique");
         //-----------------------------------------------------------------------
         // Génération d'un identifiant Unique pour ce device
         UIDevice *device = [UIDevice currentDevice];
         NSString *uniqueIdentifier = [device uniqueIdentifier];
         [device release];
-        NSLog(@"  UID du device: %@",uniqueIdentifier);
+//        NSLog(@"  UID du device: %@",uniqueIdentifier);
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"HHmmss"];
         NSString * sHeure = [dateFormatter stringFromDate:[NSDate date]];    
         [dateFormatter release];
-        NSLog(@"  sHeure: %@",sHeure);
+//        NSLog(@"  sHeure: %@",sHeure);
         
         NSString *uniqueIdentifier_a_convertir = [NSString  stringWithFormat:@"%@%@",uniqueIdentifier,sHeure];
         NSLog(@"  uniqueIdentifier_a_convertir: %@",uniqueIdentifier_a_convertir);
         
         uniqueIdentifierMD5 = md5(uniqueIdentifier_a_convertir);
-        NSLog(@"  UID du device MD5: %@",uniqueIdentifierMD5);
+//        NSLog(@"  UID du device MD5: %@",uniqueIdentifierMD5);
         uniqueIdentifierMD5 = [uniqueIdentifierMD5 substringToIndex:8];
-        NSLog(@"  UID du device MD5 (8 premiers): %@",uniqueIdentifierMD5);
+//        NSLog(@"  UID du device MD5 (8 premiers): %@",uniqueIdentifierMD5);
         
         //--------
         // Stockage de l'information UID Unique dans un fichier dans l'iPhone
-        NSLog(@"Ecriture du UID dans le fichier de préférences");
+//        NSLog(@"Ecriture du UID dans le fichier de préférences");
         NSString *string = [NSString  stringWithFormat:@"UID:%@",uniqueIdentifierMD5];
         [string writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
     } else {    
-        NSLog(@"Contenu du fichier : %@", fileContents);
+//        NSLog(@"Contenu du fichier : %@", fileContents);
         uniqueIdentifierMD5 = [fileContents substringFromIndex:4];
-        NSLog(@"UID du device MD5: %@",uniqueIdentifierMD5);
+//        NSLog(@"UID du device MD5: %@",uniqueIdentifierMD5);
         
     } // Fin du if (fileContents == nil) {
     
@@ -235,30 +229,30 @@ NSString* md5( NSString *str )
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
     api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVn%@uid%@",sVersion,uniqueIdentifierMD5];
-    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+//    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
     
     NSString *api_sig;
     api_sig = md5(api_sig_a_convertir);
-    NSLog(@"api_sig: %@",api_sig);
+//    NSLog(@"api_sig: %@",api_sig);
     
     
     //URL
     NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/v.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&n=%@",api_sig,uniqueIdentifierMD5,sVersion];
-    NSLog(@"Tester les cas erreurs : Mauvais arguments, mauvaise signature, version sup à celle du serveur, ...");
+//    NSLog(@"Tester les cas erreurs : Mauvais arguments, mauvaise signature, version sup à celle du serveur, ...");
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
-    NSLog(@"Récupération des infos de l'URL: %@",sUrl);
+//    NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     
 
-    NSLog(@"--------------------------");
+//    NSLog(@"--------------------------");
     // Create the request.
      NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                                           timeoutInterval:60.0];
-    NSLog(@"Apres requestWithURL");
+//    NSLog(@"Apres requestWithURL");
     // create the connection with the request
     // and start loading the data
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    NSLog(@"apres NSURLConnection");
+//    NSLog(@"apres NSURLConnection");
     iEtatConnexion = CNX_DEBUT;
 
     NSLog(@"Est-ce qu'il faut prévoir un timeout sur la connexion avec un NSTimer qui arrête tout ?");
@@ -266,12 +260,12 @@ NSString* md5( NSString *str )
     if (theConnection) {
         // Create the NSMutableData to hold the received data.
         // receivedData is an instance variable declared elsewhere.
-        NSLog(@"dans the Connexion 1");
+//        NSLog(@"dans the Connexion 1");
         receivedData = [[NSMutableData data] retain];
-        NSLog(@"dans the Connexion 2");
+//        NSLog(@"dans the Connexion 2");
     } else {
         // Inform the user that the connection failed.
-        NSLog(@"ERREUR dans the Connexion");
+        NSLog(@"ATD - ERREUR dans the Connexion");
     }
     
 
@@ -291,7 +285,7 @@ NSString* md5( NSString *str )
 {
     // do something with the data
     // receivedData is declared as a method instance elsewhere
-    NSLog(@"ATD - Succeeded! Received %d bytes of data",[receivedData length]);
+//    NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     iEtatConnexion = CNX_EN_COURS_PARSING;
 
     
@@ -302,34 +296,100 @@ NSString* md5( NSString *str )
      // Lancement du parsing XML
      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:receivedData];
      
-     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
+//     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
      NSLog(@"Aucun rapport, mais voir Dictionary keys for the UIRequiredDeviceCapabilities key");
     
     
      //---------------------------------------------------
      //Set delegate
-     NSLog(@"On indique qui va traiter le retour XML");
+//     NSLog(@"On indique qui va traiter le retour XML");
      [xmlParser setDelegate:self];
      
-     NSLog(@"Parse du XML");
+//     NSLog(@"Parse du XML");
      
      //Start parsing the XML file.
      BOOL success = [xmlParser parse];
      
-     if(success)
-         NSLog(@"No Errors");
-     else {
-         NSLog(@"Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
+     if(success) {
+             //---------------------------------------------------------------------------------------------------        
+            iEtatConnexion = CNX_OK;
+            UIAlertView *alert;
+            switch (iCodeRetour)
+            {
+                case -1:
+                    alert = [[[UIAlertView alloc] 
+                              initWithTitle:@"Version iBDPV obsolète"
+                              message:[NSString  stringWithFormat:@"Il est nécessaire de télécharger la nouvelle version (v%@).",Num_version_act]
+                              delegate:self
+                              cancelButtonTitle:@"Plus tard"
+                              otherButtonTitles:@"Télécharger",nil]
+                             autorelease];
+                    [alert show];
+                    iEtatConnexion = CNX_VERSION_OBSOLETE;
+                    break;
+                case 0:
+                    alert = [[[UIAlertView alloc] 
+                              initWithTitle:@"Nouvelle version iBDPV"
+                              message:[NSString stringWithFormat:@"Une version plus récente (v%@) est disponible.",Num_version_act]
+                              delegate:self
+                              cancelButtonTitle:@"Plus tard"
+                              otherButtonTitles: @"Télécharger",nil]
+                             autorelease];
+                    [alert show];
+                    break;
+                    
+                case 1:
+                    //                NSLog (@"Version upToDate - Version officielle sur appStore");
+                    break;
+                    
+                case 2:
+                    alert = [[[UIAlertView alloc] 
+                              initWithTitle:@"version iBDPV béta"
+                              message:@"Félicitation, vous utilisez une version béta, non disponible actuellement."
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil]
+                             autorelease];
+                    [alert show];
+                    break;
+                    
+                case -99:
+                    alert = [[[UIAlertView alloc] 
+                              initWithTitle:@"Erreur"
+                              message:[NSString stringWithFormat:@"Erreur inconnue (%@) renvoyée par le serveur BDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr",sTexte_erreur]
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil]
+                             autorelease];
+                    [alert show];
+                    iEtatConnexion = CNX_BAD;
+                    break;
+                    
+                default:
+                    alert = [[[UIAlertView alloc] 
+                              initWithTitle:@"Erreur inconnue"
+                              message:[NSString stringWithFormat:@"Erreur inconnue renvoyée par le serveur BDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr"]
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil]
+                             autorelease];
+                    [alert show];
+                    iEtatConnexion = CNX_BAD;
+                    break;
+            } // Fin du switch (code_retour)
+        
+     }  else { // Avec le if(success)
+//         NSLog(@"Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
          
          UIAlertView *alert = [[[UIAlertView alloc] 
-                                initWithTitle:@"Error"
-                                message:@"Pb du parsing XML"
+                                initWithTitle:@"Erreur parsing XML"
+                                message:@"Problème d'extraction du XML"
                                 delegate:self
-                                cancelButtonTitle:@"Cancel"
+                                cancelButtonTitle:@"Annuler"
                                 otherButtonTitles:nil]
                                autorelease];
          [alert show];
-
+         iEtatConnexion = CNX_BAD;
      } // fin du if(success)
     
     
@@ -392,8 +452,8 @@ NSString* md5( NSString *str )
     [alertAttenteTestCnx dismissWithClickedButtonIndex:0 animated:YES];
      
     UIAlertView *alert = [[[UIAlertView alloc] 
-                           initWithTitle:@"Bad connexion"
-                           message:@"Connexion BAD"
+                           initWithTitle:@"Pas de connexion"
+                           message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet."
                            delegate:self
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:nil]
@@ -467,24 +527,22 @@ NSString* md5( NSString *str )
 #pragma mark === Actions ===
 //-----------------------------------------------------------------------------------
 -(void)actEstimer:(id)sender {
-	NSLog(@"actEstimer");
+    // ATD - Faire une fonction pour les UIAlertView (il y en a 2)
     if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"IMPOSSIBLE"
-                               message:@"Version obsolete : proposer Annuler ou App Store"
+                               initWithTitle:@"Version iBDPV obsolète"
+                               message:[NSString  stringWithFormat:@"Il est nécessaire de télécharger la nouvelle version."]
                                delegate:self
-                               cancelButtonTitle:@"Cancel"
-                               otherButtonTitles:nil]
+                               cancelButtonTitle:@"Plus tard"
+                               otherButtonTitles:@"Télécharger",nil]
                               autorelease];
-        
-        
-        [alert show];        
+        [alert show];       
     } else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"IMPOSSIBLE"
-                               message:@"Pas de connexion Serveur - Proposer Annuler"
+                               message:@"Pas de connexion Internet"
                                delegate:self
-                               cancelButtonTitle:@"Cancel"
+                               cancelButtonTitle:@"Annuler"
                                otherButtonTitles:nil]
                               autorelease];
         
@@ -502,21 +560,20 @@ NSString* md5( NSString *str )
 
 //-----------------------------------------------------------------------------------
 -(void)actFichesProches:(id)sender {
+    
     if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"IMPOSSIBLE"
-                               message:@"Version obsolete : proposer Annuler ou App Store"
-                               delegate:self
-                               cancelButtonTitle:@"Cancel"
-                               otherButtonTitles:nil]
-                              autorelease];
-        
-        
-        [alert show];        
+                    initWithTitle:@"Version iBDPV obsolète"
+                    message:[NSString  stringWithFormat:@"Il est nécessaire de télécharger la nouvelle version."]
+                    delegate:self
+                    cancelButtonTitle:@"Plus tard"
+                    otherButtonTitles:@"Télécharger",nil]
+                    autorelease];
+        [alert show];       
     } else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"IMPOSSIBLE"
-                               message:@"Pas de connexion Serveur - Proposer Annuler"
+                               initWithTitle:@"Fonction non disponible"
+                               message:@"Pas de connexion Internet"
                                delegate:self
                                cancelButtonTitle:@"Annuler"
                                otherButtonTitles:nil]
@@ -567,6 +624,35 @@ NSString* md5( NSString *str )
 } // Fin du -(void)actAPropos:(id)sender {
 
 
+#pragma mark -
+#pragma mark === AlertView ===
+
+//******************************************************************************************
+//******************************************************************************************
+//******************************************************************************************
+//******************************************************************************************
+//******************************************************************************************
+// Cette fonction est appelée chaque fois qu'un bouton est appuyé dans une AlertView
+- (void) alertView:(UIAlertView *)_actionSheet clickedButtonAtIndex:(NSInteger)_buttonIndex {
+    NSLog(@"ALERTVIEW %@",_actionSheet.title);
+    
+   //POUR CHOSIR LA ALERTBOX if ([_actionSheet.title isEqualToString:@"Nouvelle version iBDPV disponible"]) {
+        if (_buttonIndex == 1) {
+            // do something for second button
+            //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/ibdpv/id385946729?mt=8"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/fr/app/spacemap/id391743932?mt=8"]];
+        } // Fin du if (_buttonIndex == 1) {
+   // } // Fin du  if ([_actionSheet.title isEqualToString:@"Nouvelle version iBDPV disponible"]) {
+    
+} // Fin du - (void) alertView:(UIAlertView *)_actionSheet clickedButtonAtIndex:(NSInteger)_buttonIndex {
+
+
+//******************************************************************************************
+//******************************************************************************************
+//******************************************************************************************
+//******************************************************************************************
+//******************************************************************************************
+
 
 
 #pragma mark -
@@ -613,11 +699,11 @@ NSString* md5( NSString *str )
 	if (!currentStringValue) {
         // currentStringValue is an NSMutableString instance variable
         currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
-    }
+    } // Fin du if (!currentStringValue) {
 	//NSLog(@"String: %@",string);
     [currentStringValue appendString:string];		
     
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
 
 
 
@@ -634,114 +720,24 @@ NSString* md5( NSString *str )
 // End tag
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    NSString *Num_version_act;
-	NSString *Num_version_min;
-	NSString *sCodeRetour;
-    NSString *sTexte_erreur;
-    int iCodeRetour;
     
 	//NSLog(@"didEndElement ICI 1: %@",elementName);
 	
     if ([elementName isEqualToString:@"Num_version_act"]) {	
 		Num_version_act =[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSLog(@"Num_version_act: %@",Num_version_act);
+//        NSLog(@"Num_version_act: %@",Num_version_act);
 	}
 	else if ([elementName isEqualToString:@"Num_version_min"]) {	
 		Num_version_min =[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSLog(@"Num_version_min: %@",Num_version_min);
+//        NSLog(@"Num_version_min: %@",Num_version_min);
 	}
 	else if ([elementName isEqualToString:@"Texte_erreur"]) {	
 		sTexte_erreur =[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSLog(@"Texte_erreur: %@",sTexte_erreur);
+//        NSLog(@"Texte_erreur: %@",sTexte_erreur);
 	}	else if ([elementName isEqualToString:@"Code_retour"]) {
 		sCodeRetour =[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		iCodeRetour =sCodeRetour.intValue;
-        NSLog(@"Code_retour: %@",sCodeRetour);
-        
-        
-        
-        NSLog(@"Ce test d'erreur devrait être mis ailleur et pas dans le Parsing !!!!");
-
-        
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        
-        
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------
-        
-        
-        iEtatConnexion = CNX_OK;
-        UIAlertView *alert;
-        switch (iCodeRetour)
-        {
-            case -1:
-                NSLog (@"Version obsolète non acceptée. Il faut upgrader iBDPV");
-                alert = [[[UIAlertView alloc] 
-                                       initWithTitle:@"Version iBDPV obsolète"
-                                       message:@"Il est nécessaire de télécharger la nouvelle version.\nRajouter les num de version dans l'alert"
-                                       delegate:self
-                                       cancelButtonTitle:@"Pas maintenant"
-                                       otherButtonTitles:@"Télécharger",nil]
-                                      autorelease];
-                [alert show];
-
-                iEtatConnexion = CNX_VERSION_OBSOLETE;
-                break;
-            case 0:
-                NSLog (@"Version ancienne, mais toujours acceptée par iBDPV");
-                alert = [[[UIAlertView alloc] 
-                                       initWithTitle:@"Bad connexion"
-                                       message:@"Une version plus récente d'iBDPV est disponible.\nRajouter les num de version dans l'alert"
-                                       delegate:self
-                                       cancelButtonTitle:@"Plus tard"
-                                       otherButtonTitles: @"Télécharger",nil]
-                                      autorelease];
-                [alert show];
-
-                break;
-            case 1:
-                NSLog (@"Version upToDate - Version officielle sur appStore");
-                break;
-                
-            case 2:
-                NSLog (@"Version Béta - En cours de développement");
-                break;
-                
-            case 3:
-                NSLog (@"Erreur non traitéee");
-                NSLog (@"Afficher le contenu de la chaine texte_erreur");
-               alert = [[[UIAlertView alloc] 
-                                       initWithTitle:@"Erreur inconnue"
-                                       message:@"Erreur inconnue (sTexte_erreur) par le serveur BDPV.fr"
-                                       delegate:self
-                                       cancelButtonTitle:@"Cancel"
-                                       otherButtonTitles:nil]
-                                      autorelease];
-                [alert show];
-                iEtatConnexion = CNX_BAD;
-                break;
-                
-            default:
-                NSLog (@"Impossible normalement - Mettre un popup Alert !");
-                alert = [[[UIAlertView alloc] 
-                                       initWithTitle:@"Error"
-                                       message:@"Pb du code retour :("
-                                       delegate:self
-                                       cancelButtonTitle:@"Cancel"
-                                       otherButtonTitles:nil]
-                                      autorelease];
-                [alert show];
-                NSLog (@"Release nécessaire pour les alert (il y en a 3) ?");
-                iEtatConnexion = CNX_BAD;
-                break;
-        } // Fin du switch (code_retour)
+//        NSLog(@"Code_retour: %@",sCodeRetour);
     
     } // Fin du if ([elementName isEqualToString:@"code_retour"]) {
 
