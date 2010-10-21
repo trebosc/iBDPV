@@ -638,7 +638,7 @@ NSString* md5( NSString *str )
    //POUR CHOSIR LA ALERTBOX if ([_actionSheet.title isEqualToString:@"Nouvelle version iBDPV disponible"]) {
         if (_buttonIndex == 1) {
             // do something for second button
-            NSLog(@"ATD - Activer la bonne URL pour l'app Store");
+            NSLog(@"ATD - Activer la bonne URL pour l'app Store vers iBDPV");
             //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/ibdpv/id385946729?mt=8"]];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/fr/app/spacemap/id391743932?mt=8"]];
         } // Fin du if (_buttonIndex == 1) {
