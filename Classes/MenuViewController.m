@@ -604,7 +604,7 @@ NSString* md5( NSString *str )
 
 //-----------------------------------------------------------------------------------
 -(void)actOptions:(id)sender {
-    
+    //TODO
 } // Fin du -(void)actOptions:(id)sender {
 
 
@@ -674,8 +674,6 @@ NSString* md5( NSString *str )
  <Texte_erreur>-1</Texte_erreur>
  </base_complete>
  */
-
-// #### NSXMLParserDelegate
 
 // Start tag
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
