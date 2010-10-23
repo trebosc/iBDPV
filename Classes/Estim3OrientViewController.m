@@ -15,7 +15,7 @@
 @implementation Estim3OrientViewController
 
 @synthesize locationManager;
-@synthesize bBoussoleAutom;
+@synthesize bBoussoleAutom, userData;
 
 
 #pragma mark -
@@ -249,7 +249,7 @@
 -(void)actValidate:(id)sender {
 	//Passage au controleur suivant
 	Estim4ResultViewController *newController=[[Estim4ResultViewController alloc] init];
-
+    newController.userData=self.userData;
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
 } // Fin du -(void)actValidate:(id)sender {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Estim2bPenteManuelView.h"
+#import "UserData.h"
 
 
 @class Estim2bPenteManuelView;
@@ -18,10 +19,12 @@
     Estim2bPenteManuelView *estim2bPenteManuelView;
 	UISlider *slider;
 
+       UserData *userData;
 }
 
 
 @property (nonatomic,retain) UISlider *slider;
+@property (nonatomic,retain) UserData *userData;
 
 -(void)fixeAngleToit:(id)sender;
 

@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class Estim2bPenteManuelViewController;
 
 @protocol QuartzViewProtocol
@@ -27,7 +28,6 @@
 	CGFloat angleToit;
     UILabel *degreeDisplayView;
 	UILabel *pourcentDisplayView;
-
 
 }
 

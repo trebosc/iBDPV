@@ -11,7 +11,7 @@
 
 @implementation UserData
 
-@synthesize longitude, latitude, distance, nbInstallationProche,uniqueIdentifierMD5;
+@synthesize longitude, latitude, distance, nbInstallationProche,uniqueIdentifierMD5, pente, orientation;
 
 
 

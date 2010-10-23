@@ -441,11 +441,9 @@
 
 	//Passage au controleur suivant (en fonction du bouton d'appel)
     if (self.menuOrigin==@"FichesProches") {
-        NSLog(@"GPS userData.nbInstallationProche=%d",self.userData.nbInstallationProche);
         
         FichesProchesTableViewController *newController=[[FichesProchesTableViewController alloc] init];
         newController.userData=self.userData;
-        NSLog(@"Uid= %@",self.userData.uniqueIdentifierMD5);
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         
@@ -453,7 +451,7 @@
     else {
         
         Estim2PenteViewController *newController=[[Estim2PenteViewController alloc] init];
-        
+        newController.userData=self.userData;
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         

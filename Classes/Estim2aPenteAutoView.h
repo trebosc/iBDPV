@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class Estim2aPenteAutoViewController;
 
 @interface Estim2aPenteAutoView : UIView {

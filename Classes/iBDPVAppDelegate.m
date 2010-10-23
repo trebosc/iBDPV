@@ -22,12 +22,12 @@
     //Initialisation de la propriété userData
     self.userData=[[UserData alloc] init];
     
-    //Cr√©ation du MenuViewController = rootViewController
+    //Cr�ation du MenuViewController = rootViewController
     MenuViewController *menuViewController=[[MenuViewController alloc] init];
     menuViewController.title=@"Menu";
     menuViewController.userData=self.userData;
     
-    //Cr√©ation du NavigationController
+    //Cr�ation du NavigationController
     //Le MenuViewController devient le controller racine du NavigationController
     navController=[[UINavigationController alloc] initWithRootViewController:menuViewController];
     [menuViewController release];

@@ -247,7 +247,6 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     
     if ([elementName isEqualToString:@"Section"]) {
         
-        
         //Reset des variables temporaires
         [currentItems release];
         [currentValues release];
@@ -256,7 +255,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     else if ([elementName isEqualToString:@"Nom"]) {
         //[currentSection setObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"section"];
         [sectionsDataSource addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        
+        NSLog(@"%@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
                                
     }
     

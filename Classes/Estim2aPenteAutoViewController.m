@@ -22,7 +22,7 @@
  
 @implementation Estim2aPenteAutoViewController
 
-@synthesize calibrationOffset;
+@synthesize calibrationOffset, userData;
 
 
 #pragma mark -
@@ -233,6 +233,7 @@
 -(void)actValidate:(id)sender {
 	//Passage au controleur suivant
 	Estim3OrientViewController *newController=[[Estim3OrientViewController alloc] init];
+    newController.userData=self.userData;
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
 }

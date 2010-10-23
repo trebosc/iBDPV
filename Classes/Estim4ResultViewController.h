@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UserData.h"
 
 @interface Estim4ResultViewController : UIViewController {
-
+UserData *userData;
 }
+
+@property (nonatomic,retain) UserData *userData;
 
 //Action Back
 -(void)actBack:(id)sender;

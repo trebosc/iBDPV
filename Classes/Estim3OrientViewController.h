@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "UserData.h"
 
 @class Estim3OrientView;
 
@@ -16,10 +17,12 @@
 
 	CLLocationManager *locationManager;
     BOOL bBoussoleAutom; // A vrai si le device à la capacité "Boussole"
-
+    UserData *userData;
+    
 }
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property  BOOL bBoussoleAutom;
+@property (nonatomic,retain) UserData *userData;
 
 //Action Back
 -(void)actBack:(id)sender;

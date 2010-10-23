@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserData.h"
+
 @class Estim2aPenteAutoView;
 
 
@@ -18,10 +20,13 @@
 
     float currentRawReading;
     float calibrationOffset;
+    
+    UserData *userData;
 
 }
 
 @property float calibrationOffset;
+@property (nonatomic,retain) UserData *userData;
 
 //Action Back
 -(void)actBack:(id)sender;

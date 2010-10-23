@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserData.h"
+
 @class Estim2PenteView;
 
 
@@ -14,11 +16,13 @@
     Estim2PenteView *estim2PenteView;
     
     BOOL bPenteVisible;
+    
+    UserData *userData;
 
 }
 
 @property BOOL bPenteVisible;
-
+@property (nonatomic,retain) UserData *userData;
 
 //Action Back
 -(void)actBack:(id)sender;

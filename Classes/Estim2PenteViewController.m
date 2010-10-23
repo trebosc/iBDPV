@@ -16,7 +16,7 @@
  
 @implementation Estim2PenteViewController
 
-@synthesize bPenteVisible;
+@synthesize bPenteVisible, userData;
 
 #pragma mark -
 #pragma mark === Setting up / Tearing down ===
@@ -194,10 +194,12 @@
     
     if (bPenteVisible)  {
             Estim2aPenteAutoViewController *newController=[[Estim2aPenteAutoViewController alloc] init];
+            newController.userData=self.userData;
             [self.navigationController pushViewController:newController animated:YES];
             [newController release];
         } else  { // Avec le if (bPenteVisible)  {
             Estim2bPenteManuelViewController *newController=[[Estim2bPenteManuelViewController alloc] init];
+            newController.userData=self.userData;
             [self.navigationController pushViewController:newController animated:YES];
             [newController release];
         } // Fin du if (bPenteVisible)  { 
