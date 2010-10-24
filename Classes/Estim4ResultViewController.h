@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UserData.h"
 
-@interface Estim4ResultViewController : UIViewController {
+@interface Estim4ResultViewController : UITableViewController <NSXMLParserDelegate> {
+    
 UserData *userData;
+
 }
 
 @property (nonatomic,retain) UserData *userData;

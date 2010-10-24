@@ -26,6 +26,43 @@
 */
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === View lifecycle ===
+
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildURL {
+    // Génération de la signature pour le lien http
+    NSString *api_sig_a_convertir;
+    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVa%dd%dl%fo%fp%duid%@",
+                           self.userData.orientation,
+                           self.userData.distance,                    
+                           self.userData.latitude,
+                           self.userData.longitude,
+                           self.userData.pente,  
+                           self.userData.uniqueIdentifierMD5
+                           ];
+    
+    NSString *api_sig;
+    api_sig = [self.userData md5:api_sig_a_convertir];
+    
+    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/r.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&l=%f&o=%f&d=%d&p=%d&a=%d",
+                      api_sig,
+                      self.userData.uniqueIdentifierMD5,
+                      self.userData.latitude,
+                      self.userData.longitude,
+                      self.userData.distance,
+                      self.userData.pente,
+                      self.userData.orientation
+                      ]; 
+    
+    NSLog(@"%@",sUrl); 
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
@@ -70,6 +107,8 @@
 	
 	NSLog(@"viewDidLoad: Estim4ResultViewController");
 	
+    
+    /*
 	// Création par programme de la hiérarchie de vues (p34) 
 	self.wantsFullScreenLayout=YES;
 	
@@ -92,10 +131,46 @@
 	
 	// 4. Libération de la vue racine
 	[rootView release];
-	
+	*/
 	
 	
 }
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+        // Lancement du parsing XML (mode SYNCHRONE)
+        NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildURL]];
+        
+        
+        //Set delegate
+        [xmlParser setDelegate:self];
+        
+        NSLog(@"Loading first page synchrone. XML Parsing ...");
+        
+        //Start parsing the XML file.
+       
+        BOOL success = [xmlParser parse];
+        
+        if(success)
+            NSLog(@"Loading XML Résultats OK");
+        else {
+            NSLog(@"Loading XML Résultats NOK");
+            
+            UIAlertView *alert = [[[UIAlertView alloc] 
+                                   initWithTitle:@"Error"
+                                   message:@"Loading XML Résultats NOK."
+                                   delegate:self
+                                   cancelButtonTitle:@"Cancel"
+                                   otherButtonTitles:nil]
+                                  autorelease];
+            [alert show];
+            
+        } // 
+        
+       }
 
 
 /*
@@ -147,5 +222,78 @@
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
 }
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Table view data source ===
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    
+    return 0;
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    return nil;
+}
+
+
+/*
+ //-------------------------------------------------------------------------------------------------------------------------------
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
+
+/*
+ //-------------------------------------------------------------------------------------------------------------------------------
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }   
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }   
+ }
+ */
+
+
+/*
+ //-------------------------------------------------------------------------------------------------------------------------------
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
+
+
+/*
+ //-------------------------------------------------------------------------------------------------------------------------------
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
+
 
 @end
