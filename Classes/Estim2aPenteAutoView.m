@@ -251,9 +251,6 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 //-------------------------------------------------------------------------------------------------------------------------------
 // Pour récupérer l'angle de la pente
 - (int)LectureAngleDegre {
-    NSString *sPente = [NSString stringWithFormat:@"%0.0f", Pente];
-    NSLog(@"TODO- Verifier que la pente par accéléromètre est égale à la pente manuelle - Pente: %@",sPente);   
-
     return Pente; 
 } // Fin du - (int)LectureAngleDegre: {
 

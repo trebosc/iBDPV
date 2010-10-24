@@ -235,8 +235,6 @@
     
     // Stockage de la pente  dans la classe UserData qui est utilisée partout.
     self.userData.pente =  [estim2aPenteAutoView LectureAngleDegre];
-    NSString *sPente = [NSString stringWithFormat:@"Pente : %i", self.userData.pente];
-    NSLog(@"TODO- Verifier que la pente par accéléromètre est égale à la pente manuelle - Pente: %@",sPente);  
     
 	//Passage au controleur suivant
 	Estim3OrientViewController *newController=[[Estim3OrientViewController alloc] init];

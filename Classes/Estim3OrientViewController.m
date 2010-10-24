@@ -225,9 +225,6 @@
 	//      magnitude = sqrt(x^2 + y^2 + z^2)
     [estim3OrientView updateDisplayAngle:Orientation];
     [estim3OrientView updateBoussoleAngle: -(Orientation)];
-    NSLog(@"TODO - il y a un blemme. L'orientation fournie n'est pas coorecte (style 270° au lieu de 90)");
-
-
 } // Fin de - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
 
 
@@ -240,7 +237,8 @@
     } else if ([error code] == kCLErrorHeadingFailure) {
         // This error indicates that the heading could not be determined, most likely because of strong magnetic interference.
     }
-}
+} // Fin du - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+
 
 
 //#########################################################################################################################################################
@@ -264,8 +262,7 @@
 //Action Validate
 -(void)actValidate:(id)sender {
     // Stockage de l'orientation de la boussole dans la classe UserData qui ets utilisée partout.
-    self.userData.orientation=Orientation;
-    NSLog(@"TODO- Verifier que l'orientation par boussole intégrée est égale à l'orientation manuelle - Orientation: %@",Orientation);
+    self.userData.orientation= [estim3OrientView LectureAngleBoussole];
     
 	//Passage au controleur suivant
 	Estim4ResultViewController *newController=[[Estim4ResultViewController alloc] init];
@@ -287,7 +284,8 @@
  - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
  // Return YES for supported orientations
  return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
+ } // Fin du - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+
  */
 
 //-------------------------------------------------------------------------------------------------------------------------------

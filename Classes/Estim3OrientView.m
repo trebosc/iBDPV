@@ -355,6 +355,11 @@ float CalculeAngle(CGPoint position, float angleInit) {
     [UIView commitAnimations];
 } // Fin du - (void)updateBoussoleAngle:(float)angle {
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (int)LectureAngleBoussole {
+    
+    return (int)angleActuelAbsolu;
+} // Fin du - (int)LectureAngleBoussole {
 
 
 @end

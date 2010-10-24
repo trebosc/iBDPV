@@ -33,6 +33,7 @@
 - (id)initWithFrame:(CGRect)frame viewController:(Estim3OrientViewController *)aController;
 - (void)updateDisplayAngle:(float)rotation;
 - (void)updateBoussoleAngle:(float)rotation;
+- (int)LectureAngleBoussole;
 
 
 @end
