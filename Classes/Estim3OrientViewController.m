@@ -8,21 +8,24 @@
 
 #import "Estim3OrientViewController.h"
 #import "Estim4ResultViewController.h"
-
+#import "UserData.h"
 #import "Estim3OrientView.h"
 
 
 @implementation Estim3OrientViewController
 
 @synthesize locationManager;
-@synthesize bBoussoleAutom, userData;
+@synthesize bBoussoleAutom, Orientation,userData;
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Initialisation diverses ===
 #pragma mark -
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -33,6 +36,7 @@
 */
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - init {
 	if (self = [super init]) {
         
@@ -40,19 +44,19 @@
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
 
         // check if the hardware has a compass
-        NSLog(@"Aie .... fonction Deprecated ... mais cela marche quand même");
+        NSLog(@"TODO - Fonction deprecated, mais cela marche. Voir comment la remplacer");
         if (locationManager.headingAvailable == NO) {
             // No compass is available. This application cannot function without a compass, 
             // so a dialog will be displayed and no magnetic data will be measured.
             self.locationManager = nil;
-            UIAlertView *noCompassAlert = [[UIAlertView alloc] initWithTitle:@"Pas de boussole!" message:@"Pas de boussole disponible." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *noCompassAlert = [[UIAlertView alloc] initWithTitle:@"Pas de boussole" message:@"Passage en mode manuel." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [noCompassAlert show];
             [noCompassAlert release];
             bBoussoleAutom = false;
-            NSLog(@"ViewControlle : Pas de boussolle");
+            //NSLog(@"ViewControlle : Pas de boussolle");
         } else { // Avec le if (locationManager.headingAvailable == NO) {
             bBoussoleAutom = true;
-            NSLog(@"ViewControlle : boussolle OK");
+            //NSLog(@"ViewControlle : boussolle OK");
             
             // heading service configuration
             locationManager.headingFilter = kCLHeadingFilterNone;
@@ -64,23 +68,26 @@
         
 	} // Fin du if (self = [super init]) {
 
-    NSLog(@"PB - Ce code ne semble pas être exécuté à chaque chargement.");
+    NSLog(@"TODO PB - Ce code ne semble pas être exécuté à chaque chargement.");
     NSLog (@"Mais attention, comme multiThread, Estim3OrientView est chargé AVANT le loadView ... Ou mettre code Boussole ???");
 
-    NSLog(@"Revoir tout le code pour mettre des commentaires");
-    NSLog(@"Revoir tout le code pour mettre des //Fin du ... ");
-    NSLog(@"Mettre des pragma Mark et organiser le code dans les .m  ");
+    NSLog(@"TODO - Revoir tout le code pour mettre des commentaires");
+    NSLog(@"TODO - Revoir tout le code pour mettre des //Fin du ... ");
+    NSLog(@"TODO - Mettre des pragma Mark et organiser le code dans les .m  ");
 
 	return self;
 } // Fin du Init
 
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Chargement des vues ou affichage  ===
 #pragma mark -
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
 
@@ -113,6 +120,7 @@
 } // Fin du - (void)loadView {
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillAppear 
 - (void)viewWillAppear:(BOOL)animated {
     // On relance la boussole si nécessaire.
@@ -121,17 +129,18 @@
         // start the compass
         [locationManager startUpdatingHeading];
     } // Fin duif (bBoussoleAutom) { 
-    NSLog(@"Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
+    NSLog(@"TODO - Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
     [super viewWillAppear:animated];
 } // Fin du - (void)viewWillAppear:(BOOL)animated {
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     //[super viewDidLoad];
 	
-	NSLog(@"viewDidLoad: Estim3OrientViewController");
+	//NSLog(@"viewDidLoad: Estim3OrientViewController");
     
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
@@ -158,7 +167,7 @@
 	[rootView release];
 	
     [super viewDidLoad];
-	NSLog(@"viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
+	NSLog(@"TODO - viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
 
 	
 } // Fin du  - (void)viewDidLoad {
@@ -166,23 +175,24 @@
 
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Fin de vie ou d'affichage ===
 #pragma mark -
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
     // Stop the compass
     if (bBoussoleAutom) {
         [locationManager stopUpdatingHeading];
      } // Fin du if (bBoussoleAutom) {
-    NSLog(@"viewWillDisappear: Arrêt de la boussole");
-    NSLog(@"PS : Virer les NSLOG car ils apparaissent dans la console de xCode");
+    //NSLog(@"viewWillDisappear: Arrêt de la boussole");
 } // Fin du - (void)viewWillDisappear:(BOOL)animated {
 
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -190,36 +200,38 @@
 } // Fin du - (void)viewDidUnload {
 
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [estim3OrientView release];
     [locationManager release];
     [super dealloc];
 } // - (void)dealloc {
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Gestion des évènements Boussole ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // This delegate method is invoked when the location manager has heading data.
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
     // Update the labels with the raw x, y, and z values.
-	CLLocationDirection Orientation = heading.trueHeading;
+    Orientation = heading.trueHeading;
     //	NSLog(@"  Orientation: %@",Orientation);
 	
 	    
     // Compute and display the magnitude (size or strength) of the vector.
 	//      magnitude = sqrt(x^2 + y^2 + z^2)
-    //[magnitudeLabel setText:[NSString stringWithFormat:@"%.1f", magnitude]];
-	// ATD - A effacer [magnitudeLabel setText:[NSString stringWithFormat:@"Nord %.2f", Orientation]];
     [estim3OrientView updateDisplayAngle:Orientation];
     [estim3OrientView updateBoussoleAngle: -(Orientation)];
-    NSLog(@"Flemme de corriger, mais il y a un blemme. L'orientation fournie n'est pas coorecte (style 270° au lieu de 90)");
+    NSLog(@"TODO - il y a un blemme. L'orientation fournie n'est pas coorecte (style 270° au lieu de 90)");
 
 
 } // Fin de - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // This delegate method is invoked when the location managed encounters an error condition.
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     if ([error code] == kCLErrorDenied) {
@@ -231,22 +243,30 @@
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Fonctions NavigationBar (Retour et Valider) ===
 #pragma mark -
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-    NSLog(@"Top: @%",self.navigationController.topViewController);
+    // NSLog(@"Top: @%",self.navigationController.topViewController);
 	
 	//Retour au controleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
 } // Fin du -(void)actBack:(id)sender {
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
+    // Stockage de l'orientation de la boussole dans la classe UserData qui ets utilisée partout.
+    self.userData.orientation=Orientation;
+    NSLog(@"TODO- Verifier que l'orientation par boussole intégrée est égale à l'orientation manuelle - Orientation: %@",Orientation);
+    
 	//Passage au controleur suivant
 	Estim4ResultViewController *newController=[[Estim4ResultViewController alloc] init];
     newController.userData=self.userData;
@@ -255,11 +275,14 @@
 } // Fin du -(void)actValidate:(id)sender {
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Divers non gérés ===
 #pragma mark -
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // Override to allow orientations other than the default portrait orientation.
  - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
  // Return YES for supported orientations
@@ -267,6 +290,7 @@
  }
  */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

@@ -12,10 +12,14 @@
 
 @implementation FichesProchesTableViewController
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark synthesize
 @synthesize lblNbFiches, userData, arrFiches, xmlFiche, booXMLLoading,indexToLoad, dicoPhoto, activityIndicator;
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark URLs de test
 /*
@@ -31,6 +35,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 #pragma mark Initialization
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     if ((self = [super initWithStyle:style])) {
@@ -41,6 +46,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 
 #pragma mark -
 #pragma mark === Parser XML ===
@@ -59,6 +66,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 </utilisateur>
 */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Start tag
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
@@ -76,6 +84,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Values
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
 	
@@ -88,7 +97,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
 }
 
-//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 // End tag
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -141,8 +150,11 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === View lifecycle ===
+//-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildSitesProchesURL {
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
@@ -174,6 +186,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -192,6 +205,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -237,21 +251,25 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 }
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
 */
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
 */
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 }
 */
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -259,6 +277,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 }
 */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     [super loadView];
@@ -314,15 +333,19 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 	
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Table view data source ===
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
@@ -332,6 +355,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -477,6 +501,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
@@ -486,6 +511,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -501,6 +527,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
 }
@@ -508,6 +535,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
@@ -516,9 +544,12 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 */
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Table view delegate ===
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     
@@ -541,25 +572,30 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Memory management ===
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
-    NSLog(@"MEMORY WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    NSLog(@"TODO - MEMORY WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [xmlFiche release];
     [lblNbFiches release];
@@ -569,8 +605,11 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Actions ===
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
 	
@@ -579,8 +618,11 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Connection Asynchrone ===
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // do something with the data
@@ -635,6 +677,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 //************************************************************************************
 //************************************************************************************
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 
 {
@@ -649,6 +692,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 //************************************************************************************
 //************************************************************************************
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 
 {
@@ -664,6 +708,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 //************************************************************************************
 //************************************************************************************
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 
 {

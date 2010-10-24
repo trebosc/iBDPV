@@ -16,12 +16,15 @@
     Estim3OrientView *estim3OrientView;
 
 	CLLocationManager *locationManager;
+
+	CLLocationDirection Orientation; // Direction de la bousolle en degré par rapport au vrai Nord.
     BOOL bBoussoleAutom; // A vrai si le device à la capacité "Boussole"
     UserData *userData;
     
 }
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property  BOOL bBoussoleAutom;
+@property  CLLocationDirection Orientation;
 @property (nonatomic,retain) UserData *userData;
 
 //Action Back

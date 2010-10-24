@@ -35,6 +35,7 @@
 
 - (id)initWithFrame:(CGRect)frame viewController:(Estim2bPenteManuelViewController *)aController;
 -(void)setAngleToit:(CGFloat)phase;
+-(int)LectureAngleToit;
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import "Estim2bPenteManuelViewController.h"
 #import "Estim3OrientViewController.h"
-
+#import "UserData.h"
 #import "Estim2bPenteManuelView.h"
  
 @implementation Estim2bPenteManuelViewController
@@ -16,28 +16,13 @@
 @synthesize slider, userData;
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Initialisation  ===
 #pragma mark -
 
-/*
-- init {
-	if (self = [super init]) {
-	}
-	return self;
-}
-*/
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     
@@ -66,14 +51,14 @@
     
 	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
-	
-    
-	
-}
+
+} // Fin du - (void)loadView {
 
 
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillAppear 
 - (void)viewWillAppear:(BOOL)animated {
     	NSLog(@"viewWillAppear: Estim2PenteViewController - la navigation Bar doit pas apparaitre !");
@@ -83,9 +68,11 @@
     
          [super viewWillAppear:animated];
  NSLog(@"Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
-}
+} // Fin du - (void)viewWillAppear:(BOOL)animated {
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 
@@ -135,59 +122,63 @@
 	[rootView release];
 	
     
-   }
+} // Fin du - (void)viewDidLoad {
 
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Traitement divers  ===
 #pragma mark -
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Fin de vie  ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
     NSLog(@"viewWillDisappear: Arrêt de l'accelerometre");
     [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
     [super viewWillDisappear:animated];
     
-}
+} // Fin du - (void)viewWillDisappear:(BOOL)animated {
 
 
-
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [estim2bPenteManuelView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
 
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Gestion de l'angle de vue Slider / Touch ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(IBAction)fixeAngleToit:(id)sender  // appele quand on bouge le slider de la vue
 {
 	//CGFloat newAngle=(CGFloat)[sender value];
@@ -195,44 +186,47 @@
 	UISlider *senderSlider=(UISlider *)sender;
 	[estim2bPenteManuelView setAngleToit:senderSlider.value];
 	
-	NSLog(@"fixeAngleToit: %f",senderSlider.value);
-}
-
--(IBAction)fixeAngleSlider:(float)angle {
-	//NSLog(@"fixeAngleSlider");
-    NSLog(@"Sert à quoi ???");
-
-}
+	//NSLog(@"fixeAngleToit: %f",senderSlider.value);
+} // Fin -(IBAction)fixeAngleToit:(id)sender  // appele quand on bouge le slider de la vue
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(void)angleToitModifie:(float)newAngle {
 	//NSLog(@"angleToitModifie: %f - %f",newAngle,slider.value);
-	
 	[slider setValue:newAngle animated:NO];
-	
-	
-}
+} // Fin du -(void)angleToitModifie:(float)newAngle {
 
+
+// TODO - Mettre un Fin du if,     ou Fin -(void)angleToitModifie:(float)newAngle {    dans tout le code !!!!!
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
-#pragma mark === Gestion des boutons de la toolbar Navigation  ===
+#pragma mark === Fonctions NavigationBar (Retour et Valider) ===
 #pragma mark -
-
-
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-			NSLog(@"Top: @%",self.navigationController.topViewController);
+    //NSLog(@"Top: @%",self.navigationController.topViewController);
  	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
-}
+}// Fin du -(void)actBack:(id)sender {
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
+    
+    // Stockage de la pente  dans la classe UserData qui est utilisée partout.
+    self.userData.pente =  [estim2bPenteManuelView LectureAngleToit];
+
 	//Passage au controleur suivant
 	Estim3OrientViewController *newController=[[Estim3OrientViewController alloc] init];
     newController.userData=self.userData;
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
-}
+} // Fin du -(void)actValidate:(id)sender {
+
 
 @end

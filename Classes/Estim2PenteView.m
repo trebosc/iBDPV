@@ -22,10 +22,13 @@
 
 @synthesize viewController;
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Init et affichage ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithFrame:(CGRect)frame viewController:(Estim2PenteViewController *)aController {
     self = [super initWithFrame:frame];
     if (self != nil) {
@@ -40,6 +43,7 @@
     return self;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
     UIImageView * photographieMaisonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"explication_pente_accelerometre.png"]];
     photographieMaisonView.center = self.center;
@@ -89,6 +93,7 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action method executes when user touches the button
 - (void) pickOne:(id)sender{
 	UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
@@ -100,11 +105,14 @@
 } 
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Fin de vie de la classe ===
 #pragma mark -
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [super dealloc];
 }

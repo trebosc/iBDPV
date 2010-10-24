@@ -8,8 +8,8 @@
 
 #import "Estim2aPenteAutoViewController.h"
 #import "Estim3OrientViewController.h"
-
 #import "Estim2aPenteAutoView.h"
+#import "UserData.h"
 
 #import "UIAlertImageView.h"
 #import "findDeviceType.h"
@@ -25,15 +25,18 @@
 @synthesize calibrationOffset, userData;
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Setting up / Tearing down ===
 #pragma mark -
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - init {
 	if (self = [super init]) {
-        NSLog(@"init : Appelé une seule fois .... a mettre ailleurs ? ou faire le setDelegate dans le viewWillAppear ?");
+        NSLog(@"TODO - init : Appelé une seule fois .... a mettre ailleurs ? ou faire le setDelegate dans le viewWillAppear ?");
         
         UIAlertImageView *alert = [[UIAlertImageView alloc] initWithTitle:@"Etape 2/3 - Pente"
                                                                   message:@"Inclinez votre iPhone afin de faire correspondre votre toit avec son côté, comme sur la photo ci-dessous."
@@ -51,25 +54,10 @@
 } // Fin du - init {
 
 
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-
-
-
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillAppear 
 - (void)viewWillAppear:(BOOL)animated {
-    	NSLog(@"viewWillAppear: Estim2PenteViewController - la navigation Bar doit pas apparaitre !");
-        NSLog(@"Pas fait sur Etape 3 (mais que sur 1 et 2)");
-        [self.navigationController setNavigationBarHidden:YES];  
+    	[self.navigationController setNavigationBarHidden:YES];  
         [self.navigationController setToolbarHidden:YES animated:YES];
     
         // On lance l'accéléromètre ici pour qu'il soit lancé à chaque fois.
@@ -77,33 +65,33 @@
         [[UIAccelerometer sharedAccelerometer] setDelegate:self];
 
         [super viewWillAppear:animated];
- NSLog(@"Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
-}
+        NSLog(@"TODO - Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
+} // FIn du - (void)viewWillAppear:(BOOL)animated {
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
     NSLog(@"viewWillDisappear: Arrêt de l'accelerometre");
     [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
     [super viewWillDisappear:animated];
+} // Fin  du - (void)viewWillDisappear:(BOOL)animated {
 
-}
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-
 	
-	NSLog(@"viewDidLoad: Estim2PenteViewController");
+    //NSLog(@"viewDidLoad: Estim2PenteViewController");
 	
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
-    NSLog(@"UIScreen mainScreen : Ne retourne pas le bon chiffre :(  ");
     applicationFrame.origin.y   = 0;   //  Voir le code de Doudou ..... (sur le menu)
-	NSLog(@"viewDidLoad: Estim2PenteViewController  Bout de code pas beau  : applicationFrame.origin.y = 0");
     
 	// Création par programme de la hiérarchie de vues (p34) 
 	// Désactivé par Doudou - self.wantsFullScreenLayout=YES;   // Faire une rechercher dans le document PDF  ViewControlletPGforiPhoneOS
-	NSLog(@"modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
+	NSLog(@"IL y a des modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
     
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -113,7 +101,7 @@
     rootView.opaque=YES;
 	
 	// 2. Ajout de subViews
-    NSLog(@"Ne sert à rien puisque la vue est cachée ...");
+    //NSLog(@"Ne sert à rien puisque la vue est cachée ...");
 	CGRect lblRect=CGRectMake(0.0, 0.0, 200, 40);
 	UILabel	*lblWelcome=[[UILabel alloc] initWithFrame:lblRect];
 	lblWelcome.text=@"Generic View Controller";
@@ -132,54 +120,58 @@
   
 	// 4. Libération de la vue racine
 	[rootView release];
-	
-    
-     
-    
+	    
     //--------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
 
-    NSLog(@"viewDidLoad - Estim2PenteViewController - UIDEVICE");
-	NSLog(@"PlatformString %@",[[UIDevice currentDevice] platformString]);
-	NSLog(@"Platform : %d",[[UIDevice currentDevice] platformType]);
-	NSLog(@"Capacites : %d",[[UIDevice currentDevice] platformCapabilities]);
-	int essai = UIDeviceBuiltInCamera & [[UIDevice currentDevice] platformCapabilities];
-	if (essai == UIDeviceBuiltInCamera) 
-		NSLog(@"Appareil photo présent sur le device");
-	else 
-		NSLog(@"Pas d'appareil photo");
+   // NSLog(@"viewDidLoad - Estim2PenteViewController - UIDEVICE");
+	//NSLog(@"PlatformString %@",[[UIDevice currentDevice] platformString]);
+	//NSLog(@"Platform : %d",[[UIDevice currentDevice] platformType]);
+	//NSLog(@"Capacites : %d",[[UIDevice currentDevice] platformCapabilities]);
+	//int essai = UIDeviceBuiltInCamera & [[UIDevice currentDevice] platformCapabilities];
+	//if (essai == UIDeviceBuiltInCamera) 
+	//	NSLog(@"TODO - Pour la v2 et la gestion de la vue derrière l'iphone - Appareil photo présent sur le device");
+	//else 
+	//	NSLog(@"Pas d'appareil photo");
 
     //--------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
 
     [super viewDidLoad];
-	NSLog(@"viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
+	NSLog(@"TODO - A voir pour TOUS les modules viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
 	
-}
+} // Fin du - (void)viewDidLoad {
 
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Calibration ===
 #pragma mark -
+//-------------------------------------------------------------------------------------------------------------------------------
 - (float)calibratedAngleFromAngle:(float)rawAngle {
     float calibratedAngle = calibrationOffset + rawAngle;
-    NSLog(@"Toute la partie calibration a été virée (sauf cette fonction) bien ou pas ?");
+   // NSLog(@"Toute la partie calibration a été virée (sauf cette fonction)");
 
     return calibratedAngle;
-}
+} // Fin du - (float)calibratedAngleFromAngle:(float)rawAngle {
 
 
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Responding to accelerations ===
 #pragma mark -
+//-------------------------------------------------------------------------------------------------------------------------------
 // UIAccelerometer delegate method, which delivers the latest acceleration data.
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
     
-    NSLog(@"Réception info accéléromètre");
-
+   // NSLog(@"Réception info accéléromètre");
 
     // Use a basic low-pass filter to only keep the gravity in the accelerometer values for the X and Y axes
     accelerationX = acceleration.x * kFilteringFactor + accelerationX * (1.0 - kFilteringFactor);
@@ -190,52 +182,68 @@
     
     float calibratedAngle = [self calibratedAngleFromAngle:currentRawReading];    
     [estim2aPenteAutoView updateToInclinationInRadians:calibratedAngle];
-
  
-}
+} // Fin du - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [estim2aPenteAutoView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Fonctions NavigationBar (Retour et Valider) ===
+#pragma mark -
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-			NSLog(@"Top: @%",self.navigationController.topViewController);
+    //NSLog(@"Top: @%",self.navigationController.topViewController);
  	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
-}
+} // Fin du -(void)actBack:(id)sender {
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
+    
+    // Stockage de la pente  dans la classe UserData qui est utilisée partout.
+    self.userData.pente =  [estim2aPenteAutoView LectureAngleDegre];
+    NSString *sPente = [NSString stringWithFormat:@"Pente : %i", self.userData.pente];
+    NSLog(@"TODO- Verifier que la pente par accéléromètre est égale à la pente manuelle - Pente: %@",sPente);  
+    
 	//Passage au controleur suivant
 	Estim3OrientViewController *newController=[[Estim3OrientViewController alloc] init];
     newController.userData=self.userData;
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
-}
+} // Fin du -(void)actValidate:(id)sender {
+
 
 @end

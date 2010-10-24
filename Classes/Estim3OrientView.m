@@ -21,7 +21,7 @@ CGFloat DegreesToRadians2(CGFloat degrees) {return degrees * M_PI / 180;};
 CGFloat RadiansToDegrees2(CGFloat radians) {return radians * 180/M_PI;};
 
 
-//-----------
+//-------------------------------------------------------------------------------------------------------------------------------
 float FctModulo360(float angle) {
 	//NSLog(@"Angle in :%0.0f",angle);
     
@@ -38,7 +38,7 @@ float FctModulo360(float angle) {
 	
 } // Fin de FctModulo360
 
-//_____________________________________________________________________________________________________________ 
+//-------------------------------------------------------------------------------------------------------------------------------
 float CalculeAngle(CGPoint position, float angleInit) {
 	
 	//NSLog(@"Posisiont X:%0.0f Y:%0.0f",position.x,position.y);
@@ -83,10 +83,13 @@ float CalculeAngle(CGPoint position, float angleInit) {
 
 @synthesize viewController;
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Setting up / Tearing down ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithFrame:(CGRect)frame viewController:(Estim3OrientViewController *)aController {
     self = [super initWithFrame:frame];
     if (self != nil) {
@@ -99,6 +102,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
     return self;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
     CGRect frame;
 
@@ -181,6 +185,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
     [self setNeedsDisplay];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
 	[maison_vue_dessusView release];
 	[silhouette_vue_dessusView release];
@@ -190,12 +195,14 @@ float CalculeAngle(CGPoint position, float angleInit) {
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark ===  Gestion des Touch Events ===
 #pragma mark -
 
 
-//===========================================================================
+//-------------------------------------------------------------------------------------------------------------------------------
 // Handles the start of a touch
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -208,6 +215,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 	}	
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Checks to see which view, or views, the point is in and then calls a method to perform the opening animation,
 // which  makes the piece slightly larger, as if it is being picked up by the user.
 -(void)dispatchFirstTouchAtPoint:(CGPoint)touchPoint forEvent:(UIEvent *)event
@@ -231,7 +239,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 } // Fin du -(void)dispatchFirstTouchAtPoint:(CGPoint)touchPoint forEvent:(UIEvent *)event
 
 
-//===========================================================================
+//-------------------------------------------------------------------------------------------------------------------------------
 // Handles the continuation of a touch.
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {  
@@ -245,7 +253,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 } // Fin du -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 
 
-//------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 // Checks to see which view, or views, the point is in and then sets the center of each moved view to the new postion.
 // If views are directly on top of each other, they move together.
 -(void)dispatchTouchMoveEvent:(UIView *)theView toPosition:(CGPoint)position
@@ -255,7 +263,6 @@ float CalculeAngle(CGPoint position, float angleInit) {
 		float angleResult = CalculeAngle(position,angleDepartTouch);
         
         //		NSLog(@"angleActuelAbsolu :%0.0f",angleActuelAbsolu);
-		// ATD a virer degreeDisplayView.text =[NSString stringWithFormat:@"	%0.0f°",angleResult];
         [self updateDisplayAngle:angleResult];
         [self updateBoussoleAngle:angleResult];
 
@@ -264,7 +271,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 } // Fin du -(void)dispatchTouchMoveEvent:(UIView *)theView toPosition:(CGPoint)position
 
 
-//===========================================================================
+//-------------------------------------------------------------------------------------------------------------------------------
 // Handles the end of a touch event.
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -284,8 +291,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 
 
 
-//===========================================================================
-
+//-------------------------------------------------------------------------------------------------------------------------------
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	if (bTouchBoussole) {
@@ -302,7 +308,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 } // Fin du -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 
 
-//------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 // Checks to see which view, or views, the point is in and then sets the center of each moved view to the new postion.
 // If views are directly on top of each other, they move together.
 -(void)dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position
@@ -315,7 +321,6 @@ float CalculeAngle(CGPoint position, float angleInit) {
 		angleActuelAbsolu = FctModulo360(angleActuelAbsolu);
 		
         //		NSLog(@"angleActuelAbsolu :%0.0f",angleActuelAbsolu);
-		// ATD a virer degreeDisplayView.text =[NSString stringWithFormat:@"%0.0f°", angleActuelAbsolu];
         [self updateDisplayAngle:angleResult];
 
         
@@ -324,12 +329,14 @@ float CalculeAngle(CGPoint position, float angleInit) {
 
 } // Fin du -(void)dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark ===  Gestion des Update (aussi appelé par Boussole 3GS ou 4G ...) ===
 #pragma mark -
 
 
-//**********
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)updateDisplayAngle:(float)angle {
     NSString *newAngleString = [NSString stringWithFormat:@"%0.0f", angle];
     NSString *angleStringWithDegree = [newAngleString stringByAppendingString:@"º"];
@@ -338,7 +345,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
 } // Fin du - (void)updateDisplayAngle:(float)angle {
 
 
-//**********
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)updateBoussoleAngle:(float)angle {
     [UIView beginAnimations:@"rotate_blipView" context:nil];
     [UIView setAnimationDuration:0];	

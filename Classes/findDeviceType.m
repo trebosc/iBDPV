@@ -26,6 +26,7 @@
  iPod2,1   -> iPod touch 2G 
  */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *) platform
 {
 	size_t size;
@@ -37,6 +38,7 @@
 	return platform;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (int) platformType
 {
 	NSString *platform = [self platform];
@@ -50,6 +52,7 @@
 	return UIDeviceUnknown;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *) platformString
 {
 	switch ([self platformType])
@@ -67,6 +70,7 @@
 	}
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (int) platformCapabilities
 {
 	switch ([self platformType])
@@ -79,7 +83,7 @@
 		case UIDevice1GiPod: return 0;
 		case UIDevice2GiPod: return UIDeviceBuiltInSpeaker | UIDeviceBuiltInMicrophone | UIDeviceSupportsExternalMicrophone;
 		case UIDeviceUnknowniPod: return 0;
-			
+//TODO - Rajouter l'iPad et l'iPhone (récupérer le soucre officiel qui a du évoluer)			
 		default: return 0;
 	}
 }

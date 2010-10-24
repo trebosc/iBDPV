@@ -19,6 +19,7 @@
 
 @synthesize dicoPhoto, urlPhoto;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
 	[connection cancel]; //in case the URL is still downloading
 	[connection release];
@@ -27,6 +28,7 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)loadImageFromURL:(NSURL*)url {
     
     UIImage *imgPhoto=[self.dicoPhoto objectForKey:url];
@@ -61,12 +63,14 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //the URL connection calls this repeatedly as data arrives
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)incrementalData {
 	if (data==nil) { data = [[NSMutableData alloc] initWithCapacity:2048]; } 
 	[data appendData:incrementalData];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //the URL connection calls this once all the data has downloaded
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	//so self data now has the complete image 
@@ -96,6 +100,7 @@
 	data=nil;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)makeImageView:(UIImage *)withImage {
     
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:withImage] autorelease];
@@ -110,6 +115,7 @@
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //just in case you want to get the image directly, here it is in subviews
 - (UIImage*) image {
 	UIImageView* iv = [[self subviews] objectAtIndex:0];

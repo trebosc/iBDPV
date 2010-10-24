@@ -22,13 +22,17 @@
 
 @synthesize coordinate;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)subtitle{
 	return @"Sub Title";
 }
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)title{
 	return @"Title";
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
 	NSLog(@"Annotation: %f,%f",c.latitude,c.longitude);
@@ -39,6 +43,7 @@
 
 @implementation AddressAnnotationView
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     // The view is configured for single touches only.
@@ -50,6 +55,7 @@
     [super touchesBegan:touches withEvent:event];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch* aTouch = [touches anyObject];
@@ -73,13 +79,14 @@
     }
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     if (_mapView && _isMoving) {				
         // Update the map coordinate to reflect the new position.
-        CGPoint newCenter = self.center;
-        AddressAnnotationView* theAnnotation = (AddressAnnotationView *)self.annotation;
-        CLLocationCoordinate2D newCoordinate = [_mapView convertPoint:newCenter toCoordinateFromView:self.superview];
+// TODO - A virer ?        CGPoint newCenter = self.center;
+// TODO - A virer ?        AddressAnnotationView* theAnnotation = (AddressAnnotationView *)self.annotation;
+// TODO - A virer ?        CLLocationCoordinate2D newCoordinate = [_mapView convertPoint:newCenter toCoordinateFromView:self.superview];
         
         //[theAnnotation changeCoordinate:newCoordinate];
         
@@ -93,6 +100,7 @@
     }
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     
     if (_mapView && _isMoving) {
@@ -115,17 +123,9 @@
 
 @synthesize mapView, menuOrigin,toolbarSearchAddress,userData;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Appelé à chauqe affichage de la vue (et pas uniquement lors du premier appel.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -145,6 +145,7 @@
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
 
@@ -206,8 +207,11 @@
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === MKMapViewDelegate ===
+//-------------------------------------------------------------------------------------------------------------------------------
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -233,6 +237,7 @@
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
     for(MKAnnotationView *annotationView in views) {
         if(annotationView.annotation == mv.userLocation) {
@@ -257,6 +262,7 @@
 }
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation{
 	MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
 	annView.pinColor = MKPinAnnotationColorGreen;
@@ -267,6 +273,7 @@
 }
  */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(void)observeValueForKeyPath:(NSString *)keyPath  
                      ofObject:(id)object  
                        change:(NSDictionary *)change  
@@ -282,6 +289,7 @@
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+ //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad {
     //[super viewDidLoad];
 	
@@ -292,14 +300,18 @@
 
 /*
 // Override to allow orientations other than the default portrait orientation.
+ //-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Memory management ===
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -308,6 +320,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -315,6 +328,7 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [super dealloc];
     
@@ -329,9 +343,12 @@
 }
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === MapKit methods ===
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(CLLocationCoordinate2D) addressLocation:(NSString *)address {
 	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", [address stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding  error:NULL]; // TODO: Gestion des erreurs à faire et vérifier l'encodage
@@ -354,9 +371,12 @@
 	return location;
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Actions ===
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
     NSLog(@"Top: @%",self.navigationController.topViewController);
@@ -366,6 +386,7 @@
 	//[self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
     //Sauvegarde des données de l'utilisateur
@@ -462,6 +483,7 @@
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(void)actDisplayToolbarSearchAddress:(id)sender {
     
     NSLog(@"Seach clicked");
@@ -513,6 +535,7 @@
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(void)actAnnuler:(id)sender {
     //Fait disparaitre la ToolBar
     //[self.toolbarSearchAddress removeFromSuperview];                  // Removed from the hiearachy
@@ -521,6 +544,7 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(void)actLocalize:(id)sender {
     NSLog(@"actLocalize");
     MKCoordinateRegion region;
@@ -544,8 +568,11 @@
     pinAnnotation=nil;
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === UITextFieldDelegate ===
+//-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];
@@ -573,14 +600,10 @@
     return YES;
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Parser XML ===
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
 
 /*
  <nombre_inst>
@@ -594,6 +617,7 @@
  */
 // #### NSXMLParserDelegate
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Start tag
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
@@ -608,6 +632,7 @@
 	}
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Values
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
 	
@@ -624,6 +649,7 @@
 
 //-------------------------------------------------------------------------
 // End tag
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     //Sauvegarde des données de l'utilisateur
@@ -644,11 +670,6 @@
 } // Fin du - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
 
 
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
-//************************************************************************************
 
 
 @end

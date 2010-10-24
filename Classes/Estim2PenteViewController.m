@@ -18,11 +18,14 @@
 
 @synthesize bPenteVisible, userData;
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Setting up / Tearing down ===
 #pragma mark -
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 - init {
 	if (self = [super init]) {
 	}
@@ -31,6 +34,7 @@
 */
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -43,6 +47,7 @@
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillAppear 
 - (void)viewWillAppear:(BOOL)animated {
         [self.navigationController setNavigationBarHidden:NO];  
@@ -54,6 +59,7 @@
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -61,6 +67,7 @@
 }
  */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     
@@ -96,6 +103,7 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 
@@ -123,7 +131,7 @@
     //***********************************
     //On rajoute une vue qui va afficher tout ce qui concerne la pente (angle, image maison, ...) 
     estim2PenteView = [[Estim2PenteView alloc] initWithFrame:applicationFrame viewController:self];
-    NSLog(@"Je ne comprends pas pourquoi il y a un pb 'incompatible Objectiv-C types' .... pourquoi il attend un Estim2bPenteManuelViewController");
+    NSLog(@"TODO Je ne comprends pas pourquoi il y a un pb 'incompatible Objectiv-C types' .... pourquoi il attend un Estim2bPenteManuelViewController");
     
     [rootView addSubview:estim2PenteView];
 
@@ -141,7 +149,7 @@
     
     
     [super viewDidLoad];
-	NSLog(@"viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
+	NSLog(@"viewDidLoad: appel  super parce que .... pas fait dans code Doudou ?");
 	
 }
 
@@ -149,6 +157,7 @@
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -156,6 +165,7 @@
 }
 */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -163,6 +173,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -170,6 +181,7 @@
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [estim2PenteView release];
     [super dealloc];
@@ -178,16 +190,18 @@
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-			NSLog(@"Top: @%",self.navigationController.topViewController);
-    NSLog(@"A priori, le navigationController.topViewcontroller ne renvoie tien");
-
+			
+    //NSLog(@"Top: @%",self.navigationController.topViewController);
+ 
  	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
 } // Fin du -(void)actBack:(id)sender {
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
 	//Passage au controleur suivant
@@ -204,7 +218,7 @@
             [newController release];
         } // Fin du if (bPenteVisible)  { 
     
-    NSLog(@"Duplication du cote ...  de 2 variables (une finissant par A et l'autre par B ... on doit pouvoir faire mieux ...");
+    NSLog(@"TODO - Duplication du cote ...  de 2 variables (une finissant par A et l'autre par B ... on doit pouvoir faire mieux ...");
 
 } // Fin du -(void)actValidate:(id)sender {
 

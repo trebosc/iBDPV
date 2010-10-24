@@ -15,6 +15,7 @@
 
 @synthesize window, navController, userData;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 	NSLog(@"didFinishLaunchingWithOptions iPhone");
@@ -41,11 +42,13 @@
 	return YES;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)applicationWillTerminate:(UIApplication *)application {
 
     // Save data if appropriate.
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
 
     //Libération des objets

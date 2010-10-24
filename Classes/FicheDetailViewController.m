@@ -16,8 +16,11 @@
 http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api_demandeur=iBDPV&uid=090392&i=001
 */
  
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === View lifecycle ===
+//-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildFicheDetailURL {
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
@@ -46,6 +49,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -55,6 +59,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 }
 */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     [super loadView];
@@ -135,6 +140,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 }
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -145,6 +151,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 */
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -152,6 +159,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 }
 */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -159,6 +167,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     // Release any cached data, images, etc that aren't in use.
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -166,6 +175,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     
     [sectionsDataSource release];
@@ -176,9 +186,12 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     [super dealloc];
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark Actions
 
+//-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
 	//Retour au controlleur précédent
@@ -186,6 +199,8 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 	//[self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Parser XML ===
 
@@ -206,6 +221,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
  </Utilisateur>
  */
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Start tag
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
@@ -225,6 +241,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Values
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
 	
@@ -239,7 +256,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     
 }
 
-//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 // End tag
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -288,14 +305,18 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 	
 } // Fin du - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Table view data source ===
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return [sectionsDataSource count];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
  
     return [sectionsDataSource objectAtIndex:section];
@@ -308,6 +329,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     
 }*/
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
@@ -316,6 +338,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -404,6 +427,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the specified item to be editable.
@@ -413,6 +437,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
  
@@ -428,6 +453,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // Override to support rearranging the table view.
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
  }
@@ -435,6 +461,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 
 
 /*
+ //-------------------------------------------------------------------------------------------------------------------------------
  // Override to support conditional rearranging of the table view.
  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the item to be re-orderable.
@@ -443,8 +470,11 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
  */
 
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === UITableViewDelegate Protocol ===
+//-------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
         return 163.0;

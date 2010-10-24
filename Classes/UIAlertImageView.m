@@ -23,6 +23,7 @@
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)layoutAnimated:(BOOL)fp8 {
 	[super layoutAnimated:fp8];
 	[self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y - imageExtHeight/2, self.frame.size.width, self.frame.size.height + imageExtHeight)];
@@ -49,11 +50,13 @@
 	
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)show{
 	[self prepare];
     [super show];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)prepare {	
 	UIImage *imageChargee = [UIImage imageNamed:@"explication_pente_accelerometre.png"];
     NSLog(@"prepareUIAlertImageView - Mettre en paramètre le nom de l'image !!!!)");
@@ -76,6 +79,7 @@
 	[self setNeedsLayout];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
 	[imageView release];
     [super dealloc];

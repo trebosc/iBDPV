@@ -23,11 +23,13 @@
 	UILabel *shadowDegreeDisplayView;
 	UILabel *pourcentDisplayView;
 	UILabel *shadowPourcentDisplayView;
+    int Pente;
 }
 
 @property (nonatomic, assign) Estim2aPenteAutoViewController *viewController;
 
 - (id)initWithFrame:(CGRect)frame viewController:(Estim2aPenteAutoViewController *)aController;
 - (void)updateToInclinationInRadians:(float)rotation;
+- (int)LectureAngleDegre;
 
 @end

@@ -30,10 +30,13 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 
 @synthesize viewController;
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Init et affichage ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithFrame:(CGRect)frame viewController:(Estim2aPenteAutoViewController *)aController {
     self = [super initWithFrame:frame];
     if (self != nil) {
@@ -42,8 +45,10 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 		[self setupSubviewsWithContentFrame:frame];
     }
     return self;
-}
+} // Fin du - (id)initWithFrame:(CGRect)frame viewController:(Estim2aPenteAutoViewController *)aController {
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
     levelFrontDroiteView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"penteBackgroundDroite.png"]];
     levelFrontDroiteView.center = self.center;
@@ -94,8 +99,8 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     shadowPourcentDisplayView.textAlignment = UITextAlignmentCenter;
     
     
-#define kStdButtonWidth		106.0
-#define kStdButtonHeight	40.0
+    #define kStdButtonWidth		106.0
+    #define kStdButtonHeight	40.0
 
     
     //----------------------------
@@ -134,7 +139,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 	// Transform for rotating textual display
 	CATransform3D landscapeTransform = CATransform3DIdentity;
     landscapeTransform = CATransform3DRotate(landscapeTransform, DegreesToRadians3(-90), 0, 0, 1);
-    NSLog(@"Duplication des fonctions DegreesToRadians  en v2 et v3 ....");
+    NSLog(@"TODO - Duplication des fonctions DegreesToRadians  en v2 et v3 ....");
 
     degreeDisplayView.layer.transform = landscapeTransform;
     pourcentDisplayView.layer.transform = landscapeTransform;
@@ -154,13 +159,19 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     [self addSubview:retourButton];
     
     [self setNeedsDisplay];
-}
+} // Fin du - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+// TODO - Mettre des ##  avant chaque Pragma
 #pragma mark -
 #pragma mark === Fin de vie de la classe ===
 #pragma mark -
 
-
+//-------------------------------------------------------------------------------------------------------------------------------
+//TODO mettre avant chaque fonction :  //-------------------------------------------------------------------------------------------------------------------------------
+ 
 - (void)dealloc {
 	[levelFrontDroiteView release];
 	[levelFrontGaucheView release];
@@ -169,13 +180,18 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     [degreeDisplayView release];
     [pourcentDisplayView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
 
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Gestion des mise à jour des angles ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
+// Change la photo du fond (maison) suivant si l'iphone est inclinée vers la gauche ou vers la droite
 - (void)updateArrowsForAngle:(float)angle {
     if (angle < 0.0) {
 		levelFrontDroiteView.hidden = YES;
@@ -188,14 +204,17 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 		levelFrontDroiteView.hidden = NO;
 		levelFrontGaucheView.hidden = YES;
     }
-}
+} // Fin du - (void)updateArrowsForAngle:(float)angle {
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// Met à jour l'affichage texte de l'écran
 - (void)updateReadoutForAngle:(float)angle {
-    // limit it to no more or less than the maximum angle from level
-    if (angle > kMaxAngle) angle = kMaxAngle;
-    if (angle < -kMaxAngle) angle = -kMaxAngle;
-	angle = abs(angle);
+    
+    // On prend la valeur absolu car l'angle est toujorus positif sous BDPV.
+    angle = abs(angle);
+    
 	CGFloat anglePourcent = DegreesToPourcent3(angle);
 	if ( (angle >= 90) || (anglePourcent > 100))  anglePourcent = 100;
     NSString *newAngleString = [NSString stringWithFormat:@"%0.0f", angle];
@@ -210,13 +229,33 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     [pourcentDisplayView setNeedsDisplay];
     [shadowDegreeDisplayView setNeedsDisplay];
     [shadowPourcentDisplayView setNeedsDisplay];
-}
+} // Fin du - (void)updateReadoutForAngle:(float)angle {
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// L'angle de l'iphone a changé - Appel de cette fonction
 - (void)updateToInclinationInRadians:(float)rads {
+    
+    // L'angle de l'accéléromètre étant en radians, on converti en degré
     float rotation = -RadiansToDegrees3(rads);
+    // On limite les angles accepté
+    if (rotation > kMaxAngle) rotation = kMaxAngle;
+    if (rotation < -kMaxAngle) rotation = -kMaxAngle;
+    
+    Pente = abs(rotation);
     
 	[self updateReadoutForAngle:rotation];
 	[self updateArrowsForAngle:rotation];    
-}
+} // Fin du - (void)updateToInclinationInRadians:(float)rads {
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// Pour récupérer l'angle de la pente
+- (int)LectureAngleDegre {
+    NSString *sPente = [NSString stringWithFormat:@"%0.0f", Pente];
+    NSLog(@"TODO- Verifier que la pente par accéléromètre est égale à la pente manuelle - Pente: %@",sPente);   
+
+    return Pente; 
+} // Fin du - (int)LectureAngleDegre: {
+
 
 @end

@@ -1,20 +1,20 @@
 /*
  
  File: Estim2PenteView.m
- Abstract: Estim2PenteView builds and displays the primary user interface of the Bubble
+ Abstract: Estim2PenteView est la vue attaché à l'écran permettant de choisir l'angle du toit de manière manuelle (sans accéléromètre)
  Level application.
  
- Version: 1.8
+ Version: 1.0
  
  
  */
 
-#import "math.h"
+//TODO - Revoir les commentaires en entêtes de tous les fichier pour mettre le bon commentaire.
 
 #import "Estim2bPenteManuelView.h"
-
 #import "Estim2bPenteManuelViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "math.h"
 
 
 @interface Estim2bPenteManuelView (PrivateMethods)
@@ -38,10 +38,13 @@ const float ANGLE=45.0;
 
 @synthesize viewController;
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Init et affichage ===
 #pragma mark -
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithFrame:(CGRect)frame viewController:(Estim2bPenteManuelViewController *)aController {
     self = [super initWithFrame:frame];
     if (self != nil) {
@@ -53,6 +56,7 @@ const float ANGLE=45.0;
     return self;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
     UILabel	*lblFace;
     lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 00.0, 320, 20)];
@@ -128,13 +132,13 @@ const float ANGLE=45.0;
     [self setNeedsDisplay];
 }
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark Gestion du changement d'angle du toit
 
 //-----------------------------------------------------------------------------------------------------------------
 -(void)setAngleToit:(CGFloat)phase // appelé quand on affecte une valeur à angleToit
 {
-	
-    
 	
 	if(phase != angleToit)
 	{
@@ -166,6 +170,12 @@ const float ANGLE=45.0;
     
 } // Fin du -(void)setAngleToit:(CGFloat)phase // appelé quand on affecte une valeur à angleToit
 
+//-----------------------------------------------------------------------------------------------------------------
+-(int)LectureAngleToit
+{
+    return angleToit; 
+} // Fin du -(int)LectureAngleToit
+
 
 //-----------------------------------------------------------------------------------------------------------------
 // Only override drawRect: if you perform custom drawing.
@@ -195,12 +205,6 @@ const float ANGLE=45.0;
      // Drawing lines with a white stroke color
      CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
 
-	// Base du toit
-	//ATD Out - plus besoin - CGContextMoveToPoint(context, debutLigneToitX, debutLigneToitY);
-	//ATD Out - plus besoin - CGContextAddLineToPoint(context, debutLigneToitX+longueurLigneToit, debutLigneToitY);
-	
-     // ATD - C'est ici qu'il faut dessiner la maison !!!!!
-     
      
      //----------------------------------------------------------------
 	// On fait la rotation correspondant à l'angle demandé par l'utilisateur
@@ -228,6 +232,8 @@ const float ANGLE=45.0;
     
 } // Fin du - (void)drawRect:(CGRect)rect {
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark Gestion des Touch Event
 
 //-----------------------------------------------------------------------------------------------------------------
@@ -259,10 +265,10 @@ const float ANGLE=45.0;
 			& ( (yPosBoutLigne+rayonRondBout*2) > positionDoigt.y)
 			)
 		{
-			NSLog(@"Sur Bout ligne");
+			//NSLog(@"Sur Bout ligne");
 			bTrackTouche = YES;
 		} else { // Avec le if ( 	( (xPosBoutLigne-
-			NSLog(@"Hors ligne");
+			//NSLog(@"Hors ligne");
 		} // Fin du if ( 	( (xPosBoutLigne-
 		
 	} // Fin du for (UITouch *touch in touches) {
@@ -321,13 +327,14 @@ const float ANGLE=45.0;
 
 
 
-#pragma mark Fin de la vue ...
-
+//#########################################################################################################################################################
+//#########################################################################################################################################################
 #pragma mark -
 #pragma mark === Fin de vie de la classe ===
 #pragma mark -
 
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [degreeDisplayView release];
     [pourcentDisplayView release];
