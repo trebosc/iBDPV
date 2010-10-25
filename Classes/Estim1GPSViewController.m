@@ -121,7 +121,7 @@
 
 @implementation Estim1GPSViewController
 
-@synthesize mapView, menuOrigin,toolbarSearchAddress,userData;
+@synthesize mapView, menuOrigin,toolbarSearchAddress,userData,validateItem;
 
 
 
@@ -168,6 +168,9 @@
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     //Valider
 	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
+    btnValidateItem.enabled=NO;
+    self.validateItem=btnValidateItem;
+    
     //Localize
     UIBarButtonItem *btnLocalizeItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actLocalize:)];
     
@@ -217,6 +220,8 @@
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         //if ([annotation class]==MKUserLocation.class) {
         NSLog(@"UserLocation");
+        //Enabled Validate button
+        self.validateItem.enabled=YES;
         return nil;
     }
     else
@@ -230,11 +235,12 @@
             
         //Standard View
         MKPinAnnotationView *pinView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
-        
+            //Enabled Validate button
+            self.validateItem.enabled=YES;
             return pinView;
         }
     
-    
+   
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -257,6 +263,8 @@
             
             [mv setRegion:region animated:TRUE];
             [mv regionThatFits:region];
+            
+            
         }
     }
 }
@@ -486,7 +494,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actDisplayToolbarSearchAddress:(id)sender {
     
-    NSLog(@"Seach clicked");
+    NSLog(@"Search clicked");
     
     if (self.toolbarSearchAddress==nil) {
         //Affichage d'une Toolbar
@@ -529,9 +537,9 @@
         self.toolbarSearchAddress.hidden=NO;                    // Unhided
         }
         
-    
+    //Disabled Validate button
+    self.validateItem.enabled=NO;
                                   
-    
     
 }
 
@@ -541,6 +549,9 @@
     //[self.toolbarSearchAddress removeFromSuperview];                  // Removed from the hiearachy
     self.toolbarSearchAddress.hidden=YES;                               // Hided
     [[self.toolbarSearchAddress viewWithTag:70] resignFirstResponder];  // Hide keyboard
+    
+    //Enabled Validate button
+    self.validateItem.enabled=YES;
 }
 
 
@@ -566,6 +577,8 @@
     //Suppression de l'annotation
     [pinAnnotation release];
     pinAnnotation=nil;
+    
+    
 }
 
 //#########################################################################################################################################################

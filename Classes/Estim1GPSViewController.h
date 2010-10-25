@@ -44,12 +44,15 @@
     NSMutableString *currentStringValue;
     
     UserData *userData;
+    
+    UIBarButtonItem *validateItem;
 }
 
 @property(nonatomic,retain) MKMapView *mapView;
 @property (nonatomic, copy) NSString *menuOrigin;
 @property (nonatomic,retain) UIToolbar *toolbarSearchAddress;
 @property (nonatomic,retain) UserData *userData;
+@property (nonatomic,retain) UIBarButtonItem *validateItem;
 
 //Action Back
 -(void)actBack:(id)sender;

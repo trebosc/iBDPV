@@ -35,7 +35,7 @@
 -(NSURL *)buildURL {
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVa%dd%dl%fo%fp%duid%@",
+    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712a%dapi_demandeuriBDPVd%dl%fo%fp%duid%@",
                            self.userData.orientation,
                            self.userData.distance,                    
                            self.userData.latitude,
