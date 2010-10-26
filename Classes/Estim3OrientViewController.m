@@ -265,7 +265,7 @@
     self.userData.orientation= [estim3OrientView LectureAngleBoussole];
     
 	//Passage au controleur suivant
-	Estim4ResultViewController *newController=[[Estim4ResultViewController alloc] init];
+	Estim4ResultViewController *newController=[[Estim4ResultViewController alloc] initWithStyle:UITableViewStyleGrouped];
     newController.userData=self.userData;
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];

@@ -12,7 +12,7 @@
 
 @implementation Estim4ResultViewController
 
-@synthesize userData;
+@synthesize userData, dicoPhoto;
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -66,12 +66,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-
+    [super loadView];
+    
 	// Affichage de la barre de navigation
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Etape 4 - Resultat";
+	self.title=@"Resultat";
 	
 	//Désactivation du bouton Back
 	[self.navigationItem setHidesBackButton:YES];
@@ -93,7 +94,36 @@
 	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
 	
-
+    // Lancement du parsing XML (mode SYNCHRONE)
+    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildURL]];
+    
+    
+    //Set delegate
+    [xmlParser setDelegate:self];
+    
+    NSLog(@"Loading first page synchrone. XML Parsing ...");
+    
+    //Start parsing the XML file.
+    
+    BOOL success = [xmlParser parse];
+    
+    if(success)
+        NSLog(@"Loading XML Résultats OK");
+    else {
+        NSLog(@"Loading XML Résultats NOK");
+        
+        UIAlertView *alert = [[[UIAlertView alloc] 
+                               initWithTitle:@"Error"
+                               message:@"Loading XML Résultats NOK."
+                               delegate:self
+                               cancelButtonTitle:@"Cancel"
+                               otherButtonTitles:nil]
+                              autorelease];
+        [alert show];
+        
+    } // 
+    
+    dicoPhoto=[[NSMutableDictionary alloc] init];
 	
 }
 
@@ -102,76 +132,26 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+/*
 - (void)viewDidLoad {
     //[super viewDidLoad];
 	
 	NSLog(@"viewDidLoad: Estim4ResultViewController");
 	
-    
-    /*
-	// Création par programme de la hiérarchie de vues (p34) 
-	self.wantsFullScreenLayout=YES;
-	
-	// 1. Création de la vue racine du controlleur de la taille de l'écran
-	UIView *rootView=[[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-	rootView.backgroundColor=[UIColor whiteColor];
-    rootView.opaque=YES;
-	
-	// 2. Ajout de subViews
-	CGRect lblRect=CGRectMake(50.0, 50.0, 200, 40);
-	UILabel	*lblWelcome=[[UILabel alloc] initWithFrame:lblRect];
-	lblWelcome.text=@"ETAPE 4";
-	[rootView addSubview:lblWelcome];
-	[lblWelcome release];
-	
-	
-	
-	// 3. Assignation de la vue racine à la propriété view du controlleur
-	self.view=rootView;
-	
-	// 4. Libération de la vue racine
-	[rootView release];
-	*/
-	
 	
 }
+*/
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
+/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-        // Lancement du parsing XML (mode SYNCHRONE)
-        NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildURL]];
-        
-        
-        //Set delegate
-        [xmlParser setDelegate:self];
-        
-        NSLog(@"Loading first page synchrone. XML Parsing ...");
-        
-        //Start parsing the XML file.
        
-        BOOL success = [xmlParser parse];
-        
-        if(success)
-            NSLog(@"Loading XML Résultats OK");
-        else {
-            NSLog(@"Loading XML Résultats NOK");
-            
-            UIAlertView *alert = [[[UIAlertView alloc] 
-                                   initWithTitle:@"Error"
-                                   message:@"Loading XML Résultats NOK."
-                                   delegate:self
-                                   cancelButtonTitle:@"Cancel"
-                                   otherButtonTitles:nil]
-                                  autorelease];
-            [alert show];
-            
-        } // 
         
        }
-
+*/
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -200,6 +180,11 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
+    [sectionsDataSource release];
+    [itemsDataSource release];
+    [valuesDataSource release];
+    [dicoPhoto release];
+    
     [super dealloc];
 }
 
@@ -231,15 +216,22 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    NSLog(@"Sections: %d",[sectionsDataSource count]);
+    return [sectionsDataSource count];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    return [sectionsDataSource objectAtIndex:section];
+    
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
-    return 0;
+    return [[itemsDataSource objectAtIndex:section] count];
 }
 
 
@@ -248,7 +240,88 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    return nil;
+    static NSString *CellIdentifier = @"CellFicheProche";
+    
+    static NSString *CellIdentifierPhoto = @"CellFicheProchePhoto";
+    
+#define PHOTO_TAG 1
+    
+    UITableViewCell *cell;
+    
+    if (![[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            //NSLog(@"cell==nil");
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+            // UITableViewCellStyleDefault
+            // UITableViewCellStyleValue1
+            // UITableViewCellStyleValue2
+            // UITableViewCellStyleSubtitle
+        }
+        
+        cell.textLabel.text=[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text=[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
+    
+    else {
+        // Photo   
+        
+        UIImageView *photo;
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierPhoto];
+        
+        if (cell == nil) {
+            //NSLog(@"cell==nil");
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierPhoto] autorelease];
+            // UITableViewCellStyleDefault
+            // UITableViewCellStyleValue1
+            // UITableViewCellStyleValue2
+            // UITableViewCellStyleSubtitle
+            
+            //cell.autoresizingMask=UIViewAutoresizingFlexibleHeight;
+            
+            photo = [[[UIImageView alloc] initWithFrame:CGRectMake(30.0, 0.0, 240.0, 162.0)] autorelease];
+            photo.tag = PHOTO_TAG;
+            //photo.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+            
+            [cell.contentView addSubview:photo];
+            
+            
+        }
+        
+        else {
+            
+            photo = (UIImageView *)[cell.contentView viewWithTag:PHOTO_TAG];
+        }
+        
+        UIImage* image = [dicoPhoto objectForKey:indexPath];
+        
+        if (image == nil) {
+            NSString *photoURL=[NSString stringWithFormat:@"http://www.bdpv.fr/image/install/%@",[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:photoURL]];
+            
+            image = [[UIImage alloc] initWithData:imageData];
+            
+            //Stockage de l'image
+            [dicoPhoto setObject:image forKey:indexPath];
+            
+            [imageData release];
+            
+        }
+        
+        
+        photo.image = image;
+        
+        
+        
+        //cell.imageView.image=[UIImage imageNamed:@"maison_vue_dessus.png"];
+        
+    }
+    
+    
+    return cell;
+    
 }
 
 
@@ -295,5 +368,126 @@
  }
  */
 
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === UITableViewDelegate Protocol ===
+//-------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
+        return 163.0;
+    }
+    else {
+        return tableView.rowHeight;
+    }
+    
+}
+
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Parser XML ===
+
+/*
+ <Utilisateur>
+ <Section>
+ <Nom>Identifiant</Nom>
+ <Lignes>
+ <Item>Id</Item>
+ <Valeur>1</Valeur>
+ <Item>Nom</Item>
+ <Valeur>trebosc</Valeur>
+ <Item>Photo</Item>
+ <Valeur>trebosc.jpg</Valeur>
+ </Lignes>
+ </Section>
+ ...
+ </Utilisateur>
+ */
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// Start tag
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
+	attributes:(NSDictionary *)attributeDict {
+	
+	//NSLog(@"didStartElement: %@",elementName);
+	if ([elementName isEqualToString:@"Resultat"]) {
+        sectionsDataSource=[[NSMutableArray alloc] init];
+        itemsDataSource=[[NSMutableArray alloc] init];
+        valuesDataSource=[[NSMutableArray alloc] init];
+    }
+    else if ([elementName isEqualToString:@"Lignes"]) {
+        currentItems=[[NSMutableArray alloc] init];
+        currentValues=[[NSMutableArray alloc] init];
+    }
+    
+    
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// Values
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+	
+	//NSLog(@"foundCharacters: %@",string);
+	
+	if (!currentStringValue) {
+        // currentStringValue is an NSMutableString instance variable
+        currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
+    }
+	//NSLog(@"String: %@",string);
+    [currentStringValue appendString:string];		
+    
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// End tag
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    //Sauvegarde des données de l'utilisateur
+    
+    if ([elementName isEqualToString:@"Section"]) {
+        
+        //Reset des variables temporaires
+        [currentItems release];
+        [currentValues release];
+        
+    }
+    else if ([elementName isEqualToString:@"Nom"]) {
+        //[currentSection setObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"section"];
+        [sectionsDataSource addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        NSLog(@"%@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
+        
+    }
+    
+    else if ([elementName isEqualToString:@"Item"]) {
+        [currentItems addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        
+    }
+    
+    else if ([elementName isEqualToString:@"Valeur"]) {
+        [currentValues addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        
+    }
+    
+    else if ([elementName isEqualToString:@"Lignes"]) {
+        //Ajout de la section au tableau
+        [itemsDataSource addObject:currentItems];
+        [valuesDataSource addObject:currentValues];
+        
+    }
+    
+    else if ([elementName isEqualToString:@"Resultat"]) {
+        NSLog(@"Section: %@",sectionsDataSource);
+         NSLog(@"Items: %@",itemsDataSource);
+         NSLog(@"Values: %@",valuesDataSource);
+    }
+    
+    
+    [currentStringValue release];
+	currentStringValue=nil;
+	
+} // Fin du - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
 
 @end

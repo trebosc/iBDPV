@@ -10,12 +10,25 @@
 #import "UserData.h"
 
 @interface Estim4ResultViewController : UITableViewController <NSXMLParserDelegate> {
+  
+    UserData *userData;
     
-UserData *userData;
+    NSMutableString *currentStringValue;
+    
+    NSMutableArray *currentItems;
+    NSMutableArray *currentValues;
+    
+    NSMutableArray *sectionsDataSource;
+    NSMutableArray *itemsDataSource;
+    NSMutableArray *valuesDataSource;
+    NSMutableDictionary *dicoPhoto;
+    
 
 }
 
 @property (nonatomic,retain) UserData *userData;
+@property (nonatomic, retain) NSMutableDictionary *dicoPhoto;
+
 
 //Action Back
 -(void)actBack:(id)sender;

@@ -11,7 +11,7 @@
 
 @implementation FicheDetailViewController
 
-@synthesize userData, userID, arrDataSource, dicoPhoto;
+@synthesize userData, userID, dicoPhoto;
 /*
 http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api_demandeur=iBDPV&uid=090392&i=001
 */

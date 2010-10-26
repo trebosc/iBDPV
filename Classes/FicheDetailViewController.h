@@ -30,7 +30,7 @@
 
 @property (nonatomic,retain) UserData *userData;
 @property (nonatomic, assign) int userID;
-@property (nonatomic, retain) NSMutableArray *arrDataSource;
+//@property (nonatomic, retain) NSMutableArray *arrDataSource;
 @property (nonatomic, retain) NSMutableDictionary *dicoPhoto;
 
 
