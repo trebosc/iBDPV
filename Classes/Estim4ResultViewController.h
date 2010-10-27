@@ -32,7 +32,5 @@
 
 //Action Back
 -(void)actBack:(id)sender;
-//Action Validate
--(void)actValidate:(id)sender;
 
 @end

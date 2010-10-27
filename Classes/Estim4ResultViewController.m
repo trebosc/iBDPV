@@ -7,7 +7,6 @@
 //
 
 #import "Estim4ResultViewController.h"
-#import "Estim5ResultDetailViewController.h"
 
 
 @implementation Estim4ResultViewController
@@ -85,11 +84,9 @@
 	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-	//Valider
-	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
-	
+		
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,btnValidateItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,nil];
 
 	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
@@ -199,14 +196,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-//Action Validate
--(void)actValidate:(id)sender {
-	//Passage au controleur suivant
-	//Exemple
-	Estim5ResultDetailViewController *newController=[[Estim5ResultDetailViewController alloc] init];
-	[self.navigationController pushViewController:newController animated:YES];
-	[newController release];
-}
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
