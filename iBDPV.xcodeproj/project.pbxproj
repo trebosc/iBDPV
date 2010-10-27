@@ -34,7 +34,6 @@
 		841B044E126A428E004E6240 /* Estim3OrientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0433126A428E004E6240 /* Estim3OrientView.m */; };
 		841B044F126A428E004E6240 /* Estim3OrientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0435126A428E004E6240 /* Estim3OrientViewController.m */; };
 		841B0450126A428E004E6240 /* Estim4ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0437126A428E004E6240 /* Estim4ResultViewController.m */; };
-		841B0451126A428E004E6240 /* Estim5ResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0439126A428E004E6240 /* Estim5ResultDetailViewController.m */; };
 		841B0452126A428E004E6240 /* Fiche.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B043B126A428E004E6240 /* Fiche.m */; };
 		841B0453126A428E004E6240 /* FicheDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B043D126A428E004E6240 /* FicheDetailViewController.m */; };
 		841B0454126A428E004E6240 /* FichesProchesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B043F126A428E004E6240 /* FichesProchesTableViewController.m */; };
@@ -94,8 +93,6 @@
 		841B0435126A428E004E6240 /* Estim3OrientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estim3OrientViewController.m; sourceTree = "<group>"; };
 		841B0436126A428E004E6240 /* Estim4ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Estim4ResultViewController.h; sourceTree = "<group>"; };
 		841B0437126A428E004E6240 /* Estim4ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estim4ResultViewController.m; sourceTree = "<group>"; };
-		841B0438126A428E004E6240 /* Estim5ResultDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Estim5ResultDetailViewController.h; sourceTree = "<group>"; };
-		841B0439126A428E004E6240 /* Estim5ResultDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estim5ResultDetailViewController.m; sourceTree = "<group>"; };
 		841B043A126A428E004E6240 /* Fiche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fiche.h; sourceTree = "<group>"; };
 		841B043B126A428E004E6240 /* Fiche.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fiche.m; sourceTree = "<group>"; };
 		841B043C126A428E004E6240 /* FicheDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FicheDetailViewController.h; sourceTree = "<group>"; };
@@ -178,8 +175,6 @@
 				841B0435126A428E004E6240 /* Estim3OrientViewController.m */,
 				841B0436126A428E004E6240 /* Estim4ResultViewController.h */,
 				841B0437126A428E004E6240 /* Estim4ResultViewController.m */,
-				841B0438126A428E004E6240 /* Estim5ResultDetailViewController.h */,
-				841B0439126A428E004E6240 /* Estim5ResultDetailViewController.m */,
 				841B043A126A428E004E6240 /* Fiche.h */,
 				841B043B126A428E004E6240 /* Fiche.m */,
 				841B043C126A428E004E6240 /* FicheDetailViewController.h */,
@@ -345,7 +340,6 @@
 				841B044E126A428E004E6240 /* Estim3OrientView.m in Sources */,
 				841B044F126A428E004E6240 /* Estim3OrientViewController.m in Sources */,
 				841B0450126A428E004E6240 /* Estim4ResultViewController.m in Sources */,
-				841B0451126A428E004E6240 /* Estim5ResultDetailViewController.m in Sources */,
 				841B0452126A428E004E6240 /* Fiche.m in Sources */,
 				841B0453126A428E004E6240 /* FicheDetailViewController.m in Sources */,
 				841B0454126A428E004E6240 /* FichesProchesTableViewController.m in Sources */,
@@ -381,13 +375,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jean-Mathieu DOULADOURE (9R7BMR2LSV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jean-Mathieu DOULADOURE (9R7BMR2LSV)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -397,11 +392,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jean-Mathieu DOULADOURE (9R7BMR2LSV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jean-Mathieu DOULADOURE (9R7BMR2LSV)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
