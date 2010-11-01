@@ -205,7 +205,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 #pragma mark === Parser XML ===
 
 /*
- <Utilisateur>
+ <Root>
  <Section>
  <Nom>Identifiant</Nom>
  <Lignes>
@@ -218,7 +218,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
  </Lignes>
  </Section>
  ...
- </Utilisateur>
+ </Root>
  */
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 	attributes:(NSDictionary *)attributeDict {
 	
 	//NSLog(@"didStartElement: %@",elementName);
-	if ([elementName isEqualToString:@"Utilisateur"]) {
+	if ([elementName isEqualToString:@"Root"]) {
         sectionsDataSource=[[NSMutableArray alloc] init];
         itemsDataSource=[[NSMutableArray alloc] init];
         valuesDataSource=[[NSMutableArray alloc] init];
@@ -293,7 +293,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
         
     }
     
-    else if ([elementName isEqualToString:@"Utilisateur"]) {
+    else if ([elementName isEqualToString:@"Root"]) {
         /*NSLog(@"Section: %@",sectionsDataSource);
          NSLog(@"Items: %@",itemsDataSource);
          NSLog(@"Values: %@",valuesDataSource);*/

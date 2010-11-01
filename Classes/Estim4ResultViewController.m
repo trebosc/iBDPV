@@ -380,7 +380,7 @@
 #pragma mark === Parser XML ===
 
 /*
- <Utilisateur>
+ <Root>
  <Section>
  <Nom>Identifiant</Nom>
  <Lignes>
@@ -393,7 +393,7 @@
  </Lignes>
  </Section>
  ...
- </Utilisateur>
+ </Root>
  */
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -403,7 +403,7 @@
 	attributes:(NSDictionary *)attributeDict {
 	
 	//NSLog(@"didStartElement: %@",elementName);
-	if ([elementName isEqualToString:@"Resultat"]) {
+	if ([elementName isEqualToString:@"Root"]) {
         sectionsDataSource=[[NSMutableArray alloc] init];
         itemsDataSource=[[NSMutableArray alloc] init];
         valuesDataSource=[[NSMutableArray alloc] init];
@@ -468,7 +468,7 @@
         
     }
     
-    else if ([elementName isEqualToString:@"Resultat"]) {
+    else if ([elementName isEqualToString:@"Root"]) {
         NSLog(@"Section: %@",sectionsDataSource);
          NSLog(@"Items: %@",itemsDataSource);
          NSLog(@"Values: %@",valuesDataSource);
