@@ -33,9 +33,7 @@
 		841B044D126A428E004E6240 /* Estim2PenteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0431126A428E004E6240 /* Estim2PenteViewController.m */; };
 		841B044E126A428E004E6240 /* Estim3OrientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0433126A428E004E6240 /* Estim3OrientView.m */; };
 		841B044F126A428E004E6240 /* Estim3OrientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0435126A428E004E6240 /* Estim3OrientViewController.m */; };
-		841B0450126A428E004E6240 /* Estim4ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0437126A428E004E6240 /* Estim4ResultViewController.m */; };
 		841B0452126A428E004E6240 /* Fiche.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B043B126A428E004E6240 /* Fiche.m */; };
-		841B0453126A428E004E6240 /* FicheDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B043D126A428E004E6240 /* FicheDetailViewController.m */; };
 		841B0454126A428E004E6240 /* FichesProchesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B043F126A428E004E6240 /* FichesProchesTableViewController.m */; };
 		841B0455126A428E004E6240 /* findDeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0441126A428E004E6240 /* findDeviceType.m */; };
 		841B0456126A428E004E6240 /* GenericViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B0443126A428E004E6240 /* GenericViewController.m */; };
@@ -43,6 +41,7 @@
 		841B045A126A42F6004E6240 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B0459126A42F6004E6240 /* MapKit.framework */; };
 		841B045C126A4308004E6240 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B045B126A4308004E6240 /* CoreLocation.framework */; };
 		841B045F126A4320004E6240 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B045E126A4320004E6240 /* QuartzCore.framework */; };
+		84B77262127E95CD0055DE0D /* TableViewControllerFromURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B77261127E95CD0055DE0D /* TableViewControllerFromURL.m */; };
 		84CA4559126A30AE00A46E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA4558126A30AE00A46E6B /* UIKit.framework */; };
 		84CA455B126A30AE00A46E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA455A126A30AE00A46E6B /* Foundation.framework */; };
 		84CA455D126A30AE00A46E6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA455C126A30AE00A46E6B /* CoreGraphics.framework */; };
@@ -91,12 +90,8 @@
 		841B0433126A428E004E6240 /* Estim3OrientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estim3OrientView.m; sourceTree = "<group>"; };
 		841B0434126A428E004E6240 /* Estim3OrientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Estim3OrientViewController.h; sourceTree = "<group>"; };
 		841B0435126A428E004E6240 /* Estim3OrientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estim3OrientViewController.m; sourceTree = "<group>"; };
-		841B0436126A428E004E6240 /* Estim4ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Estim4ResultViewController.h; sourceTree = "<group>"; };
-		841B0437126A428E004E6240 /* Estim4ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estim4ResultViewController.m; sourceTree = "<group>"; };
 		841B043A126A428E004E6240 /* Fiche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fiche.h; sourceTree = "<group>"; };
 		841B043B126A428E004E6240 /* Fiche.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fiche.m; sourceTree = "<group>"; };
-		841B043C126A428E004E6240 /* FicheDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FicheDetailViewController.h; sourceTree = "<group>"; };
-		841B043D126A428E004E6240 /* FicheDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FicheDetailViewController.m; sourceTree = "<group>"; };
 		841B043E126A428E004E6240 /* FichesProchesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FichesProchesTableViewController.h; sourceTree = "<group>"; };
 		841B043F126A428E004E6240 /* FichesProchesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FichesProchesTableViewController.m; sourceTree = "<group>"; };
 		841B0440126A428E004E6240 /* findDeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findDeviceType.h; sourceTree = "<group>"; };
@@ -109,6 +104,8 @@
 		841B045B126A4308004E6240 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		841B045D126A4319004E6240 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		841B045E126A4320004E6240 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		84B77260127E95CD0055DE0D /* TableViewControllerFromURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerFromURL.h; sourceTree = "<group>"; };
+		84B77261127E95CD0055DE0D /* TableViewControllerFromURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerFromURL.m; sourceTree = "<group>"; };
 		84CA4555126A30AE00A46E6B /* iBDPV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBDPV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CA4558126A30AE00A46E6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		84CA455A126A30AE00A46E6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -173,18 +170,16 @@
 				841B0433126A428E004E6240 /* Estim3OrientView.m */,
 				841B0434126A428E004E6240 /* Estim3OrientViewController.h */,
 				841B0435126A428E004E6240 /* Estim3OrientViewController.m */,
-				841B0436126A428E004E6240 /* Estim4ResultViewController.h */,
-				841B0437126A428E004E6240 /* Estim4ResultViewController.m */,
 				841B043A126A428E004E6240 /* Fiche.h */,
 				841B043B126A428E004E6240 /* Fiche.m */,
-				841B043C126A428E004E6240 /* FicheDetailViewController.h */,
-				841B043D126A428E004E6240 /* FicheDetailViewController.m */,
 				841B043E126A428E004E6240 /* FichesProchesTableViewController.h */,
 				841B043F126A428E004E6240 /* FichesProchesTableViewController.m */,
 				841B0440126A428E004E6240 /* findDeviceType.h */,
 				841B0441126A428E004E6240 /* findDeviceType.m */,
 				841B0442126A428E004E6240 /* GenericViewController.h */,
 				841B0443126A428E004E6240 /* GenericViewController.m */,
+				84B77260127E95CD0055DE0D /* TableViewControllerFromURL.h */,
+				84B77261127E95CD0055DE0D /* TableViewControllerFromURL.m */,
 				841B0444126A428E004E6240 /* UIAlertImageView.h */,
 				841B0445126A428E004E6240 /* UIAlertImageView.m */,
 				841B03FC126A40D8004E6240 /* MenuViewController.h */,
@@ -339,13 +334,12 @@
 				841B044D126A428E004E6240 /* Estim2PenteViewController.m in Sources */,
 				841B044E126A428E004E6240 /* Estim3OrientView.m in Sources */,
 				841B044F126A428E004E6240 /* Estim3OrientViewController.m in Sources */,
-				841B0450126A428E004E6240 /* Estim4ResultViewController.m in Sources */,
 				841B0452126A428E004E6240 /* Fiche.m in Sources */,
-				841B0453126A428E004E6240 /* FicheDetailViewController.m in Sources */,
 				841B0454126A428E004E6240 /* FichesProchesTableViewController.m in Sources */,
 				841B0455126A428E004E6240 /* findDeviceType.m in Sources */,
 				841B0456126A428E004E6240 /* GenericViewController.m in Sources */,
 				841B0457126A428E004E6240 /* UIAlertImageView.m in Sources */,
+				84B77262127E95CD0055DE0D /* TableViewControllerFromURL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

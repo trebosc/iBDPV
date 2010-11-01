@@ -8,7 +8,7 @@
 
 #import "FichesProchesTableViewController.h"
 #import "AsyncImageView.h"
-#import "FicheDetailViewController.h"
+#import "TableViewControllerFromURL.h"
 
 @implementation FichesProchesTableViewController
 
@@ -154,6 +154,32 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 //#########################################################################################################################################################
 #pragma mark -
 #pragma mark === View lifecycle ===
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildFicheDetailURL:(int)userID {
+    // Génération de la signature pour le lien http
+    NSString *api_sig_a_convertir;
+    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
+                           userID,
+                           self.userData.uniqueIdentifierMD5
+                           ];
+    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+    
+    NSString *api_sig;
+    api_sig = [self.userData md5:api_sig_a_convertir];
+    NSLog(@"api_sig: %@",api_sig);
+    
+    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
+                      api_sig,
+                      self.userData.uniqueIdentifierMD5,
+                      userID            // i: user ID
+                      ]; 
+    
+    NSLog(@"%@",sUrl); 
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildSitesProchesURL {
     // Génération de la signature pour le lien http
@@ -556,12 +582,10 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     if ([[arrFiches objectAtIndex:indexPath.row] Id]>0) {
         
         //Fiches proches  UITableViewStylePlain
-        FicheDetailViewController *newController=[[FicheDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
         newController.title=[[arrFiches objectAtIndex:indexPath.row] nom];
         newController.userData=userData;
-        
-        newController.userID=[[arrFiches objectAtIndex:indexPath.row] Id];
-        
+        newController.loadingURL=[self buildFicheDetailURL:[[arrFiches objectAtIndex:indexPath.row] Id]];
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         

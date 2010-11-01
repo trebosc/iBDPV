@@ -7,7 +7,7 @@
 //
 
 #import "Estim3OrientViewController.h"
-#import "Estim4ResultViewController.h"
+#import "TableViewControllerFromURL.h"
 #import "UserData.h"
 #import "Estim3OrientView.h"
 
@@ -23,6 +23,37 @@
 #pragma mark -
 #pragma mark === Initialisation diverses ===
 #pragma mark -
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildURL {
+    // Génération de la signature pour le lien http
+    NSString *api_sig_a_convertir;
+    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712a%dapi_demandeuriBDPVd%dl%fo%fp%duid%@",
+                           self.userData.orientation,
+                           self.userData.distance,                    
+                           self.userData.latitude,
+                           self.userData.longitude,
+                           self.userData.pente,  
+                           self.userData.uniqueIdentifierMD5
+                           ];
+    
+    NSString *api_sig;
+    api_sig = [self.userData md5:api_sig_a_convertir];
+    
+    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/r.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&l=%f&o=%f&d=%d&p=%d&a=%d",
+                      api_sig,
+                      self.userData.uniqueIdentifierMD5,
+                      self.userData.latitude,
+                      self.userData.longitude,
+                      self.userData.distance,
+                      self.userData.pente,
+                      self.userData.orientation
+                      ]; 
+    
+    NSLog(@"%@",sUrl); 
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+}
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -265,10 +296,13 @@
     self.userData.orientation= [estim3OrientView LectureAngleBoussole];
     
 	//Passage au controleur suivant
-	Estim4ResultViewController *newController=[[Estim4ResultViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
+    newController.title=@"Résultat";
     newController.userData=self.userData;
+    newController.loadingURL=[self buildURL];
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
+    
 } // Fin du -(void)actValidate:(id)sender {
 
 

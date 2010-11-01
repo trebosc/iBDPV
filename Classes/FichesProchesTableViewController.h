@@ -47,5 +47,6 @@
 
 //Build URLs
 -(NSURL *)buildSitesProchesURL;
+-(NSURL *)buildFicheDetailURL:(int)userID;
 
 @end

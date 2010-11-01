@@ -1,52 +1,22 @@
 //
-//  FicheDetailViewController.m
+//  TableViewControllerFromURL.m
 //  iBDPV
 //
 //  Created by jmd on 27/08/10.
 //  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "FicheDetailViewController.h"
+#import "TableViewControllerFromURL.h"
 
 
-@implementation FicheDetailViewController
+@implementation TableViewControllerFromURL
 
-@synthesize userData, userID, dicoPhoto;
-/*
-http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api_demandeur=iBDPV&uid=090392&i=001
-*/
+@synthesize userData, loadingURL, dicoPhoto;
  
 //#########################################################################################################################################################
 //#########################################################################################################################################################
 #pragma mark -
 #pragma mark === View lifecycle ===
-//-------------------------------------------------------------------------------------------------------------------------------
--(NSURL *)buildFicheDetailURL {
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
-                           userID,
-                           self.userData.uniqueIdentifierMD5
-                           ];
-    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
-    
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
-    NSLog(@"api_sig: %@",api_sig);
-    
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
-                      api_sig,
-                      self.userData.uniqueIdentifierMD5,
-                      userID            // i: user ID
-                      ]; 
-    
-    NSLog(@"%@",sUrl); 
-    
-    return [[[NSURL alloc] initWithString:sUrl] autorelease];
-    
-}
-
-
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -87,45 +57,27 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
 	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
 	
-    //Création de la hiérarchie des Views
-    /*
-    // 1. Création de la vue racine du controlleur de la taille de l'écran
-	// Background
-    UIImageView *rootView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fond_menu.png"]];
-    rootView.userInteractionEnabled=YES;    //NO by default and YES for a UIView
-    rootView.opaque = YES;
-    
-	// 2. Ajout de subViews
-	
-	
-	// 3. Assignation de la vue racine à la propriété view du controlleur
-	self.view=rootView;
-	
-	// 4. Libération de la vue racine
-	[rootView release];
-    */
-    
+
     // Chargement du XML
-    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildFicheDetailURL]];
+    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:self.loadingURL];
     
     
     //Set delegate
-    NSLog(@"On indique qui va traiter le retour XML");
     [xmlParser setDelegate:self];
     
-    NSLog(@"Parse du XML");
+    NSLog(@"XML parsing: %@",self.loadingURL);
     
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
     if(success)
-        NSLog(@"XML Detail loaded");
+        NSLog(@"XML loaded");
     else {
         NSLog(@"Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
         
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
-                               message:@"Pb du parsing XML Detail"
+                               message:@"XML parsing Error"
                                delegate:self
                                cancelButtonTitle:@"Cancel"
                                otherButtonTitles:nil]
@@ -278,7 +230,7 @@ http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=18d0d3ae83cbabaed3ec9c9a70867538&api
     
     else if ([elementName isEqualToString:@"Item"]) {
         [currentItems addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        
+        NSLog(@"Item: %@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
     }
     
     else if ([elementName isEqualToString:@"Valeur"]) {

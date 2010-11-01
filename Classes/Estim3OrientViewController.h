@@ -32,4 +32,7 @@
 //Action Validate
 -(void)actValidate:(id)sender;
 
+//Build URLs
+-(NSURL *)buildURL;
+
 @end

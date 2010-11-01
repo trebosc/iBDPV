@@ -1,17 +1,19 @@
 //
-//  Estim4ResultViewController.h
+//  TableViewControllerFromURL.h
 //  iBDPV
 //
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
+//  Created by jmd on 27/08/10.
+//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "UserData.h"
 
-@interface Estim4ResultViewController : UITableViewController <NSXMLParserDelegate> {
-  
+@interface TableViewControllerFromURL : UITableViewController <NSXMLParserDelegate> {
+    
     UserData *userData;
+    NSURL *loadingURL;
+    
     
     NSMutableString *currentStringValue;
     
@@ -21,12 +23,15 @@
     NSMutableArray *sectionsDataSource;
     NSMutableArray *itemsDataSource;
     NSMutableArray *valuesDataSource;
+    
     NSMutableDictionary *dicoPhoto;
     
-
+    
 }
 
 @property (nonatomic,retain) UserData *userData;
+@property (nonatomic, assign) NSURL *loadingURL;
+//@property (nonatomic, retain) NSMutableArray *arrDataSource;
 @property (nonatomic, retain) NSMutableDictionary *dicoPhoto;
 
 
