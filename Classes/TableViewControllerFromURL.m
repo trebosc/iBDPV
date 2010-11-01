@@ -201,7 +201,8 @@
 	
 	if (!currentStringValue) {
         // currentStringValue is an NSMutableString instance variable
-        currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
+        currentStringValue = [[NSMutableString alloc] initWithCapacity:100];
+        
     }
 	//NSLog(@"String: %@",string);
     [currentStringValue appendString:string];		
@@ -234,8 +235,9 @@
     }
     
     else if ([elementName isEqualToString:@"Valeur"]) {
+        
         [currentValues addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-           
+               
     }
     
     else if ([elementName isEqualToString:@"Lignes"]) {
@@ -314,8 +316,24 @@
             // UITableViewCellStyleSubtitle
         }
         
+        //Label
         cell.textLabel.text=[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text=[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        //Value
+        if ([[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] rangeOfString:@"##OUVRE##"].location!=NSNotFound) {
+            //OUVRE FENETRE
+            cell.detailTextLabel.text=@"";
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+            
+        }
+        else
+        {
+            cell.detailTextLabel.text=[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            cell.accessoryType=UITableViewCellAccessoryNone;
+        }
+    
+    
+        
     }
     
     else {
@@ -436,5 +454,15 @@
     }
 
 }
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
+    NSArray *myStrings= [[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] componentsSeparatedByString:@"+"];
+    
+    NSLog(@"OUVRE: %@",[myStrings objectAtIndex:2]);
+    
+}
+
+
 
 @end
