@@ -38,4 +38,7 @@
 //Action Back
 -(void)actBack:(id)sender;
 
+
+-(NSURL *)buildOuvreURL:(NSArray *)params;
+
 @end

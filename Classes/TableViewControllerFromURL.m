@@ -323,13 +323,13 @@
         if ([[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] rangeOfString:@"##OUVRE##"].location!=NSNotFound) {
             //OUVRE FENETRE
             cell.detailTextLabel.text=@"";
-            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryType=UITableViewCellAccessoryDetailDisclosureButton;
             
         }
         else
         {
             cell.detailTextLabel.text=[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-            cell.accessoryType=UITableViewCellAccessoryNone;
+            cell.accessoryType=UITableViewCellAccessoryNone;   
         }
     
     
@@ -455,14 +455,59 @@
 
 }
 
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     
-    NSArray *myStrings= [[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] componentsSeparatedByString:@"+"];
+    NSArray *params= [[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] componentsSeparatedByString:@"+"];
     
-    NSLog(@"OUVRE: %@",[myStrings objectAtIndex:2]);
+    NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
+    
+    if ([[params objectAtIndex:2] isEqualToString:@"r.php"]) {
+        
+        //Fiches proches  UITableViewStylePlain
+        TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
+        newController.title=@"Test";
+        newController.userData=userData;
+        newController.loadingURL=[self buildOuvreURL:params];
+        [self.navigationController pushViewController:newController animated:YES];
+        [newController release];
+        
+    }
+         else {
+             NSLog(@"URL: %@",[params objectAtIndex:2]);
+         }
+         
+    
+   
+
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildOuvreURL:(NSArray *)params {
+    // Génération de la signature pour le lien http
+    NSString *api_sig_a_convertir;
+    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
+                           1152,
+                           self.userData.uniqueIdentifierMD5
+                           ];
+    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+    
+    NSString *api_sig;
+    api_sig = [self.userData md5:api_sig_a_convertir];
+    NSLog(@"api_sig: %@",api_sig);
+    
+    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
+                      api_sig,
+                      self.userData.uniqueIdentifierMD5,
+                      1152            // i: user ID
+                      ]; 
+    
+    NSLog(@"%@",sUrl); 
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+}
 
 
 @end
