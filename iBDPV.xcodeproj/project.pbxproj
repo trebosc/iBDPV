@@ -408,12 +408,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
+				PROVISIONING_PROFILE = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -423,11 +427,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
+				PROVISIONING_PROFILE = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
 				SDKROOT = iphoneos4.1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

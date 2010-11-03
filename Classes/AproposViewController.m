@@ -57,14 +57,23 @@
     rootView.opaque = YES;
     
 	// 2. Ajout de subViews
-	CGRect lblRect=CGRectMake(50.0, 50.0, 200, 40);
-	UILabel	*lblWelcome=[[UILabel alloc] initWithFrame:lblRect];
-	lblWelcome.text=@"A Propos View Controller";
-	[rootView addSubview:lblWelcome];
-	[lblWelcome release];
-	
-	
-	
+    //TODO - Voir la doc sur #if TARGET_IPHONE_SIMULATOR
+// TODO - #error This sample is designed to run on a device, not in the simulator. To run this sample, \
+
+    
+
+    
+    UIWebView * sTextView = [[UIWebView alloc] initWithFrame:CGRectMake(25.0, 125.0, 275, 200)];
+    sTextView.opaque = NO;
+    sTextView.backgroundColor = [UIColor clearColor];
+    sTextView.delegate = self;
+
+     NSString *html =@"IBDPV vous permet de calculer la quantité d'électricité photovoltaïque que vous produiriez en installant des panneaux PV sur votre toit, mais également de découvrir les installations photovoltaïque proches de chez vous.<br><br>L'application IBDPV est UNIQUE car l'estimation de votre production est réalisée à partir de chiffres REELS, provenant d'installation PV en cours de fonctionnement se trouvant proche de chez vous. iBDPV utilise les données saisies, par des milliers de particuliers, sur le site bdpv.fr (description en dessous).<br><br><b>Glossaire :</b><br>Panneaux photovoltaïque : appelé aussi panneaux PV, il s'agit de panneaux posés sur votre toiture et capable de produire de l'électricité verte a partir du soleil.<br><br><b>Description du site <a href=http://www.bdpv.fr>http://www.bdpv.fr</a> :</b><br>Le site BDPV permet aux propriétaires de panneaux photovoltaïques de suivre l'évolution de leur production d’électricité au fil des ans et de la comparer à des installations proches. BDPV aide à savoir si un système PV se comporte comme simulé par l’installateur, qu’il ne faiblit pas dans le temps, qu’il réagit comme d’autres installations proches, …. Tout cela gratuitement.<br>    BDPV fournit un ensemble de graphiques pour analyser vos données, graphiques que vous pouvez aussi insérer dans votre blog ou site web.<br>Pour ceux n’ayant pas encore de panneaux solaires, BDPV apporte la possibilité de visualiser, sur une carte, les installations de sa région, de voir le matériel utilisé (onduleur, …), la production attendue, les graphiques de production, …<br><br><b>Partenaires :</b><br><a href=http://forum-photovoltaique.fr>http://forum-photovoltaique.fr</a> : Ce forum s'adresse à tous ceux qui s'intéressent, ont déjà ou aimeraient avoir une installation photovoltaïque. Que vous soyez un particulier, un professionnel ou autres, ce forum vous permettra de partager votre expérience, de poser des questions, de trouver des conseils sur le matériel, sur quoi acheter, ce qu'il faut vérifier, ....<br><a href=http://gppep.org>http://gppep.org</a> : GPPEP est une association créée par des particuliers ayant des panneaux photovoltaïques, pour des particuliers ayant déjà une installation ou désirant en posséder une. GPPEP signifie : Groupement des Particuliers Producteurs d’Electricité Photovoltaïque<br><br>Une question ou une remarque : contact@bdpv.fr<br>Plus d'informations sur iBDPV : <a href=http://www.ibdpv.fr>http://www.ibdpv.fr</a><br><br><i>IBDPV a été développe par Jean-Mathieu D. et David T.</i>";
+    [sTextView loadHTMLString:html baseURL:[NSURL URLWithString:@""]]; 
+    [rootView addSubview:sTextView];
+    [sTextView release];
+
+    
 	// 3. Assignation de la vue racine à la propriété view du controlleur
 	self.view=rootView;
 	
@@ -75,28 +84,18 @@
 	
 }
 
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    //[super viewDidLoad];
-	
-	NSLog(@"viewDidLoad: AProposViewController");
-	
-	// Création par programme de la hiérarchie de vues (p34) 
-		
-
+//-------------------------------------------------------------------------------------------------------------------------------
+// Pour ouvrir Safari 
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:request.URL];
+        return false;
+    }
+    return true;
 }
-/*
 
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {

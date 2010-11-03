@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AproposViewController : UIViewController {
+@interface AproposViewController : UIViewController <UIWebViewDelegate>{
 
 }
 
