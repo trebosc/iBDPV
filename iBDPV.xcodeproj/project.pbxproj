@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6340E8CD12806FEC00EAFAC7 /* AproposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6340E8CC12806FEC00EAFAC7 /* AproposViewController.m */; };
 		841B03F6126A3FEA004E6240 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B03F5126A3FEA004E6240 /* UserData.m */; };
 		841B03FE126A40D8004E6240 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B03FD126A40D8004E6240 /* MenuViewController.m */; };
 		841B0413126A4268004E6240 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B0405126A4268004E6240 /* blueButton.png */; };
@@ -52,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6340E8CB12806FEC00EAFAC7 /* AproposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AproposViewController.h; sourceTree = "<group>"; };
+		6340E8CC12806FEC00EAFAC7 /* AproposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AproposViewController.m; sourceTree = "<group>"; };
 		841B03F4126A3FEA004E6240 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		841B03F5126A3FEA004E6240 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		841B03FC126A40D8004E6240 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 		84CA454D126A30AE00A46E6B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6340E8CB12806FEC00EAFAC7 /* AproposViewController.h */,
+				6340E8CC12806FEC00EAFAC7 /* AproposViewController.m */,
 				841B0422126A428D004E6240 /* AsyncImageView.h */,
 				841B0423126A428D004E6240 /* AsyncImageView.m */,
 				841B0424126A428D004E6240 /* Estim1GPSViewController.h */,
@@ -340,6 +345,7 @@
 				841B0456126A428E004E6240 /* GenericViewController.m in Sources */,
 				841B0457126A428E004E6240 /* UIAlertImageView.m in Sources */,
 				84B77262127E95CD0055DE0D /* TableViewControllerFromURL.m in Sources */,
+				6340E8CD12806FEC00EAFAC7 /* AproposViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,12 +408,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
+				PROVISIONING_PROFILE = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -417,11 +427,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
+				PROVISIONING_PROFILE = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
 				SDKROOT = iphoneos4.1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

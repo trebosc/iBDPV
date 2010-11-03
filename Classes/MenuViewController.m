@@ -7,7 +7,7 @@
 //
 
 #import "MenuViewController.h"
-#import "GenericViewController.h"
+#import "AProposViewController.h"
 #import "Estim1GPSViewController.h"
 #import "FichesProchesTableViewController.h"
 
@@ -588,9 +588,17 @@ NSString* md5( NSString *str )
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actAPropos:(id)sender {
-    /*
-     //Modal
-     GenericViewController *newController=[[GenericViewController alloc] init];
+
+    
+    
+    AproposViewController *newController=[[AproposViewController alloc] init];
+    newController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;  // TODO - Voir pourquoi cela ne marche pas ..... (fait rien du tout :) ) 
+    [self.navigationController pushViewController:newController animated:YES];
+    [newController release];        
+
+    
+     /* ALL Code
+     AproposViewController *newController=[[AproposViewController alloc] init];
      newController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
      
      //Navigation Controller
@@ -598,7 +606,7 @@ NSString* md5( NSString *str )
      [newController release];
      [self presentModalViewController:navController animated:YES];
      [navController release];
-     */
+ */
 } // Fin du -(void)actAPropos:(id)sender {
 
 
@@ -629,16 +637,6 @@ NSString* md5( NSString *str )
 #pragma mark -
 #pragma mark === Parser XML ===
 
-/*
- <base_complete>
- <UID>0903902</UID>
- <Num_version_UID>3.2</Num_version_UID>
- <Num_version_act>4.8</Num_version_act>
- <Num_version_min>4.0</Num_version_min>
- <Code_retour>-1</Code_retour>
- <Texte_erreur>-1</Texte_erreur>
- </base_complete>
- */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Start tag
