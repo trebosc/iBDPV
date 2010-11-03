@@ -462,29 +462,37 @@
     
     NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
     
-    if ([[params objectAtIndex:2] isEqualToString:@"r.php"]) {
+    if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
         
-        //Fiches proches  UITableViewStylePlain
         TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
-        newController.title=@"Test";
+        newController.title=@"g.php";
         newController.userData=userData;
-        newController.loadingURL=[self buildOuvreURL:params];
+        newController.loadingURL=[self buildOuvreURLg:params];
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         
     }
-         else {
-             NSLog(@"URL: %@",[params objectAtIndex:2]);
+         else if (([[params objectAtIndex:2] isEqualToString:@"l2.php"])) {
+             TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
+             newController.title=@"l2.php";
+             newController.userData=userData;
+             newController.loadingURL=[self buildOuvreURLl2:params];
+             [self.navigationController pushViewController:newController animated:YES];
+             [newController release];
          }
          
-    
-   
+    else {
+        NSLog(@"URL: %@",[params objectAtIndex:2]);
+    }
+                
+             
 
     
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
--(NSURL *)buildOuvreURL:(NSArray *)params {
+-(NSURL *)buildOuvreURLg:(NSArray *)params {
+    
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
     api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
@@ -496,18 +504,42 @@
     NSString *api_sig;
     api_sig = [self.userData md5:api_sig_a_convertir];
     NSLog(@"api_sig: %@",api_sig);
-    
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
-                      api_sig,
-                      self.userData.uniqueIdentifierMD5,
-                      1152            // i: user ID
-                      ]; 
+    // http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140
+    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=47d2d33f0d161812a7d36fbd9d23d43d&api_demandeur=iBDPV&uid=090392&t=perte
+    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001
+    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001"]; 
     
     NSLog(@"%@",sUrl); 
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
 }
+
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildOuvreURLl2:(NSArray *)params {
+    
+    // Génération de la signature pour le lien http
+    NSString *api_sig_a_convertir;
+    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
+                           1152,
+                           self.userData.uniqueIdentifierMD5
+                           ];
+    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+    
+    NSString *api_sig;
+    api_sig = [self.userData md5:api_sig_a_convertir];
+    NSLog(@"api_sig: %@",api_sig);
+    // http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140
+    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=47d2d33f0d161812a7d36fbd9d23d43d&api_demandeur=iBDPV&uid=090392&t=perte
+    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001
+    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140"]; 
+    
+    NSLog(@"%@",sUrl); 
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+}
+
 
 
 @end

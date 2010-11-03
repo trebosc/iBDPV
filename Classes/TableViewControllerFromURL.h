@@ -39,6 +39,7 @@
 -(void)actBack:(id)sender;
 
 
--(NSURL *)buildOuvreURL:(NSArray *)params;
+-(NSURL *)buildOuvreURLg:(NSArray *)params;
+-(NSURL *)buildOuvreURLl2:(NSArray *)params;
 
 @end
