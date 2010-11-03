@@ -24,9 +24,11 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
-    }
+    } // Fin du if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+
     return self;
-}
+ } // Fin du - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+
 */
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -34,7 +36,7 @@
 - (void)loadView {
     [super loadView];
     
-    NSLog(@"loadView: %@",self.userData);
+    //NSLog(@"loadView: %@",self.userData);
     
 	// Affichage de la barre de navigation
 	[self.navigationController setNavigationBarHidden:NO];
@@ -65,15 +67,15 @@
     //Set delegate
     [xmlParser setDelegate:self];
     
-    NSLog(@"XML parsing: %@",self.loadingURL);
+    //NSLog(@"XML parsing: %@",self.loadingURL);
     
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
-    if(success)
-        NSLog(@"XML loaded");
-    else {
-        NSLog(@"Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
+    if(success) {
+        //NSLog(@"XML loaded");
+    } else { // Avec le  if(success)
+        NSLog(@"TODO : Gestion de l'erreur à faire - Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
         
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
@@ -84,12 +86,12 @@
                               autorelease];
         [alert show];
         
-    } // 
+    } // Fin du  if(success)
 
     dicoPhoto=[[NSMutableDictionary alloc] init];
-    
-	
-}
+    	
+} // Fin du - (void)loadView {
+
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -99,7 +101,8 @@
  
  NSLog(@"viewDidLoad: %@",self.userData);
  
-}
+ } // Fin du - (void)viewDidLoad {
+
 */
 
 /*
@@ -108,23 +111,28 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+ } // Fin du - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+
 */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    NSLog(@"TODO :  Est-ce que cela sert de faire un delegate pour ne rien faire dedans ?????");
     
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
+    NSLog(@"TODO :  Est-ce que cela sert de faire un delegate pour ne rien faire dedans ?????");
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -136,7 +144,8 @@
     [dicoPhoto release];
     
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -149,7 +158,8 @@
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
 	//[self.navigationController dismissModalViewControllerAnimated:YES];
-}
+} // FIn du -(void)actBack:(id)sender {
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -184,14 +194,15 @@
         sectionsDataSource=[[NSMutableArray alloc] init];
         itemsDataSource=[[NSMutableArray alloc] init];
         valuesDataSource=[[NSMutableArray alloc] init];
-    }
+    } // Fin du if ([elementName isEqualToString:@"Root"]) {
+    
     else if ([elementName isEqualToString:@"Lignes"]) {
-        currentItems=[[NSMutableArray alloc] init];
-        currentValues=[[NSMutableArray alloc] init];
-    }
+            currentItems=[[NSMutableArray alloc] init];
+            currentValues=[[NSMutableArray alloc] init];
+    } // Fin du if ([elementName isEqualToString:@"Lignes"]) {
     
-    
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Values
@@ -203,11 +214,12 @@
         // currentStringValue is an NSMutableString instance variable
         currentStringValue = [[NSMutableString alloc] initWithCapacity:100];
         
-    }
+    } // Fin du if (!currentStringValue) {
 	//NSLog(@"String: %@",string);
     [currentStringValue appendString:string];		
     
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // End tag
@@ -216,42 +228,37 @@
     //Sauvegarde des données de l'utilisateur
     
     if ([elementName isEqualToString:@"Section"]) {
-        
         //Reset des variables temporaires
         [currentItems release];
         [currentValues release];
-        
-    }
+    } // Fin du if ([elementName isEqualToString:@"Section"]) {
+    
     else if ([elementName isEqualToString:@"Nom"]) {
         //[currentSection setObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"section"];
         [sectionsDataSource addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        NSLog(@"%@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
-                               
-    }
+        //NSLog(@"%@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
+    } // Fin du if ([elementName isEqualToString:@"Nom"]) {
     
     else if ([elementName isEqualToString:@"Item"]) {
         [currentItems addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        NSLog(@"Item: %@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
-    }
+        //NSLog(@"Item: %@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
+    } // Fin du if ([elementName isEqualToString:@"Item"]) {
     
     else if ([elementName isEqualToString:@"Valeur"]) {
-        
         [currentValues addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-               
-    }
+    } // Fin du if ([elementName isEqualToString:@"Valeur"]) {
     
     else if ([elementName isEqualToString:@"Lignes"]) {
         //Ajout de la section au tableau
         [itemsDataSource addObject:currentItems];
         [valuesDataSource addObject:currentValues];
-        
-    }
+    } // Fin du if ([elementName isEqualToString:@"Lignes"]) {
     
     else if ([elementName isEqualToString:@"Root"]) {
         /*NSLog(@"Section: %@",sectionsDataSource);
-         NSLog(@"Items: %@",itemsDataSource);
-         NSLog(@"Values: %@",valuesDataSource);*/
-    }
+         //NSLog(@"Items: %@",itemsDataSource);
+         //NSLog(@"Values: %@",valuesDataSource);*/
+    } // Fin du if ([elementName isEqualToString:@"Root"]) {
     
     
     [currentStringValue release];
@@ -268,29 +275,28 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return [sectionsDataSource count];
-}
+} // Fin du - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
- 
     return [sectionsDataSource objectAtIndex:section];
+} // Fin du - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 
-}
+
 /*
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
- 
+ //-------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView { 
     return sectionsDataSource;
-    
-}*/
+ } // Fin du - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    
-   
     return [[itemsDataSource objectAtIndex:section] count];
-}
-
+} // Fin du - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Customize the appearance of table view cells.
@@ -314,7 +320,7 @@
             // UITableViewCellStyleValue1
             // UITableViewCellStyleValue2
             // UITableViewCellStyleSubtitle
-        }
+        } // Fin du        if (cell == nil) {
         
         //Label
         cell.textLabel.text=[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -325,24 +331,16 @@
             cell.detailTextLabel.text=@"";
             cell.accessoryType=UITableViewCellAccessoryDetailDisclosureButton;
             
-        }
-        else
-        {
+        } else { // Avec le         if ([[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] rangeOfString:@"##OUVRE##"].location!=NSNotFound) {
             cell.detailTextLabel.text=[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
             cell.accessoryType=UITableViewCellAccessoryNone;   
-        }
-    
-    
+        } // Fin du         if ([[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] rangeOfString:@"##OUVRE##"].location!=NSNotFound) {
         
-    }
-    
-    else {
-    // Photo   
-        
+    } else { // Avec le if (![[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
+        // Photo   
         UIImageView *photo;
         
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierPhoto];
-        
         if (cell == nil) {
             //NSLog(@"cell==nil");
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierPhoto] autorelease];
@@ -358,42 +356,34 @@
             //photo.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
             
             [cell.contentView addSubview:photo];
-            
-            
-        }
-        
-        else {
+        } else { // Avec le if (cell == nil) {
             
             photo = (UIImageView *)[cell.contentView viewWithTag:PHOTO_TAG];
-        }
+        } // Fin du if (cell == nil) {
         
         UIImage* image = [dicoPhoto objectForKey:indexPath];
         
         if (image == nil) {
-        NSString *photoURL=[NSString stringWithFormat:@"http://www.bdpv.fr/image/install/%@",[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
-        NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:photoURL]];
+            NSString *photoURL=[NSString stringWithFormat:@"http://www.bdpv.fr/image/install/%@",[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:photoURL]];
         
-        image = [[UIImage alloc] initWithData:imageData];
+            image = [[UIImage alloc] initWithData:imageData];
         
             //Stockage de l'image
             [dicoPhoto setObject:image forKey:indexPath];
         
             [imageData release];
-            
-        }
-        
+        } // Fin du  if (image == nil) {
         
         photo.image = image;
-            
-      
-        
         //cell.imageView.image=[UIImage imageNamed:@"maison_vue_dessus.png"];
         
-    }
+    } // Fin du if (![[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
     
 
     return cell;
-}
+} // Fin du - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
 
 
 /*
@@ -402,7 +392,8 @@
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the specified item to be editable.
  return YES;
- }
+ } // Fin du  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+
  */
 
 
@@ -414,11 +405,13 @@
  if (editingStyle == UITableViewCellEditingStyleDelete) {
  // Delete the row from the data source
  [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }   
+ }  // Fin du if (editingStyle == UITableViewCellEditingStyleDelete) { 
  else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
- }
+ }   // Fin du if (editingStyle == UITableViewCellEditingStyleInsert) {
+
+ } // Fin du  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
  */
 
 
@@ -426,7 +419,8 @@
  //-------------------------------------------------------------------------------------------------------------------------------
  // Override to support rearranging the table view.
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
+ } // Fin du - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ 
  */
 
 
@@ -436,7 +430,8 @@
  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the item to be re-orderable.
  return YES;
- }
+ } // Fin du  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+
  */
 
 
@@ -448,40 +443,35 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
         return 163.0;
-    }
-    else {
+    } else { // Avec le if ([[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
         return tableView.rowHeight;
-    }
+    } // Fin du if ([[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
 
-}
+} // Fin du - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     
     NSArray *params= [[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] componentsSeparatedByString:@"+"];
     
     NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
     
-    if ([[params objectAtIndex:2] isEqualToString:@"r.php"]) {
-        
+    if ([[params objectAtIndex:2] isEqualToString:@"r.php"]) {        
         //Fiches proches  UITableViewStylePlain
         TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
         newController.title=@"Test";
         newController.userData=userData;
         newController.loadingURL=[self buildOuvreURL:params];
         [self.navigationController pushViewController:newController animated:YES];
-        [newController release];
-        
-    }
-         else {
+        [newController release];        
+    } else { // Avec le if ([[params objectAtIndex:2] isEqualToString:@"r.php"]) {
              NSLog(@"URL: %@",[params objectAtIndex:2]);
-         }
-         
-    
-   
+    } // Fin du if ([[params objectAtIndex:2] isEqualToString:@"r.php"]) {
 
-    
-}
+} // Fin du - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildOuvreURL:(NSArray *)params {
@@ -491,11 +481,11 @@
                            1152,
                            self.userData.uniqueIdentifierMD5
                            ];
-    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+    //NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
     
     NSString *api_sig;
     api_sig = [self.userData md5:api_sig_a_convertir];
-    NSLog(@"api_sig: %@",api_sig);
+    //NSLog(@"api_sig: %@",api_sig);
     
     NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
                       api_sig,
@@ -503,11 +493,12 @@
                       1152            // i: user ID
                       ]; 
     
-    NSLog(@"%@",sUrl); 
+    //NSLog(@"%@",sUrl); 
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
-}
+} // Fin du -(NSURL *)buildOuvreURL:(NSArray *)params {
+
 
 
 @end

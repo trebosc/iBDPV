@@ -18,7 +18,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-	NSLog(@"didFinishLaunchingWithOptions iPhone");
+	//NSLog(@"didFinishLaunchingWithOptions iPhone");
     
     //Initialisation de la propriété userData
     self.userData=[[UserData alloc] init];

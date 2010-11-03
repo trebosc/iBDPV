@@ -83,7 +83,6 @@ const float ANGLE=45.0;
     lblFace.textAlignment = UITextAlignmentCenter;
     [self addSubview:lblFace];
     [lblFace release];
-    NSLog(@"lblFace est utilisé dans d'autre code avec plusieurs alloc et pas de release !   Utiliser Instrument");
     
     //----------------------------------------
     degreeDisplayView = [[UILabel alloc] initWithFrame:CGRectMake(80, 292, 55, 26)];
@@ -114,7 +113,7 @@ const float ANGLE=45.0;
     [self addSubview:slider];
 
     self.viewController.slider = slider;
-    NSLog(@"On doit faire un release sur e slider ou pas ??");
+    NSLog(@"TODO - On doit faire un release sur e slider ou pas ??   JE DIRAIS OUI car AddSubView");
 
     
     //---------------------------------

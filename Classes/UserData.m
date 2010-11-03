@@ -21,7 +21,7 @@
     const char *cStr = [paramString UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, strlen(cStr), result );
-    NSLog(@"Mettre dans une classe OUTILS  avec cryptage signature");
+    NSLog(@"TODO - Utiliser la classe OUtils de Doudou");
     
     return [NSString  stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",

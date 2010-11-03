@@ -49,8 +49,7 @@
                       self.userData.orientation
                       ]; 
     
-    NSLog(@"%@",sUrl); 
-    
+    //NSLog(@"%@",sUrl);     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
 }
@@ -100,7 +99,7 @@
 	} // Fin du if (self = [super init]) {
 
     NSLog(@"TODO PB - Ce code ne semble pas être exécuté à chaque chargement.");
-    NSLog (@"Mais attention, comme multiThread, Estim3OrientView est chargé AVANT le loadView ... Ou mettre code Boussole ???");
+    NSLog (@"TODO - Mais attention, comme multiThread, Estim3OrientView est chargé AVANT le loadView ... Ou mettre code Boussole ???");
 
     NSLog(@"TODO - Revoir tout le code pour mettre des commentaires");
     NSLog(@"TODO - Revoir tout le code pour mettre des //Fin du ... ");

@@ -44,7 +44,7 @@
                                    //												cancelButtonTitle:@"Cancel"
                                                         cancelButtonTitle:nil
                                                         otherButtonTitles:@"OK", nil];
-        NSLog(@"UIAlertImageView - voir comment lui donner le nom de l'image à télécharger (un attribut ?)");
+        NSLog(@"TODO - UIAlertImageView - voir comment lui donner le nom de l'image à télécharger (un attribut ?)");
         
         [alert show];
         [alert release];
@@ -73,7 +73,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear: Arrêt de l'accelerometre");
+    //NSLog(@"viewWillDisappear: Arrêt de l'accelerometre");
     [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
     [super viewWillDisappear:animated];
 } // Fin  du - (void)viewWillDisappear:(BOOL)animated {
@@ -88,10 +88,6 @@
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
     applicationFrame.origin.y   = 0;   //  Voir le code de Doudou ..... (sur le menu)
-    
-	// Création par programme de la hiérarchie de vues (p34) 
-	// Désactivé par Doudou - self.wantsFullScreenLayout=YES;   // Faire une rechercher dans le document PDF  ViewControlletPGforiPhoneOS
-	NSLog(@"IL y a des modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
     
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran

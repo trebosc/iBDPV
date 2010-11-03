@@ -39,7 +39,7 @@ NSString* md5( NSString *str )
     const char *cStr = [str UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, strlen(cStr), result );
-    NSLog(@"TODO - Voir la classe de Doudou - Mettre dans une classe OUTILS  avec cryptage signature");
+    NSLog(@"TODO - Ce code doit ^être viré pour utiliser la classe de Doudou");
     
     return [NSString  stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
@@ -128,7 +128,7 @@ NSString* md5( NSString *str )
 	[rootView addSubview:btnAPropos];
 	[btnAPropos release];
 
-    NSLog (@"Rajouter le numéro de version actelle sous les boutons");
+    NSLog (@"TODO - Rajouter le numéro de version actelle sous les boutons");
     
 	// 3. Assignation de la vue racine à la propriété view du controlleur
 	self.view=rootView;
@@ -157,19 +157,8 @@ NSString* md5( NSString *str )
     //************************************************************************************
     
     //---------------------
-    NSLog(@"Il faut que l'api_secret soit stocké dans un fichier qui n'est donné à personne.");
-    
-    //
-	// Divers PLIST - A noter quelque part !!!!
-	//UIDeviceFamily (Number or Array - iPhone OS) specifies the underlying hardware type on which this application is designed to run.
-	// Important: Do not insert this key manually into your Info.plist files. Xcode inserts it automatically based on the value in the Targeted Device Family build setting.
-	//You should use that build setting to change the value of the key.
-    NSLog(@"Voir les commentaires dans MenuViewCnotroller.m");
-	//UIRequiredDeviceCapabilities
-	// wifi  et/ou 3G ??
-	// accelerometer
-	// location-services  <- A vérifier si cela ne gène pas sur iTouch ou iPad <- Je dirais non !!
-	//
+    NSLog(@"TODO Il faut que l'api_secret soit stocké dans un fichier qui n'est donné à personne.");
+
     //---------------------
     
     // Pour récupérer le num de version dans le .plist    
