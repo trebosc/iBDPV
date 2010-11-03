@@ -58,7 +58,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     levelFrontGaucheView.center = self.center;
     levelFrontGaucheView.opaque = YES;
     
-    NSLog(@"viewDidLoad: Estim2PenteView - Penser à mettre des versions Retina (si cela est important)");
+    NSLog(@"TODO - viewDidLoad: Estim2PenteView - Penser à mettre des versions Retina (si cela est important) - suffit de mettre une version 2x dans le répertoire");
 
     
 	
@@ -139,7 +139,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 	// Transform for rotating textual display
 	CATransform3D landscapeTransform = CATransform3DIdentity;
     landscapeTransform = CATransform3DRotate(landscapeTransform, DegreesToRadians3(-90), 0, 0, 1);
-    NSLog(@"TODO - Duplication des fonctions DegreesToRadians  en v2 et v3 ....");
+    NSLog(@"TODO - Duplication des fonctions DegreesToRadians  en v2 et v3 .... mettre dans une classe outils.");
 
     degreeDisplayView.layer.transform = landscapeTransform;
     pourcentDisplayView.layer.transform = landscapeTransform;

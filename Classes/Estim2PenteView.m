@@ -38,7 +38,6 @@
     }
     
     aController.bPenteVisible = true;
-    NSLog(@"A mettre à jour suivant le choix précédent de l'utilisateur (quand 'retour' d'une vue précédente)");
     
     return self;
 }
@@ -85,7 +84,7 @@
 
     [self addSubview:choixVisible];
     [choixVisible release];
-    NSLog(@"Tiens, il y a un release juste après le AddSubview. Faut faire partout pareil ??");
+    NSLog(@"TODO - Faire un release après tous les addSubView !");
 
     
     //----------------------------------------
@@ -97,7 +96,7 @@
 //Action method executes when user touches the button
 - (void) pickOne:(id)sender{
 	UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    NSLog(@"Choix de l'utilisateur : %d",[segmentedControl selectedSegmentIndex]);
+    //NSLog(@"Choix de l'utilisateur : %d",[segmentedControl selectedSegmentIndex]);
     if ([segmentedControl selectedSegmentIndex] == 0)
             self.viewController.bPenteVisible = true;
         else

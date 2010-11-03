@@ -35,7 +35,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
-	NSLog(@"Annotation: %f,%f",c.latitude,c.longitude);
+	//NSLog(@"Annotation: %f,%f",c.latitude,c.longitude);
 	return self;
 }
 
@@ -50,8 +50,8 @@
     UITouch* aTouch = [touches anyObject];
     _startLocation = [aTouch locationInView:[self superview]];
     _originalCenter = self.center;
-    NSLog(@"touchesBegan - start: %f %f center: %f %f",_startLocation.x,_startLocation.y,_originalCenter.x,_originalCenter.y);
-    NSLog(@"%@",_startLocation);
+    //NSLog(@"touchesBegan - start: %f %f center: %f %f",_startLocation.x,_startLocation.y,_originalCenter.x,_originalCenter.y);
+    //NSLog(@"%@",_startLocation);
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -65,7 +65,7 @@
     // If the user's finger moved more than 5 pixels, begin the drag.
     if ((abs(newLocation.x - _startLocation.x) > 5.0) || (abs(newLocation.y - _startLocation.y) > 5.0)) {
         _isMoving = YES;
-		NSLog(@"isMoving");
+		//NSLog(@"isMoving");
     }
     
     // If dragging has begun, adjust the position of the view.
@@ -94,7 +94,7 @@
         _startLocation = CGPointZero;
         _originalCenter = CGPointZero;
         _isMoving = NO;
-		NSLog(@"Moving ended");
+		//NSLog(@"Moving ended");
     } else {
         [super touchesEnded:touches withEvent:event];		
     }
@@ -130,8 +130,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"viewWillAppear: Esti1GPSiewController - On redit que la navigation Bar  doit  apparaitre !!!");
-    NSLog(@"Je comprends pas pourquoi on doit pas le faire pour l'étape 3 qui est juste après l'étape 2 (qui cache la navigation Bar)");
+    //NSLog(@"TODO : viewWillAppear: Esti1GPSiewController - On redit que la navigation Bar  doit  apparaitre !!!");
+    //NSLog(@"TODO : Je comprends pas pourquoi on doit pas le faire pour l'étape 3 qui est juste après l'étape 2 (qui cache la navigation Bar)");
     // Permet de remettre les bonnes propriétés au navigation Controller
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO animated:YES];
@@ -219,7 +219,7 @@
 
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         //if ([annotation class]==MKUserLocation.class) {
-        NSLog(@"UserLocation");
+        //NSLog(@"UserLocation");
         //Enabled Validate button
         self.validateItem.enabled=YES;
         return nil;
@@ -247,7 +247,7 @@
 - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
     for(MKAnnotationView *annotationView in views) {
         if(annotationView.annotation == mv.userLocation) {
-            NSLog(@"didAddAnnotationViews:");
+            //NSLog(@"didAddAnnotationViews:");
             MKCoordinateRegion region;
             MKCoordinateSpan span;
             
@@ -286,7 +286,7 @@
                      ofObject:(id)object  
                        change:(NSDictionary *)change  
                       context:(void *)context {  
-    NSLog(@"observeValueForKeyPath: %@: ",keyPath);
+    //NSLog(@"observeValueForKeyPath: %@: ",keyPath);
     
     /*
     if ([self.mapView isUserLocationVisible]) {  
@@ -301,7 +301,7 @@
 - (void)viewDidLoad {
     //[super viewDidLoad];
 	
-	NSLog(@"viewDidLoad: Estim1GPSViewController");
+	//NSLog(@"viewDidLoad: Estim1GPSViewController");
 	
 }
 */
@@ -387,7 +387,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-    NSLog(@"Top: @%",self.navigationController.topViewController);
+    //NSLog(@"Top: @%",self.navigationController.topViewController);
 	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
@@ -413,26 +413,27 @@
         self.userData.longitude=self.mapView.userLocation.coordinate.longitude;
     }
     
-    NSLog(@"Longitude: %f - Latitude: %f",self.mapView.userLocation.coordinate.longitude,self.mapView.userLocation.coordinate.latitude);
-    NSLog(@"Longitude: %f - Latitude: %f",pinAnnotation.coordinate.longitude,pinAnnotation.coordinate.latitude);
-    NSLog(@"Longitude: %f - Latitude: %f",self.userData.longitude,self.userData.latitude);
+    //NSLog(@"Longitude: %f - Latitude: %f",self.mapView.userLocation.coordinate.longitude,self.mapView.userLocation.coordinate.latitude);
+    //NSLog(@"Longitude: %f - Latitude: %f",pinAnnotation.coordinate.longitude,pinAnnotation.coordinate.latitude);
+    //NSLog(@"Longitude: %f - Latitude: %f",self.userData.longitude,self.userData.latitude);
     
     //Lecture du nombre d'installations proches
     //self.userData.nbInstallationProche=10;
     
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
+    //TODO - Il faudrait mettre les arguments dans un tableau et faire une fonction qui converti le tableau en signature.
     api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVd%dl%fo%fuid%@",self.userData.distance,self.userData.latitude,self.userData.longitude,self.userData.uniqueIdentifierMD5];
-    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+    //NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
     
     NSString *api_sig;
     api_sig = [self.userData md5:api_sig_a_convertir];
-    NSLog(@"api_sig: %@",api_sig);
+    //NSLog(@"api_sig: %@",api_sig);
     
     NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/n.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&l=%f&o=%f&d=%d",api_sig,self.userData.uniqueIdentifierMD5,self.userData.latitude,self.userData.longitude,self.userData.distance]; 
         
-    NSLog(@"%@",sUrl);
-    NSLog(@"Tester les cas erreurs : Mauvais arguments, mauvaise signature, version sup à celle du serveur, ...");
+    //NSLog(@"%@",sUrl);
+    NSLog(@"TODO - Tester les cas erreurs : Mauvais arguments, mauvaise signature, version sup à celle du serveur, ...");
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
     [sUrl release];
     
@@ -440,22 +441,22 @@
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [url release];
     
-    NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
+    //NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
     
     //Set delegate
-    NSLog(@"On indique qui va traiter le retour XML");
+    //NSLog(@"On indique qui va traiter le retour XML");
     [xmlParser setDelegate:self];
     
-    NSLog(@"Parse du XML");
+    //NSLog(@"Parse du XML");
     
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
-    if(success)
-        NSLog(@"No Errors");
+    if(success) {
+        //NSLog(@"No Errors");
     
-    else {
-        NSLog(@"Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
+    } else {  // Avec le if(success) {
+        NSLog(@"TODO : Il faut voir comment traiter les erreurs - Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
         
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
@@ -466,7 +467,7 @@
                               autorelease];
         [alert show];
         
-    } // 
+    } // Fin du if(success) {
 
 	//Passage au controleur suivant (en fonction du bouton d'appel)
     if (self.menuOrigin==@"FichesProches") {
@@ -494,7 +495,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actDisplayToolbarSearchAddress:(id)sender {
     
-    NSLog(@"Search clicked");
+    //NSLog(@"Search clicked");
     
     if (self.toolbarSearchAddress==nil) {
         //Affichage d'une Toolbar
@@ -557,7 +558,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actLocalize:(id)sender {
-    NSLog(@"actLocalize");
+    //NSLog(@"actLocalize");
     MKCoordinateRegion region;
     MKCoordinateSpan span;
     
@@ -641,7 +642,7 @@
     
 	if ([elementName isEqualToString:@"nombre_inst"]) { //sites
                                                           // Init Sites
-		NSLog(@"On a le code nombre_inst");
+		NSLog(@"TODO - On a le code nombre_inst. Si pas assez de site, on peut rien faire");
 	}
 }
 
@@ -673,7 +674,7 @@
      if ([elementName isEqualToString:@"Reference"]) {
      
          self.userData.nbInstallationProche=[[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] intValue];
-         NSLog(@"XML userData.nbInstallationProche=%d",self.userData.nbInstallationProche);
+         //NSLog(@"XML userData.nbInstallationProche=%d",self.userData.nbInstallationProche);
          
      }
     

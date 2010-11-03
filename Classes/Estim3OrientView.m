@@ -98,9 +98,8 @@ float CalculeAngle(CGPoint position, float angleInit) {
 		[self setupSubviewsWithContentFrame:frame];
     }
     
-    NSLog(@"Pb de la double déclaration de RadiansToDegrees et RadiansToDegrees2");
     return self;
-}
+} // Fin du initWithFrame
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
@@ -113,13 +112,15 @@ float CalculeAngle(CGPoint position, float angleInit) {
     frame.origin.x = 55.0;
     frame.origin.y = -90.0;
     maison_vue_dessusView.frame = frame;
-    NSLog(@"Estim3OrientView - Utile de mettre des variables globales ? Le release peut pas être immédiat ? (sauf pour boussole)");
+    NSLog(@"TODO : Estim3OrientView - Utile de mettre des variables globales ? Le release peut pas être immédiat ? (sauf pour boussole)");
 
+    /*
     if (self.viewController.bBoussoleAutom) 
             NSLog(@"BOUSSOLE OK =!!!");
     else
             NSLog(@"Pas de boussole");
-
+     */
+    
     silhouette_vue_dessusView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"silhouette_vue_dessus.png"]];
     silhouette_vue_dessusView.opaque = YES;
     frame = silhouette_vue_dessusView.frame;
@@ -135,7 +136,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
     lblFace.textAlignment = UITextAlignmentCenter;
     [self addSubview:lblFace];
     [lblFace release];
-    NSLog(@"lblFace est utilisé 2 fois (voir plus bas) avec un release et 2 alloc. Faire plus propre");
+    NSLog(@"TODO : lblFace est utilisé 2 fois (voir plus bas) avec un release et 2 alloc. Faire plus propre");
     
     
     boussoleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"boussole.png"]];
@@ -144,7 +145,6 @@ float CalculeAngle(CGPoint position, float angleInit) {
     frame.origin.x = 77.0;
     frame.origin.y = 130.0;
     boussoleView.frame = frame;
-    NSLog(@"viewDidLoad: Estim3OrientView - Penser à mettre des versions Retina (@2x)");
     
     lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 300.0, 320, 20)];
     if (self.viewController.bBoussoleAutom) 

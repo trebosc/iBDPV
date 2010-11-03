@@ -126,7 +126,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-			NSLog(@"Top: @%",self.navigationController.topViewController);
+    //NSLog(@"Top: @%",self.navigationController.topViewController);
 	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];

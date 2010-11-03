@@ -54,7 +54,7 @@
         [self.navigationController setToolbarHidden:NO animated:YES];    
  
         [super viewWillAppear:animated];
- NSLog(@"Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
+ NSLog(@"TODO : Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
 }
 
 
@@ -108,17 +108,16 @@
 - (void)viewDidLoad {
 
 	
-	NSLog(@"viewDidLoad: Estim2PenteViewController");
+	//NSLog(@"viewDidLoad: Estim2PenteViewController");
 	
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
-    NSLog(@"UIScreen mainScreen : Ne retourne pas le bon chiffre :(  ");
     applicationFrame.origin.y   = 0;   //  Voir le code de Doudou ..... (sur le menu)
-	NSLog(@"viewDidLoad: Estim2PenteViewController  Bout de code pas beau  : applicationFrame.origin.y = 0");
+	//NSLog(@"viewDidLoad: Estim2PenteViewController  Bout de code pas beau  : applicationFrame.origin.y = 0");
     
 	// Création par programme de la hiérarchie de vues (p34) 
 	// Désactivé par Doudou - self.wantsFullScreenLayout=YES;   // Faire une rechercher dans le document PDF  ViewControlletPGforiPhoneOS
-	NSLog(@"modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
+	NSLog(@"TODO - Voir le commentatire sur wantsFullScreenLayout - modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
     
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -149,7 +148,7 @@
     
     
     [super viewDidLoad];
-	NSLog(@"viewDidLoad: appel  super parce que .... pas fait dans code Doudou ?");
+	NSLog(@"TODO  - Est-ce à la fin des fonctions delegate on doit pas appeler systématiquement le super (pour donner la main au père ?) - viewDidLoad: appel  super parce que .... pas fait dans code Doudou ?");
 	
 }
 

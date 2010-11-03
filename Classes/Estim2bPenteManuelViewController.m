@@ -61,13 +61,12 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillAppear 
 - (void)viewWillAppear:(BOOL)animated {
-    	NSLog(@"viewWillAppear: Estim2PenteViewController - la navigation Bar doit pas apparaitre !");
-        NSLog(@"Pas fait sur Etape 3 (mais que sur 1 et 2)");
+    	NSLog(@"TODO - viewWillAppear: Estim2PenteViewController - la navigation Bar doit pas apparaitre !");
+        NSLog(@"TODO - Pas fait sur Etape 3 (Pente), mais que sur 1 et 2");
         [self.navigationController setNavigationBarHidden:NO];  
         [self.navigationController setToolbarHidden:NO animated:YES];
     
          [super viewWillAppear:animated];
- NSLog(@"Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
 } // Fin du - (void)viewWillAppear:(BOOL)animated {
 
 
@@ -80,14 +79,7 @@
 	NSLog(@"viewDidLoad: Estim2PenteViewController");
 	
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-
-    NSLog(@"UIScreen mainScreen : Ne retourne pas le bon chiffre :(  ");
     applicationFrame.origin.y   = 0;   //  Voir le code de Doudou ..... (sur le menu)
-	NSLog(@"viewDidLoad: Estim2PenteViewController  Bout de code pas beau  : applicationFrame.origin.y = 0");
-    
-	// Création par programme de la hiérarchie de vues (p34) 
-	// Désactivé par Doudou - self.wantsFullScreenLayout=YES;   // Faire une rechercher dans le document PDF  ViewControlletPGforiPhoneOS
-	NSLog(@"modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
     
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -95,6 +87,8 @@
 	rootView.backgroundColor=[UIColor whiteColor];	
     rootView.opaque=YES;
 	
+    NSLog(@"TODO : Code mis en commentaire à effacer s'il ne sert pas");
+    /* TODO
 	// 2. Ajout de subViews
     NSLog(@"Ne sert à rien puisque la vue est cachée ...");
 	CGRect lblRect=CGRectMake(0.0, 0.0, 200, 40);
@@ -102,11 +96,12 @@
 	lblWelcome.text=@"Generic View Controller";
 	[rootView addSubview:lblWelcome];
 	[lblWelcome release];
-	
+     A effacer si cela ne sert à rien !!!
+	*/
     
-    NSLog(@"Penser à modifier les boutons valider et retour de la vue GPS");
-    NSLog(@"Mettre les boutons de la vue Orientation comme ceux des autres vues ou alors rajouter une toolbar");
-    NSLog(@"Est-ce qu'il faudrait pas mettre un bouton (i) pour chaque écran pour expliquer ce qu'il faut faire ? Avec une photo et un texte simple ?");
+    NSLog(@"TODO : Penser à modifier les boutons valider et retour de la vue GPS");
+    NSLog(@"TODO : Mettre les boutons de la vue Orientation comme ceux des autres vues ou alors rajouter une toolbar");
+    NSLog(@"TODO : Est-ce qu'il faudrait pas mettre un bouton (i) pour chaque écran pour expliquer ce qu'il faut faire ? Avec une photo et un texte simple ?");
 
     //***********************************
     //On rajoute une vue qui va afficher tout ce qui concerne la pente (angle, image maison, ...) 
@@ -149,10 +144,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear: Arrêt de l'accelerometre");
-    [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
     [super viewWillDisappear:animated];
-    
 } // Fin du - (void)viewWillDisappear:(BOOL)animated {
 
 

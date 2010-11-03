@@ -162,11 +162,11 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
                            userID,
                            self.userData.uniqueIdentifierMD5
                            ];
-    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+    //NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
     
     NSString *api_sig;
     api_sig = [self.userData md5:api_sig_a_convertir];
-    NSLog(@"api_sig: %@",api_sig);
+    //NSLog(@"api_sig: %@",api_sig);
     
     NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
                       api_sig,
@@ -174,7 +174,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
                       userID            // i: user ID
                       ]; 
     
-    NSLog(@"%@",sUrl); 
+    //NSLog(@"%@",sUrl); 
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
@@ -206,7 +206,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
                       indexToLoad                               // i: index of the first row
                       ]; 
     
-    NSLog(@"%@",sUrl); 
+    //NSLog(@"%@",sUrl); 
    
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
@@ -246,16 +246,16 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         //Set delegate
         [xmlParser setDelegate:self];
         
-        NSLog(@"Loading first page synchrone. XML Parsing ...");
+        //NSLog(@"Loading first page synchrone. XML Parsing ...");
         
         //Start parsing the XML file.
         booXMLLoading=YES;
         BOOL success = [xmlParser parse];
         
-        if(success)
-            NSLog(@"Loading first page synchrone. No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
-        else {
-            NSLog(@"Loading first page synchrone. Parsing Error.");
+        if(success) {
+            //NSLog(@"Loading first page synchrone. No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
+        } else { // Avec le if(success) {
+            NSLog(@"TODO - Mettre un message en français et traiter les erreurs - Loading first page synchrone. Parsing Error.");
             
             UIAlertView *alert = [[[UIAlertView alloc] 
                                    initWithTitle:@"Error"
@@ -266,15 +266,16 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
                                   autorelease];
             [alert show];
             
-        } // 
+        } // Fin du if(success) {
         
         booXMLLoading=NO;
         indexToLoad=LIMIT;
         
         
-    }
+    } // Fin du if (indexToLoad==0) {
     
-}
+} // Fin du - (void)viewWillAppear:(BOOL)animated {
+
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -307,7 +308,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     [super loadView];
-    
+    NSLog(@"TODO - ???? le super doit être appelé avant ou après ?");
+
     
     // Affichage de la barre de navigation
 	[self.navigationController setNavigationBarHidden:NO];
@@ -355,9 +357,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     //Initialisation du tableau des fiches
     self.arrFiches=[[NSMutableArray alloc] initWithCapacity:self.userData.nbInstallationProche]; 
     
+} // Fin du - (void)loadView {
 
-	
-}
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -368,7 +369,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
-}
+} // Fin du - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -378,7 +379,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     self.lblNbFiches.text=[NSString stringWithFormat:@"%@ %d / %d",@"Nb fiches: ", [arrFiches count],self.userData.nbInstallationProche];
     
     return [arrFiches count];
-}
+} // Fin de - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -500,7 +502,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         booXMLLoading=YES;
         [activityIndicator startAnimating];
         
-        NSLog(@"Loading Page: %d",indexToLoad);
+        //NSLog(@"Loading Page: %d",indexToLoad);
         
         // Create the request.
         NSURLRequest *theRequest=[NSURLRequest requestWithURL:[self buildSitesProchesURL]
@@ -517,13 +519,14 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
             
         } else {
             // Inform the user that the connection failed.
-            NSLog(@"Loading Page: %d ERROR",indexToLoad);
+            NSLog(@"TODO - A mettre dans une popup ? Loading Page: %d ERROR",indexToLoad);
         }
         
     }
     
     return cell;
-}
+} // Fin du - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
 
 
 /*
@@ -566,7 +569,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
-}
+ } // Fin du - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+
 */
 
 
@@ -610,13 +614,15 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     NSLog(@"TODO - MEMORY WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     
     
-}
+} // Fin du - (void)didReceiveMemoryWarning {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -626,7 +632,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     [arrFiches release];
     [activityIndicator release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 
 //#########################################################################################################################################################
@@ -639,7 +646,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
-}
+} // Fin du -(void)actBack:(id)sender {
+
 
 
 //#########################################################################################################################################################
@@ -666,16 +674,15 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     BOOL success = [xmlParser parse];
     
     if (success){
-        NSLog(@"No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
+        //NSLog(@"No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
     
         indexToLoad = indexToLoad + LIMIT;
-        NSLog(@"Next index; %d COUNT: %d",indexToLoad,arrFiches.count);
+        //NSLog(@"Next index; %d COUNT: %d",indexToLoad,arrFiches.count);
         booXMLLoading=NO;
         
         [self.tableView reloadData];
-    }
-    else {
-        NSLog(@"Parsing XML asynchrone ERROR");
+    } else { // Avec le if (success){
+        NSLog(@"TODO - Traiter l'erreur  - Parsing XML asynchrone ERROR");
         
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
@@ -686,7 +693,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
                               autorelease];
         [alert show];
         
-    } // 
+    } // Fin du if (success){
         
     
     
@@ -742,7 +749,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     // receivedData is declared as a method instance elsewhere
     [receivedData release];
     // inform the user
-    NSLog(@"Connection failed! Error - %@ %@",[error localizedDescription],
+    NSLog(@"TODO - Traiter l'erreur - Connection failed! Error - %@ %@",[error localizedDescription],
           [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
     
     
