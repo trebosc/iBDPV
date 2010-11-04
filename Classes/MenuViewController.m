@@ -58,6 +58,7 @@ NSString* md5( NSString *str )
         //     NSLog(@"Premiere initialisation");
              iEtatConnexion = CNX_RIEN;
          } // Fin du if (self = [super init]) {
+
      return self;
  } // Fin du - init {
 
@@ -155,10 +156,6 @@ NSString* md5( NSString *str )
     //************************************************************************************
     //************************************************************************************
     //************************************************************************************
-    
-    //---------------------
-    NSLog(@"TODO Il faut que l'api_secret soit stocké dans un fichier qui n'est donné à personne.");
-
     //---------------------
     
     // Pour récupérer le num de version dans le .plist    
@@ -215,23 +212,20 @@ NSString* md5( NSString *str )
     
     self.userData.uniqueIdentifierMD5=uniqueIdentifierMD5;
     
-    //-----------------------------------------------------------------------
-    // -------
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVn%@uid%@",sVersion,uniqueIdentifierMD5];
-//    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
-    
-    NSString *api_sig;
-    api_sig = md5(api_sig_a_convertir);
-//    NSLog(@"api_sig: %@",api_sig);
-    
-    
+    //-----------------------------------------------------------------------    
     //URL
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/v.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&n=%@",api_sig,uniqueIdentifierMD5,sVersion];
-//    NSLog(@"Tester les cas erreurs : Mauvais arguments, mauvaise signature, version sup à celle du serveur, ...");
+    // Paramètre de l'appel
+    NSString *sParam = [NSString  stringWithFormat:@"v.php"];
+    NSArray  *myArray2 = [NSArray arrayWithObjects:
+                          [NSString  stringWithFormat:@"uid=%@",uniqueIdentifierMD5],
+                          [NSString  stringWithFormat:@"api_demandeur=%@",@"iBDPV"],
+                          [NSString  stringWithFormat:@"n=%@",sVersion],
+                          nil];
+
+    // Génération de l'url
+    NSString *sUrl = sUrl = [self.userData genere_requete:myArray2 fichier_php:sParam];
+    NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
-//    NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     
 
 //    NSLog(@"--------------------------");
