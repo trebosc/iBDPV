@@ -491,6 +491,9 @@
 -(NSURL *)buildOuvreURLg:(NSArray *)params {
     
     // Génération de la signature pour le lien http
+
+    NSLog(@"%@",params);
+    
     NSString *api_sig_a_convertir;
     api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
                            1152,
@@ -514,6 +517,8 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildOuvreURLl2:(NSArray *)params {
+    
+    NSLog(@"%@",params);
     
     // Génération de la signature pour le lien http
     NSString *api_sig_a_convertir;
