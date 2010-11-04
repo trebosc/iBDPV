@@ -40,7 +40,7 @@
     
     NSLog(@"TODO - Cette signature ne devrait pas être publiée sur GITHUB !!");
     // La chaine à convertir commence par l'api_secret
-    sTrv = [NSString  stringWithFormat:@"ibdpv_20100712"];
+    sTrv = @"ibdpv_20100712";
     
 
     // Tri des arguments.
