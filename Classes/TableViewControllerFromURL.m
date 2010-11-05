@@ -509,6 +509,20 @@
     // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001
     NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001"]; 
     
+    
+    //------------------------------------------------------------------
+    // Génération de l'url
+    // EXEMPLE CODE POUR GENERER LA SIGNATURE *******++++++****+*+*+*+*+*+*+*+*++*+*+//////!!!!!!!!!!!!!!!!!!
+    NSString *sParam = @"g.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"t=%@",@"prod"],
+                                [NSString  stringWithFormat:@"i=%d",001],
+                                nil];
+    NSString *sUrl2 = [self.userData genere_requete:myArray fichier_php:sParam];
+    // POUR RAJOUTER DES ENTREES DANS LE Tableau NSMutableArray
+    [myArray  addObject:[NSString  stringWithFormat:@"t=%@",@"prod"]];
+
+    
     NSLog(@"%@",sUrl); 
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
@@ -535,6 +549,21 @@
     // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=47d2d33f0d161812a7d36fbd9d23d43d&api_demandeur=iBDPV&uid=090392&t=perte
     // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001
     NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140"]; 
+ 
+    
+    //------------------------------------------------------------------
+    // Génération de l'url
+    // EXEMPLE CODE POUR GENERER LA SIGNATURE *******++++++****+*+*+*+*+*+*+*+*++*+*+//////!!!!!!!!!!!!!!!!!!
+    NSString *sParam = @"g.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"n=%@",10],
+                                [NSString  stringWithFormat:@"i=%d",001],
+                                nil];
+    NSString *sUrl2 = [self.userData genere_requete:myArray fichier_php:sParam];
+    // POUR RAJOUTER DES ENTREES DANS LE Tableau NSMutableArray
+    [myArray  addObject:[NSString  stringWithFormat:@"i=%@",@"140"]];
+
+    NSLog(@"%@",sUrl); 
     
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];

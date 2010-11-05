@@ -213,18 +213,16 @@ NSString* md5( NSString *str )
     self.userData.uniqueIdentifierMD5=uniqueIdentifierMD5;
     
     //-----------------------------------------------------------------------    
-    //URL
+    //URL- Génération de l'URL
     // Paramètre de l'appel
     NSString *sParam = @"v.php";
-    NSArray  *myArray = [NSArray arrayWithObjects:
-                          [NSString  stringWithFormat:@"uid=%@",uniqueIdentifierMD5],
-                          [NSString  stringWithFormat:@"api_demandeur=%@",@"iBDPV"],
-                          [NSString  stringWithFormat:@"n=%@",sVersion],
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                           [NSString  stringWithFormat:@"n=%@",sVersion],
                           nil];
+    NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
 
-    // Génération de l'url
-    NSString *sUrl = sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
-    NSLog(@"Récupération des infos de l'URL: %@",sUrl);
+
+    //NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
     
 

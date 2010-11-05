@@ -156,23 +156,14 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 #pragma mark === View lifecycle ===
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildFicheDetailURL:(int)userID {
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
-                           userID,
-                           self.userData.uniqueIdentifierMD5
-                           ];
-    //NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
     
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
-    //NSLog(@"api_sig: %@",api_sig);
-    
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/f.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&i=%d",
-                      api_sig,
-                      self.userData.uniqueIdentifierMD5,
-                      userID            // i: user ID
-                      ]; 
+
+    // Génération de l'url
+    NSString *sParam = @"f.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"i=%d",userID],
+                                nil];
+    NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
     
     //NSLog(@"%@",sUrl); 
     
@@ -182,33 +173,21 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildSitesProchesURL {
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVd%di%dl%fn%do%fuid%@",
-                           self.userData.distance,
-                           indexToLoad,                        // i: index of the first row
-                           self.userData.latitude,
-                           LIMIT,                              // n: number of rows to load
-                           self.userData.longitude,
-                           self.userData.uniqueIdentifierMD5
-                           ];
+
+    // Génération de l'url
+    NSString *sParam = @"l.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"l=%f",self.userData.latitude],
+                                [NSString  stringWithFormat:@"o=%f",self.userData.longitude],
+                                [NSString  stringWithFormat:@"d=%d",self.userData.distance],
+                                [NSString  stringWithFormat:@"n=%d",LIMIT],
+                                [NSString  stringWithFormat:@"i=%d",indexToLoad],
+                                nil];
+    NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
     
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
     
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&l=%f&o=%f&d=%d&n=%d&i=%d",
-                      api_sig,
-                      self.userData.uniqueIdentifierMD5,
-                      self.userData.latitude,
-                      self.userData.longitude,
-                      self.userData.distance,
-                      LIMIT,                                    // n: number of rows to load
-                      indexToLoad                               // i: index of the first row
-                      ]; 
-    
-    //NSLog(@"%@",sUrl); 
-   
-    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+//    NSLog(@"CALC %@",sUrl); 
+      return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
 }
 

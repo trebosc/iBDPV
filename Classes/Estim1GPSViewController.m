@@ -420,20 +420,19 @@
     //Lecture du nombre d'installations proches
     //self.userData.nbInstallationProche=10;
     
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    //TODO - Il faudrait mettre les arguments dans un tableau et faire une fonction qui converti le tableau en signature.
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVd%dl%fo%fuid%@",self.userData.distance,self.userData.latitude,self.userData.longitude,self.userData.uniqueIdentifierMD5];
-    //NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
+
+    // Génération de l'url
+    NSString *sParam = @"n.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"l=%f",self.userData.latitude],
+                                [NSString  stringWithFormat:@"o=%f",self.userData.longitude],
+                                [NSString  stringWithFormat:@"d=%d",self.userData.distance],
+                                nil];
+    NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
+
     
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
-    //NSLog(@"api_sig: %@",api_sig);
-    
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/n.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&l=%f&o=%f&d=%d",api_sig,self.userData.uniqueIdentifierMD5,self.userData.latitude,self.userData.longitude,self.userData.distance]; 
-        
-    //NSLog(@"%@",sUrl);
-    NSLog(@"TODO - Tester les cas erreurs : Mauvais arguments, mauvaise signature, version sup à celle du serveur, ...");
+    //NSLog(@"URL %@",sUrl);
+
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
     [sUrl release];
     

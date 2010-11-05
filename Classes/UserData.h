@@ -30,6 +30,6 @@
 @property (nonatomic, assign) int orientation;
 
 -(NSString *)md5:(NSString *)paramString;
--(NSString*)genere_requete:(NSArray*)paramTabString fichier_php:(NSString *)sParam;
+-(NSString*)genere_requete:(NSMutableArray*)paramTabString fichier_php:(NSString *)sParam;
 
 @end

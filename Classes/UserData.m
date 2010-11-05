@@ -9,6 +9,16 @@
 #import "UserData.h"
 #import <CommonCrypto/CommonDigest.h>
 
+//*********************************************************************************************************
+#include "UserData_api_secret.h" 
+// Ce fichier n'est pas publié dans GITHUB car il est personnel et secret. Vous devez le demander par email à contact@ibdpv.fr
+// L'objectif est de protéger l'accès aux serveurs http://www.bdpv.fr
+// Sont contenu est le suivant : 
+//static NSString *const API_SECRET    = @"XXXXXX";
+//static NSString *const API_DEMANDEUR = @"XXXXXXX";
+//*********************************************************************************************************
+
+
 @implementation UserData
 
 @synthesize longitude, latitude, distance, nbInstallationProche,uniqueIdentifierMD5, pente, orientation;
@@ -34,20 +44,18 @@
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
--(NSString*)signature:(NSArray*)paramTabString;
+-(NSString*)signature:(NSMutableArray*)paramTabString;
 {
     NSString *sTrv = [[NSString alloc] init];
     
-    NSLog(@"TODO - Cette signature ne devrait pas être publiée sur GITHUB !!");
     // La chaine à convertir commence par l'api_secret
-    sTrv = @"ibdpv_20100712";
-    
+     sTrv = API_SECRET;    
 
     // Tri des arguments.
-    NSArray *sortedArray = [paramTabString sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    [paramTabString sortUsingSelector:@selector(caseInsensitiveCompare:)];
     
     // Concaténation de la chaine de caractère
-    for(NSString * myStr in sortedArray) {
+    for(NSString * myStr in paramTabString) {
         sTrv = [sTrv stringByAppendingString:myStr];
     } // Fin du for(NSString * myStr in sortedArray) {
 
@@ -60,23 +68,21 @@
     sTrv = [self md5:sTrv];
 
     return sTrv;
-} // Fin du-(NSString*)signature:(NSArray*)paramTabString;
+} // Fin du-(NSString*)signature:(NSMutableArray*)paramTabString;
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
--(NSString*)genere_requete:(NSArray*)paramTabString fichier_php:(NSString *)sParam;
+-(NSString*)genere_requete:(NSMutableArray*)paramTabString fichier_php:(NSString *)sParam;
 {
     
-    
-    //numberOfRowsInComponent:(NSInteger)component
-    
-    
-    
     NSLog(@"TODO - Utiliser la classe OUtils de Doudou");
-    //NSString *sParam =  [NSString  stringWithFormat:@"v.php"];
 
     NSString *sTrv =  [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/%@?",sParam];
     
+    // On rajoute le demandeur et l'identifieur
+    [paramTabString  addObject:[NSString  stringWithFormat:@"uid=%@",self.uniqueIdentifierMD5]];
+    [paramTabString  addObject:[NSString  stringWithFormat:@"api_demandeur=%@",API_DEMANDEUR]];
+
     // On calcule la signature
     NSString *api_sig;
     api_sig = [self signature:paramTabString];
@@ -91,7 +97,7 @@
     } // Fin du for(NSString * myStr in sortedArray) {
   
     return sTrv;
-} // Fin du-(NSString*)genere_requete:(NSArray*)paramTabString;
+} // Fin du-(NSString*)genere_requete:(NSMutableArray*)paramTabString;
 
 
 @end

@@ -25,29 +25,17 @@
 #pragma mark -
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildURL {
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712a%dapi_demandeuriBDPVd%dl%fo%fp%duid%@",
-                           self.userData.orientation,
-                           self.userData.distance,                    
-                           self.userData.latitude,
-                           self.userData.longitude,
-                           self.userData.pente,  
-                           self.userData.uniqueIdentifierMD5
-                           ];
     
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
-    
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/r.php?api_sig=%@&api_demandeur=iBDPV&uid=%@&l=%f&o=%f&d=%d&p=%d&a=%d",
-                      api_sig,
-                      self.userData.uniqueIdentifierMD5,
-                      self.userData.latitude,
-                      self.userData.longitude,
-                      self.userData.distance,
-                      self.userData.pente,
-                      self.userData.orientation
-                      ]; 
+    // Génération de l'url
+    NSString *sParam = @"r.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"l=%f",self.userData.latitude],
+                                [NSString  stringWithFormat:@"o=%f",self.userData.longitude],
+                                [NSString  stringWithFormat:@"d=%d",self.userData.distance],
+                                [NSString  stringWithFormat:@"p=%d",self.userData.pente],
+                                [NSString  stringWithFormat:@"a=%d",self.userData.orientation],
+                                nil];
+    NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
     
     //NSLog(@"%@",sUrl);     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
