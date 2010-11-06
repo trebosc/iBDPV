@@ -42,7 +42,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         self.tableView.rowHeight=81.0;
     }
     return self;
-}
+} // Fin du - (id)initWithStyle:(UITableViewStyle)style {
+
 
 
 
@@ -73,16 +74,17 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 	attributes:(NSDictionary *)attributeDict {
 	
 	if ([elementName isEqualToString:@"liste_utilisateur"]) {
-                                                        
+       // RIen à faire - Debut du code                                                 
 		
 	}
     else if ([elementName isEqualToString:@"utilisateur"]) {
         //Initialisation d'un objet Fiche
         xmlFiche=[[Fiche alloc] init];
-    }
+    } // Fin du else if ([elementName isEqualToString:@"utilisateur"]) {
     
     
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Values
@@ -91,11 +93,12 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 	if (!currentStringValue) {
         // currentStringValue is an NSMutableString instance variable
         currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
-    }
+    } // FIn du if (!currentStringValue) {
 
     [currentStringValue appendString:string];		
     
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // End tag
@@ -146,14 +149,10 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 
 
-
-
-
-
 //#########################################################################################################################################################
 //#########################################################################################################################################################
 #pragma mark -
-#pragma mark === View lifecycle ===
+#pragma mark === Generation des URL ===
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildFicheDetailURL:(int)userID {
     
@@ -169,7 +168,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
-}
+} // Fin du -(NSURL *)buildFicheDetailURL:(int)userID {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildSitesProchesURL {
@@ -186,14 +186,19 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
     
     
-//    NSLog(@"CALC %@",sUrl); 
       return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
-}
+} // Fin du -(NSURL *)buildSitesProchesURL {
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Chargement et creation de la vue ===
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //TODO - Normal de le faire avant ????
     
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
@@ -206,7 +211,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     dicoPhoto=[[NSMutableDictionary alloc] init];
     indexToLoad=0;  // Premier chargement
     
-}
+} // Fin du - (void)viewDidLoad {
+
 
 
 
@@ -220,7 +226,9 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         
         // Lancement du parsing XML (mode SYNCHRONE)
         NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildSitesProchesURL]];
-        
+        NSLog(@"TODO : Possibilité de mettre un timeout ???");
+        NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
+      
         
         //Set delegate
         [xmlParser setDelegate:self];
@@ -254,34 +262,6 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     } // Fin du if (indexToLoad==0) {
     
 } // Fin du - (void)viewWillAppear:(BOOL)animated {
-
-
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -385,49 +365,44 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-        
-        mainLabel = [[[UILabel alloc] initWithFrame:CGRectMake(130.0, 5.0, 180.0, 20.0)] autorelease];
-        mainLabel.tag = MAINLABEL_TAG; mainLabel.font = [UIFont boldSystemFontOfSize:18.0]; 
-        mainLabel.textAlignment = UITextAlignmentLeft; 
-        mainLabel.textColor = [UIColor blackColor]; 
-        mainLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin ; 
-        mainLabel.opaque=YES;
-        [cell.contentView addSubview:mainLabel];
-        
-        detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(130.0, 25.0, 180.0, tableView.rowHeight-25.0)] autorelease];
-        detailLabel.tag = DETAILLABEL_TAG; 
-        detailLabel.font = [UIFont systemFontOfSize:14.0]; 
-        detailLabel.textAlignment = UITextAlignmentLeft; 
-        detailLabel.textColor = [UIColor blackColor]; 
-        [detailLabel setLineBreakMode:UILineBreakModeWordWrap];
-        [detailLabel setNumberOfLines:0];
-        detailLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin; 
-        detailLabel.opaque=YES;
-        [cell.contentView addSubview:detailLabel];
-        
-        }
-        
-        
-    else {
-        //Cell reused
-        
-        mainLabel = (UILabel *)[cell.contentView viewWithTag:MAINLABEL_TAG];
-        
-        detailLabel = (UILabel *)[cell.contentView viewWithTag:DETAILLABEL_TAG];
-        
-        
             
-        //Photo removing
-        AsyncImageView* oldImage = (AsyncImageView*)[cell.contentView viewWithTag:PHOTO_TAG];
-        
-        [oldImage removeFromSuperview];
-        
-        //UIImageView *oldUIV=(UIImageView*)[cell.contentView viewWithTag:PHOTO_TAG];
-        //[oldUIV removeFromSuperview];
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+            
+            mainLabel = [[[UILabel alloc] initWithFrame:CGRectMake(130.0, 5.0, 180.0, 20.0)] autorelease];
+            mainLabel.tag = MAINLABEL_TAG; mainLabel.font = [UIFont boldSystemFontOfSize:18.0]; 
+            mainLabel.textAlignment = UITextAlignmentLeft; 
+            mainLabel.textColor = [UIColor blackColor]; 
+            mainLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin ; 
+            mainLabel.opaque=YES;
+            [cell.contentView addSubview:mainLabel];
+            
+            detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(130.0, 25.0, 180.0, tableView.rowHeight-25.0)] autorelease];
+            detailLabel.tag = DETAILLABEL_TAG; 
+            detailLabel.font = [UIFont systemFontOfSize:14.0]; 
+            detailLabel.textAlignment = UITextAlignmentLeft; 
+            detailLabel.textColor = [UIColor blackColor]; 
+            [detailLabel setLineBreakMode:UILineBreakModeWordWrap];
+            [detailLabel setNumberOfLines:0];
+            detailLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin; 
+            detailLabel.opaque=YES;
+            [cell.contentView addSubview:detailLabel];
+            
+        } else { // Avec le if (cell == nil) {
 
-        }
+            //Cell reused
+            
+            mainLabel = (UILabel *)[cell.contentView viewWithTag:MAINLABEL_TAG];
+            detailLabel = (UILabel *)[cell.contentView viewWithTag:DETAILLABEL_TAG];
+        
+            //Photo removing
+            AsyncImageView* oldImage = (AsyncImageView*)[cell.contentView viewWithTag:PHOTO_TAG];
+            [oldImage removeFromSuperview];
+            
+            //UIImageView *oldUIV=(UIImageView*)[cell.contentView viewWithTag:PHOTO_TAG];
+            //[oldUIV removeFromSuperview];
+
+        } // FIn du if (cell == nil) {
+
    
     
     
@@ -460,12 +435,14 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
     //Synchronous call - NSData
     /*
+     TODO - On conserve ce commentaire (la réponse doit être donnée par Doudou)
     NSData *imgData=[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://www.bdpv.fr/image/install/nico81.jpg"]];
     cell.imageView.image=[UIImage imageWithData:imgData];
     */
     
     //AsyncImage View Class
     /*
+     TODO - On conserve ce commentaire (la réponse doit ^être donnée par Doudou)
     CGRect frame;
     frame.size.width=75; frame.size.height=50;
     frame.origin.x=0; frame.origin.y=0;
@@ -486,9 +463,14 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         // Create the request.
         NSURLRequest *theRequest=[NSURLRequest requestWithURL:[self buildSitesProchesURL]
                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                              timeoutInterval:60.0];
+                                              timeoutInterval:20.0];
         
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        
+        
+        NSLog(@"TODO - Si erreur de timeout ou autres, est-ce que l'utilisateur peut facilement relancer le téléchargement ?");
+        NSLog(@"TODO - Mettre un spinner d'attente");
+
         
         if (theConnection) {
             // Create the NSMutableData to hold the received data.
@@ -496,61 +478,16 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
             
             receivedData = [[NSMutableData data] retain];
             
-        } else {
+        } else { // Avec le if (theConnection) {
             // Inform the user that the connection failed.
             NSLog(@"TODO - A mettre dans une popup ? Loading Page: %d ERROR",indexToLoad);
-        }
+        } // Fin du if (theConnection) {
         
-    }
+    } // Fin du if ((arrFiches.count<userData.nbInstallationProche) && (indexPath.row==arrFiches.count-1) && (!booXMLLoading)) {
+
     
     return cell;
 } // Fin du - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-
-
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
- } // Fin du - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-
-*/
 
 
 //#########################################################################################################################################################
@@ -571,12 +508,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         newController.loadingURL=[self buildFicheDetailURL:[[arrFiches objectAtIndex:indexPath.row] Id]];
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
-        
-        
-    }
-    
-    
-}
+    } // FIn du if ([[arrFiches objectAtIndex:indexPath.row] Id]>0) {
+} // Fin du - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
 //#########################################################################################################################################################
@@ -711,9 +644,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     // receivedData is an instance variable declared elsewhere.
     [receivedData appendData:data];
     
-}
-
-
+} // Fin du - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 
 
 //************************************************************************************
@@ -727,25 +658,21 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
     // receivedData is declared as a method instance elsewhere
     [receivedData release];
+    
     // inform the user
-    NSLog(@"TODO - Traiter l'erreur - Connection failed! Error - %@ %@",[error localizedDescription],
-          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
-    
-    
     
     UIAlertView *alert = [[[UIAlertView alloc] 
-                           initWithTitle:@"Bad connexion XML"
-                           message:@"Connexion BAD XML"
+                           initWithTitle:@"Erreur lors du chargement"
+                           message:@"Mauvaise réception des données\nMerci de re-essayer à nouveau."
                            delegate:self
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:nil]
                           autorelease];
     
-    
     [alert show];
-    
-    
-}
+        
+} // Fin du - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+
 //************************************************************************************
 //************************************************************************************
 

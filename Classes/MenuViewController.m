@@ -10,6 +10,7 @@
 #import "AProposViewController.h"
 #import "Estim1GPSViewController.h"
 #import "FichesProchesTableViewController.h"
+#import "UserData.h"
 
 @implementation MenuViewController
 
@@ -33,24 +34,11 @@ const int CNX_OK = 1;
 const int CNX_BAD = -1;
 const int CNX_VERSION_OBSOLETE = -2;
 
-//-------------------------------------------------------------------------------------------------------------------------------
-NSString* md5( NSString *str )
-{
-    const char *cStr = [str UTF8String];
-    unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( cStr, strlen(cStr), result );
-    NSLog(@"TODO - Ce code doit ^être viré pour utiliser la classe de Doudou");
-    
-    return [NSString  stringWithFormat:
-            @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-            result[0], result[1], result[2], result[3], result[4],
-            result[5], result[6], result[7],
-            result[8], result[9], result[10], result[11], result[12],
-            result[13], result[14], result[15]
-            ];
-} //Fin du NSString* md5( NSString *str )
 
-
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Init et divers Windows  ===
 
 //-------------------------------------------------------------------------------------------------------------------------------
  - init {
@@ -109,7 +97,7 @@ NSString* md5( NSString *str )
 	[rootView addSubview:btnFichesProches];
 	[btnFichesProches release];
 
-/*
+/* // Pour la v2.0
 	// ----- Bouton Options
 	btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*2, btnWidth, btnHeight);
 	UIButton *btnOptions=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
@@ -129,8 +117,6 @@ NSString* md5( NSString *str )
 	[rootView addSubview:btnAPropos];
 	[btnAPropos release];
 
-    NSLog (@"TODO - Rajouter le numéro de version actelle sous les boutons");
-    
 	// 3. Assignation de la vue racine à la propriété view du controlleur
 	self.view=rootView;
 	
@@ -152,12 +138,6 @@ NSString* md5( NSString *str )
     
     //************************************************************************************
     //************************************************************************************
-    //************************************************************************************
-    //************************************************************************************
-    //************************************************************************************
-    //************************************************************************************
-    //---------------------
-    
     // Pour récupérer le num de version dans le .plist    
     
     NSString *sVersion;
@@ -175,7 +155,7 @@ NSString* md5( NSString *str )
     
     NSString *uniqueIdentifierMD5;
     if (fileContents == nil) {
-//        NSLog(@"Pas de fichier - On doit générer un ID Unique");
+        NSLog(@"TODO - Vérifier que la génération du ID Unique marche encore");
         //-----------------------------------------------------------------------
         // Génération d'un identifiant Unique pour ce device
         UIDevice *device = [UIDevice currentDevice];
@@ -192,7 +172,7 @@ NSString* md5( NSString *str )
         NSString *uniqueIdentifier_a_convertir = [NSString  stringWithFormat:@"%@%@",uniqueIdentifier,sHeure];
 //        NSLog(@"  uniqueIdentifier_a_convertir: %@",uniqueIdentifier_a_convertir);
         
-        uniqueIdentifierMD5 = md5(uniqueIdentifier_a_convertir);
+        uniqueIdentifierMD5 = [self.userData md5:uniqueIdentifier_a_convertir];
 //        NSLog(@"  UID du device MD5: %@",uniqueIdentifierMD5);
         uniqueIdentifierMD5 = [uniqueIdentifierMD5 substringToIndex:8];
 //        NSLog(@"  UID du device MD5 (8 premiers): %@",uniqueIdentifierMD5);
@@ -224,21 +204,19 @@ NSString* md5( NSString *str )
 
     //NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
-    
+   
 
 //    NSLog(@"--------------------------");
     // Create the request.
      NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
-                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                          timeoutInterval:60.0];
+                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData  // On précise que l'on veut pas une lecture du cache
+                                          timeoutInterval:10.0];
 //    NSLog(@"Apres requestWithURL");
     // create the connection with the request
     // and start loading the data
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 //    NSLog(@"apres NSURLConnection");
     iEtatConnexion = CNX_DEBUT;
-
-    NSLog(@"TODO - Prévoir un timeout sur la connexion avec un NSTimer qui arrête tout ?");
     
     if (theConnection) {
         // Create the NSMutableData to hold the received data.
@@ -246,13 +224,31 @@ NSString* md5( NSString *str )
 //        NSLog(@"dans the Connexion 1");
         receivedData = [[NSMutableData data] retain];
 //        NSLog(@"dans the Connexion 2");
-    } else {
+    } else { // Avec le if (theConnection) {
         // Inform the user that the connection failed.
-        NSLog(@"TODO - Faire une popup signifiant l'erreur de Connexion");
-    }
+        [alertAttenteTestCnx dismissWithClickedButtonIndex:0 animated:YES];
+
+        iEtatConnexion = CNX_BAD;
+        UIAlertView *alert = [[[UIAlertView alloc] 
+                               initWithTitle:@"Pas de connexion"
+                               message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet."
+                               delegate:self
+                               cancelButtonTitle:@"Cancel"
+                               otherButtonTitles:nil]
+                              autorelease];
+        
+        [alert show];
+    } // Fin du if (theConnection) {
     
 
-}
+} // Fin du - (void)viewDidLoad {
+
+
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Lecture d'une page ou d'une URL ===
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -271,7 +267,6 @@ NSString* md5( NSString *str )
      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:receivedData];
      
 //     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
-     NSLog(@"TODO - Aucun rapport avec ce code, mais voir Dictionary keys for the UIRequiredDeviceCapabilities key");
     
     
      //---------------------------------------------------
@@ -375,7 +370,6 @@ NSString* md5( NSString *str )
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-
 {
     // This method is called when the server has determined that it
     // has enough information to create the NSURLResponse.
@@ -385,11 +379,11 @@ NSString* md5( NSString *str )
     [receivedData setLength:0];
     iEtatConnexion = CNX_DEBUT;
 
-}
+} // Fin du - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-
 {
     
     // Append the new data to receivedData.
@@ -397,15 +391,11 @@ NSString* md5( NSString *str )
     [receivedData appendData:data];
     iEtatConnexion = CNX_EN_COURS_DOWNLOAD;
 
-}
-
-
+}// Fin du - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)connection:(NSURLConnection *)connection
-
-  didFailWithError:(NSError *)error
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 
 {
     // release the connection, and the data object
@@ -413,10 +403,9 @@ NSString* md5( NSString *str )
     
     // receivedData is declared as a method instance elsewhere
     [receivedData release];
-    // inform the user
-    NSLog(@"Connection failed! Error - %@ %@",[error localizedDescription],
-          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
     
+    // inform the user
+    //NSLog(@"Connection failed! Error - %@ %@",[error localizedDescription], [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
     iEtatConnexion = CNX_BAD;
 
     
@@ -433,40 +422,35 @@ NSString* md5( NSString *str )
     
     [alert show];
         
-    
-}
+} // Fin du - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Fin de vie de la classe et de la windows. ===
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
+    NSLog(@"TODO - Est-ce que l'on fait quelque chose ? (libération self.UserData ? Et si non, est-ce que l'on garde cette fonction ou on l'efface ?");
+ 
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-
+} // Fin du - (void)viewDidUnload {
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
-    
     [self.userData release];
-    
     [super dealloc];
 } // Fin du - (void)dealloc {
 
@@ -476,17 +460,18 @@ NSString* md5( NSString *str )
 	[self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES];      
 	[super viewWillAppear:animated];
-}
+} // Fin du -(void)viewWillAppear:(BOOL)animated {
+
 
 
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
 #pragma mark -
-#pragma mark === Actions ===
+#pragma mark === Actions du menu ===
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actEstimer:(id)sender {
-    // TODO - Faire une fonction pour les UIAlertView (il y en a 2)
+    // TODO - Faire une fonction pour les UIAlertView (il y en a 2 qui se répète)
     if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Version iBDPV obsolète"
@@ -496,7 +481,8 @@ NSString* md5( NSString *str )
                                otherButtonTitles:@"Télécharger",nil]
                               autorelease];
         [alert show];       
-    } else if (iEtatConnexion == CNX_BAD) {
+    } // Fin du if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
+    else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"IMPOSSIBLE"
                                message:@"Pas de connexion Internet"
@@ -507,15 +493,17 @@ NSString* md5( NSString *str )
         
         
         [alert show];                    
-    } else  {
+    } else  { // Avec le else if (iEtatConnexion == CNX_BAD) {
         Estim1GPSViewController *newController=[[Estim1GPSViewController alloc] init];
         newController.menuOrigin=@"Estim";
         newController.userData=self.userData;
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
-    }   
+    }  // Fin du else if (iEtatConnexion == CNX_BAD) {
+
 	
-}
+} // Fin du -(void)actEstimer:(id)sender {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actFichesProches:(id)sender {
@@ -603,9 +591,8 @@ NSString* md5( NSString *str )
    //POUR CHOSIR LA ALERTBOX if ([_actionSheet.title isEqualToString:@"Nouvelle version iBDPV disponible"]) {
         if (_buttonIndex == 1) {
             // do something for second button
-            NSLog(@"TODO - Activer la bonne URL pour l'app Store vers iBDPV");
-            //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/ibdpv/id385946729?mt=8"]];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/fr/app/spacemap/id391743932?mt=8"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/ibdpv/id385946729?mt=8"]];
+            // URL qui marche pour une appli -> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/fr/app/spacemap/id391743932?mt=8"]];
         } // Fin du if (_buttonIndex == 1) {
    // } // Fin du  if ([_actionSheet.title isEqualToString:@"Nouvelle version iBDPV disponible"]) {
     
@@ -629,10 +616,12 @@ NSString* md5( NSString *str )
 	
 	if ([elementName isEqualToString:@"base_complete"]) { //sites
 		// Init Sites
-		NSLog(@"On a le code base_complete");
-	}
+		// NSLog(@"On a le code base_complete");
+	} // if ([elementName isEqualToString:@"base_complete"]) { //sites
+
 	
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Values

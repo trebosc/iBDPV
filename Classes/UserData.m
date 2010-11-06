@@ -74,10 +74,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSString*)genere_requete:(NSMutableArray*)paramTabString fichier_php:(NSString *)sParam;
 {
-    
-    NSLog(@"TODO - Utiliser la classe OUtils de Doudou");
-
-    NSString *sTrv =  [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/%@?",sParam];
+     NSString *sTrv =  [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/%@?",sParam];
     
     // On rajoute le demandeur et l'identifieur
     [paramTabString  addObject:[NSString  stringWithFormat:@"uid=%@",self.uniqueIdentifierMD5]];

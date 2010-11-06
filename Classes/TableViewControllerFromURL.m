@@ -62,7 +62,9 @@
 
     // Chargement du XML
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:self.loadingURL];
-    
+    NSLog(@"TODO : Possibilité de mettre un timeout ???");
+    NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
+
     
     //Set delegate
     [xmlParser setDelegate:self];
@@ -366,7 +368,9 @@
         if (image == nil) {
             NSString *photoURL=[NSString stringWithFormat:@"http://www.bdpv.fr/image/install/%@",[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:photoURL]];
-        
+            NSLog(@"TODO : Possibilité de mettre un timeout ???");
+            NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
+
             image = [[UIImage alloc] initWithData:imageData];
         
             //Stockage de l'image

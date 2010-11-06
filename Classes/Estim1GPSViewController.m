@@ -439,7 +439,9 @@
     // Lancement du parsing XML (mode SYNCHRONE)
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [url release];
-    
+    NSLog(@"TODO : Possibilité de mettre un timeout ???");
+    NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
+ 
     //NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
     
     //Set delegate

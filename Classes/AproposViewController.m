@@ -11,16 +11,11 @@
 
 @implementation AproposViewController
 
-/*
- //-------------------------------------------------------------------------------------------------------------------------------
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Fonction pour créer la vue  ===
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -57,12 +52,6 @@
     rootView.opaque = YES;
     
 	// 2. Ajout de subViews
-    //TODO - Voir la doc sur #if TARGET_IPHONE_SIMULATOR
-// TODO - #error This sample is designed to run on a device, not in the simulator. To run this sample, \
-
-    
-
-    
     UIWebView * sTextView = [[UIWebView alloc] initWithFrame:CGRectMake(25.0, 125.0, 275, 200)];
     sTextView.opaque = NO;
     sTextView.backgroundColor = [UIColor clearColor];
@@ -79,10 +68,14 @@
 	
 	// 4. Libération de la vue racine
 	[rootView release];
-    
-    
 	
-}
+} // Fin du - (void)loadView {
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Pour répondre au clics sur les liens de la page  ===
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Pour ouvrir Safari 
@@ -91,11 +84,16 @@
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         [[UIApplication sharedApplication] openURL:request.URL];
         return false;
-    }
+    } // FIn du     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
     return true;
-}
+} // Fin du -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
 
+
+//#########################################################################################################################################################
+//#########################################################################################################################################################
+#pragma mark -
+#pragma mark === Fin de vie de la classe  ===
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
@@ -103,20 +101,23 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 
 //#########################################################################################################################################################
