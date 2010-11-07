@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UserData.h"
 
+
 @interface TableViewControllerFromURL : UITableViewController <NSXMLParserDelegate> {
     
     UserData *userData;
@@ -41,5 +42,6 @@
 
 -(NSURL *)buildOuvreURLg:(NSArray *)params;
 -(NSURL *)buildOuvreURLl2:(NSArray *)params;
+-(NSURL *)buildSitesProchesURL;
 
 @end

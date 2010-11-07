@@ -16,7 +16,7 @@
 //#########################################################################################################################################################
 #pragma mark -
 #pragma mark synthesize
-@synthesize lblNbFiches, userData, arrFiches, xmlFiche, booXMLLoading,indexToLoad, dicoPhoto, activityIndicator;
+@synthesize lblNbFiches, userData, loadingURL, arrFiches, xmlFiche, booXMLLoading,indexToLoad, dicoPhoto, activityIndicator;
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -34,6 +34,23 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 #pragma mark -
 #pragma mark Initialization
 
+-(NSURL *)buildSitesProchesURL {
+    
+    // Génération de l'url
+    NSString *sParam = @"l.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"l=%f",self.userData.latitude],
+                                [NSString  stringWithFormat:@"o=%f",self.userData.longitude],
+                                [NSString  stringWithFormat:@"d=%d",self.userData.distance],
+                                [NSString  stringWithFormat:@"n=%d",LIMIT],
+                                [NSString  stringWithFormat:@"i=%d",self.indexToLoad],
+                                nil];
+    NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
+    
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+} // Fin du -(NSURL *)buildSitesProchesURL {
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -170,25 +187,6 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
 } // Fin du -(NSURL *)buildFicheDetailURL:(int)userID {
 
-
-//-------------------------------------------------------------------------------------------------------------------------------
--(NSURL *)buildSitesProchesURL {
-
-    // Génération de l'url
-    NSString *sParam = @"l.php";
-    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
-                                [NSString  stringWithFormat:@"l=%f",self.userData.latitude],
-                                [NSString  stringWithFormat:@"o=%f",self.userData.longitude],
-                                [NSString  stringWithFormat:@"d=%d",self.userData.distance],
-                                [NSString  stringWithFormat:@"n=%d",LIMIT],
-                                [NSString  stringWithFormat:@"i=%d",indexToLoad],
-                                nil];
-    NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
-    
-    
-      return [[[NSURL alloc] initWithString:sUrl] autorelease];
-    
-} // Fin du -(NSURL *)buildSitesProchesURL {
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -461,7 +459,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         //NSLog(@"Loading Page: %d",indexToLoad);
         
         // Create the request.
-        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[self buildSitesProchesURL]
+        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[ self buildSitesProchesURL]
                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
                                               timeoutInterval:20.0];
         

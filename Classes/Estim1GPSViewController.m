@@ -123,6 +123,24 @@
 
 @synthesize mapView, menuOrigin,toolbarSearchAddress,userData,validateItem;
 
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildSitesProchesURL {
+    
+    // Génération de l'url
+    NSString *sParam = @"l.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"l=%f",self.userData.latitude],
+                                [NSString  stringWithFormat:@"o=%f",self.userData.longitude],
+                                [NSString  stringWithFormat:@"d=%d",self.userData.distance],
+                                [NSString  stringWithFormat:@"n=%d",LIMIT],
+                                [NSString  stringWithFormat:@"i=%d",0],
+                                nil];
+    NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
+    
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+} // Fin du -(NSURL *)buildSitesProchesURL {
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -482,6 +500,7 @@
         
         FichesProchesTableViewController *newController=[[FichesProchesTableViewController alloc] init];
         newController.userData=self.userData;
+        newController.loadingURL=[self buildSitesProchesURL];
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         

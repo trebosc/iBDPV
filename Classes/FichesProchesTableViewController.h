@@ -16,6 +16,7 @@
     
     UILabel *lblNbFiches;       // Label in toolbar to display the rows counter
     UserData *userData;
+    NSURL *loadingURL;
     
     NSMutableArray *arrFiches;  //Tableau des fiches pour alimenter la TableView
     
@@ -35,6 +36,7 @@
 
 @property (nonatomic, retain) UILabel *lblNbFiches;
 @property (nonatomic,retain) UserData *userData;
+@property (nonatomic, assign) NSURL *loadingURL;
 @property (nonatomic, retain) NSMutableArray *arrFiches;
 @property (nonatomic, retain) Fiche *xmlFiche;
 @property (nonatomic, assign) BOOL booXMLLoading;

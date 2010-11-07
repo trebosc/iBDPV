@@ -65,6 +65,7 @@
 //Action Localize
 -(void)actLocalize:(id)sender;
 
+-(NSURL *)buildSitesProchesURL;
 
 -(CLLocationCoordinate2D) addressLocation:(NSString *)address;
 

@@ -7,7 +7,7 @@
 //
 
 #import "TableViewControllerFromURL.h"
-
+#import "FichesProchesTableViewController.h"
 
 @implementation TableViewControllerFromURL
 
@@ -473,7 +473,11 @@
         
     }
          else if (([[params objectAtIndex:2] isEqualToString:@"l2.php"])) {
-             NSLog(@"URL: %@",[params objectAtIndex:2]);
+             FichesProchesTableViewController *newController=[[FichesProchesTableViewController alloc] init];
+             newController.userData=self.userData;
+             newController.loadingURL=[self buildSitesProchesURL];
+             [self.navigationController pushViewController:newController animated:YES];
+             [newController release];
          }
                 
              
@@ -550,6 +554,20 @@
 } // Fin du -(NSURL *)buildOuvreURL:(NSArray *)params {
 
 
-
+//-------------------------------------------------------------------------------------------------------------------------------
+-(NSURL *)buildSitesProchesURL {
+    
+    // Génération de l'url
+    NSString *sParam = @"l2.php";
+    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
+                                [NSString  stringWithFormat:@"n=%d",LIMIT],
+                                [NSString  stringWithFormat:@"i=%d",0],
+                                nil];
+    NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
+    
+    
+    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+    
+} // Fin du -(NSURL *)buildSitesProchesURL {
 
 @end
