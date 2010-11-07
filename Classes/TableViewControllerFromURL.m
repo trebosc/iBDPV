@@ -465,7 +465,7 @@
     if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
         
         TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
-        newController.title=@"g.php";
+        newController.title=self.title; //On affiche titre précedent
         newController.userData=userData;
         newController.loadingURL=[self buildOuvreURLg:params];
         [self.navigationController pushViewController:newController animated:YES];
@@ -473,12 +473,7 @@
         
     }
          else if (([[params objectAtIndex:2] isEqualToString:@"l2.php"])) {
-             TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
-             newController.title=@"l2.php";
-             newController.userData=userData;
-             newController.loadingURL=[self buildOuvreURLl2:params];
-             [self.navigationController pushViewController:newController animated:YES];
-             [newController release];
+             NSLog(@"URL: %@",[params objectAtIndex:2]);
          }
                 
              
@@ -493,39 +488,19 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildOuvreURLg:(NSArray *)params {
-    
-    // Génération de la signature pour le lien http
-
-    NSLog(@"%@",params);
-    
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
-                           1152,
-                           self.userData.uniqueIdentifierMD5
-                           ];
-    //NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
-    
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
-
-    // http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140
-    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=47d2d33f0d161812a7d36fbd9d23d43d&api_demandeur=iBDPV&uid=090392&t=perte
-    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001"]; 
-    
-    
     //------------------------------------------------------------------
     // Génération de l'url
-    // EXEMPLE CODE POUR GENERER LA SIGNATURE *******++++++****+*+*+*+*+*+*+*+*++*+*+//////!!!!!!!!!!!!!!!!!!
-    NSString *sParam = @"g.php";
-    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
-                                [NSString  stringWithFormat:@"t=%@",@"prod"],
-                                [NSString  stringWithFormat:@"i=%d",001],
-                                nil];
-    NSString *sUrl2 = [self.userData genere_requete:myArray fichier_php:sParam];
-    // POUR RAJOUTER DES ENTREES DANS LE Tableau NSMutableArray
-    [myArray  addObject:[NSString  stringWithFormat:@"t=%@",@"prod"]];
-
+    //Récupération du nom du fichier PHP
+    NSString *sParam = [params objectAtIndex:2];
+    NSLog(@"Params %@",params);
+    NSMutableArray  *myArray = [[NSMutableArray alloc] init];
+    
+    //Boucle sur les paramètres
+    for (int i =3;i<[params count];i++) {
+        [myArray addObject:[params objectAtIndex:i]];
+    }
+    
+    NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
     
     NSLog(@"%@",sUrl); 
     
