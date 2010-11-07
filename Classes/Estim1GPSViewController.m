@@ -439,8 +439,15 @@
     // Lancement du parsing XML (mode SYNCHRONE)
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [url release];
-    NSLog(@"TODO : Possibilité de mettre un timeout ???");
+    NSLog(@"TODO : LIRE LE CODE CAR EXEMPLE POUR RECUPERER CONTENU AVEC NSURLRequest puis parsing avec XML Passer. Permet de mettre un timeout !");
     NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
+// L'exemple est dessous    
+//    NSString *u = [NSString stringWithFormat:url];
+//    NSURLRequest* chRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:u] cachePolicy: NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+//    NSError* theError;
+//    NSData* response = [NSURLConnection sendSynchronousRequest:chRequest returningResponse:nil error:&theError]; 
+//    localCityParser = [[NSXMLParser alloc] initWithData:response];
+
  
     //NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
     
