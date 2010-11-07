@@ -540,8 +540,10 @@
         txtSearch.textColor=[UIColor blueColor];
         txtSearch.delegate=self;
         txtSearch.tag=70;
+        [txtSearch becomeFirstResponder];   // Permet d'afficher le clavier
         
         UIBarButtonItem *txtSearchItem=[[UIBarButtonItem alloc] initWithCustomView:txtSearch];
+        
         [txtSearch release];
         
         UIBarButtonItem *btnAnnulerItem=[[UIBarButtonItem alloc] initWithTitle:@"Annuler" style:UIBarButtonItemStyleDone target:self action:@selector(actAnnuler:)];

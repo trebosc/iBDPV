@@ -511,48 +511,6 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
--(NSURL *)buildOuvreURLl2:(NSArray *)params {
-    
-    NSLog(@"%@",params);
-    
-    // Génération de la signature pour le lien http
-    NSString *api_sig_a_convertir;
-    api_sig_a_convertir = [NSString  stringWithFormat:@"ibdpv_20100712api_demandeuriBDPVi%duid%@",
-                           1152,
-                           self.userData.uniqueIdentifierMD5
-                           ];
-    NSLog(@"api_sig_a_convertir: %@",api_sig_a_convertir);
-    
-    NSString *api_sig;
-    api_sig = [self.userData md5:api_sig_a_convertir];
-    NSLog(@"api_sig: %@",api_sig);
-    // http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140
-    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=47d2d33f0d161812a7d36fbd9d23d43d&api_demandeur=iBDPV&uid=090392&t=perte
-    // http://www.bdpv.fr/ajax/iBDPV/g.php?api_sig=806c1a6e182b416992a3172651dcc7ba&api_demandeur=iBDPV&uid=090392&t=prod&i=001
-    NSString *sUrl = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/l2.php?api_sig=136b21419dbc960466923b4058952a2b&api_demandeur=iBDPV&uid=090392&n=10&i=140"]; 
- 
-    
-    //------------------------------------------------------------------
-    // Génération de l'url
-    // EXEMPLE CODE POUR GENERER LA SIGNATURE *******++++++****+*+*+*+*+*+*+*+*++*+*+//////!!!!!!!!!!!!!!!!!!
-    NSString *sParam = @"g.php";
-    NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
-                                [NSString  stringWithFormat:@"n=%@",10],
-                                [NSString  stringWithFormat:@"i=%d",001],
-                                nil];
-    NSString *sUrl2 = [self.userData genere_requete:myArray fichier_php:sParam];
-    // POUR RAJOUTER DES ENTREES DANS LE Tableau NSMutableArray
-    [myArray  addObject:[NSString  stringWithFormat:@"i=%@",@"140"]];
-
-    NSLog(@"%@",sUrl); 
-    
-    
-    return [[[NSURL alloc] initWithString:sUrl] autorelease];
-    
-} // Fin du -(NSURL *)buildOuvreURL:(NSArray *)params {
-
-
-//-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildSitesProchesURL {
     
     // Génération de l'url

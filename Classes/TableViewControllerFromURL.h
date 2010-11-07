@@ -39,7 +39,6 @@
 
 
 -(NSURL *)buildOuvreURLg:(NSArray *)params;
--(NSURL *)buildOuvreURLl2:(NSArray *)params;
 -(NSURL *)buildSitesProchesURL;
 
 @end
