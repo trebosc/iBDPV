@@ -1,10 +1,8 @@
-    //
+//
 //  Estim2PenteViewController.m
 //  iBDPV
-//
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "Estim2bPenteManuelViewController.h"
 #import "Estim3OrientViewController.h"
@@ -30,7 +28,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Etape 2 - Pente de la toiture";
+	self.title=@"2: Pente de votre toiture";
 	
 	//Désactivation du bouton Back
 	[self.navigationItem setHidesBackButton:YES];
@@ -86,22 +84,7 @@
 	UIView *rootView=[[UIView alloc] initWithFrame:applicationFrame];
 	rootView.backgroundColor=[UIColor whiteColor];	
     rootView.opaque=YES;
-	
-    NSLog(@"TODO : Code mis en commentaire à effacer s'il ne sert pas");
-    /* TODO
-	// 2. Ajout de subViews
-    NSLog(@"Ne sert à rien puisque la vue est cachée ...");
-	CGRect lblRect=CGRectMake(0.0, 0.0, 200, 40);
-	UILabel	*lblWelcome=[[UILabel alloc] initWithFrame:lblRect];
-	lblWelcome.text=@"Generic View Controller";
-	[rootView addSubview:lblWelcome];
-	[lblWelcome release];
-     A effacer si cela ne sert à rien !!!
-	*/
-    
-    NSLog(@"TODO : Penser à modifier les boutons valider et retour de la vue GPS");
-    NSLog(@"TODO : Mettre les boutons de la vue Orientation comme ceux des autres vues ou alors rajouter une toolbar");
-    NSLog(@"TODO : Est-ce qu'il faudrait pas mettre un bouton (i) pour chaque écran pour expliquer ce qu'il faut faire ? Avec une photo et un texte simple ?");
+	    
 
     //***********************************
     //On rajoute une vue qui va afficher tout ce qui concerne la pente (angle, image maison, ...) 

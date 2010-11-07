@@ -1,11 +1,8 @@
 //
 //  AsyncImageView.h
-//  Postcard
-//
-//  Created by markj on 2/18/09.
-//  Copyright 2009 Mark Johnson. You have permission to copy parts of this code into your own projects for any use.
-//  www.markj.net
-//
+//  iBDPV
+// JMD & DTR
+
 
 #import <UIKit/UIKit.h>
 

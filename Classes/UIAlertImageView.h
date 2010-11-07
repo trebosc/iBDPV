@@ -1,10 +1,8 @@
 //
 //  UIAlertImageView.h
-//  UIAlertImageView
-//
-//  Created by Marc Ammann on 7/15/09.
-//  Copyright 2009 Codesofa. All rights reserved.
-//
+//  iBDPV
+// JMD & DTR
+
 
 #import <UIKit/UIKit.h>
 

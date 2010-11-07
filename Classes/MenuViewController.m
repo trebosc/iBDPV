@@ -1,10 +1,8 @@
 //
 //  MenuViewController.m
 //  iBDPV
-//
-//  Created by jmd on 31/07/10.
-//  Copyright (c) 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "MenuViewController.h"
 #import "AProposViewController.h"

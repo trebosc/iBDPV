@@ -1,13 +1,8 @@
-/*
- 
- File: Estim3OrientView.h
- Abstract: Estim3OrientView builds and displays the primary user interface of the Bubble
- Level application.
- 
- Version: 1.8
- 
- 
- */
+ //
+ // Estim3OrientView.h
+ //  iBDPV
+ // JMD & DTR
+
 
 
 #import <UIKit/UIKit.h>

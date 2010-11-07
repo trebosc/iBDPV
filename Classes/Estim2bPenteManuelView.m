@@ -1,13 +1,7 @@
-/*
- 
- File: Estim2PenteView.m
- Abstract: Estim2PenteView est la vue attaché à l'écran permettant de choisir l'angle du toit de manière manuelle (sans accéléromètre)
- Level application.
- 
- Version: 1.0
- 
- 
- */
+//
+// Estim2PenteView.m
+//  iBDPV
+// JMD & DTR
 
 //TODO - Revoir les commentaires en entêtes de tous les fichier pour mettre le bon commentaire.
 

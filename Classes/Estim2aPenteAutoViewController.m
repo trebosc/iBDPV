@@ -1,10 +1,8 @@
-    //
+//
 //  Estim2aPenteAutoViewController.m
 //  iBDPV
-//
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "Estim2aPenteAutoViewController.h"
 #import "Estim3OrientViewController.h"

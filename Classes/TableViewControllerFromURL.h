@@ -1,10 +1,8 @@
 //
 //  TableViewControllerFromURL.h
 //  iBDPV
-//
-//  Created by jmd on 27/08/10.
-//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import <UIKit/UIKit.h>
 #import "UserData.h"

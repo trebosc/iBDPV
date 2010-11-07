@@ -1,10 +1,8 @@
 //
 //  Estim1GPSViewController.h
 //  iBDPV
-//
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>

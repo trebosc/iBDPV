@@ -1,10 +1,8 @@
-    //
+//
 //  Estim1GPSViewController.m
 //  iBDPV
-//
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "Estim1GPSViewController.h"
 #import "Estim2PenteViewController.h"
@@ -171,7 +169,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Etape 1 - Position GPS";
+	self.title=@"1: Localisez votre maison";
 	
 	//Désactivation du bouton Back
 	[self.navigationItem setHidesBackButton:YES];

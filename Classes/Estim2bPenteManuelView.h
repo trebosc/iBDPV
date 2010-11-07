@@ -1,13 +1,9 @@
-/*
- 
- File: Estim2PenteView.h
- Abstract: Estim2PenteView builds and displays the primary user interface of the Bubble
- Level application.
- 
- Version: 1.8
- 
- 
- */
+
+ //
+// Estim2bPenteManuelView.h
+ //  iBDPV
+ // JMD & DTR
+
 
 
 #import <UIKit/UIKit.h>

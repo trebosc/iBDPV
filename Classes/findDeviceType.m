@@ -1,20 +1,18 @@
 //
 //  findDeviceType.m
-//  BubbleLevel
-//
-//  Created by david on 15/06/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+//  iBDPV
+// JMD & DTR
+
+
+//  Trouvé ici : https://github.com/ars/uidevice-extension
 
 /* Thanks to Emanuele Vulcano, Kevin Ballard/Eridius, Ryandjohnson */
-
-/*
- - Bluetooth? Screen pixels? Dot pitch? Accelerometer? GPS disabled in Egypt (and others?). - @halm
- */
-
 #import "findDeviceType.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+
+
+
 
 @implementation UIDevice (Hardware)
 

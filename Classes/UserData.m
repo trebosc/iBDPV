@@ -1,10 +1,8 @@
 //
 //  UserData.m
 //  iBDPV
-//
-//  Created by jmd on 27/08/10.
-//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "UserData.h"
 #import <CommonCrypto/CommonDigest.h>

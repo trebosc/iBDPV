@@ -1,10 +1,8 @@
     //
 //  Estim2PenteViewController.m
 //  iBDPV
-//
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "Estim2PenteViewController.h"
 #import "Estim2aPenteAutoViewController.h"
@@ -75,7 +73,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Etape 2 - Pente de la toiture";
+	self.title=@"2: Pente de votre toiture";
     
     //Désactivation du bouton Back
 	[self.navigationItem setHidesBackButton:YES];

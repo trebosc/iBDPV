@@ -1,10 +1,7 @@
 //
 //  Fiche.m
 //  iBDPV
-//
-//  Created by jmd on 30/08/10.
-//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
-//
+// JMD & DTR
 
 #import "Fiche.h"
 

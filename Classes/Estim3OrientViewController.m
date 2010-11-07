@@ -1,10 +1,8 @@
-    //
+//
 //  Estim3OrientViewController.m
 //  iBDPV
-//
-//  Created by jmd on 01/08/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+// JMD & DTR
+
 
 #import "Estim3OrientViewController.h"
 #import "TableViewControllerFromURL.h"
@@ -113,7 +111,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Etape 3 - Orientation";
+	self.title=@"3: Orientation de la toiture";
 	
 	//Désactivation du bouton Back
 	[self.navigationItem setHidesBackButton:YES];

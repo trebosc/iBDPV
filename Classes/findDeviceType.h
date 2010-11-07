@@ -1,10 +1,8 @@
 //
 //  findDeviceType.h
-//  BubbleLevel
-//
-//  Created by david on 15/06/10.
-//  Copyright 2010 __MaCoDa__. All rights reserved.
-//
+//  iBDPV
+// JMD & DTR
+
 #import <UIKit/UIKit.h>
 
 #define IPHONE_SIMULATOR_NAMESTRING @"iPhone Simulator"
