@@ -15,13 +15,16 @@
     
     
     NSMutableString *currentStringValue;
+    NSString *currentAide;
     
     NSMutableArray *currentItems;
     NSMutableArray *currentValues;
+    NSMutableArray *currentAides;
     
     NSMutableArray *sectionsDataSource;
     NSMutableArray *itemsDataSource;
     NSMutableArray *valuesDataSource;
+    NSMutableArray *aidesDataSource;
     
     NSMutableDictionary *dicoPhoto;
     

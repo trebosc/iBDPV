@@ -141,6 +141,7 @@
     [sectionsDataSource release];
     [itemsDataSource release];
     [valuesDataSource release];
+    [aidesDataSource release];
     [dicoPhoto release];
     
     [super dealloc];
@@ -194,11 +195,13 @@
         sectionsDataSource=[[NSMutableArray alloc] init];
         itemsDataSource=[[NSMutableArray alloc] init];
         valuesDataSource=[[NSMutableArray alloc] init];
+        aidesDataSource=[[NSMutableArray alloc] init];
     } // Fin du if ([elementName isEqualToString:@"Root"]) {
     
     else if ([elementName isEqualToString:@"Lignes"]) {
             currentItems=[[NSMutableArray alloc] init];
             currentValues=[[NSMutableArray alloc] init];
+            currentAides=[[NSMutableArray alloc] init];
     } // Fin du if ([elementName isEqualToString:@"Lignes"]) {
     
 } // Fin du - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
@@ -231,6 +234,8 @@
         //Reset des variables temporaires
         [currentItems release];
         [currentValues release];
+        [currentAides release];
+        currentAide=@"";
     } // Fin du if ([elementName isEqualToString:@"Section"]) {
     
     else if ([elementName isEqualToString:@"Nom"]) {
@@ -240,7 +245,14 @@
     } // Fin du if ([elementName isEqualToString:@"Nom"]) {
     
     else if ([elementName isEqualToString:@"Item"]) {
+        // Previous Aide
+        if ([currentItems count]>[currentAides count]) {
+            [currentAides addObject:currentAide];       // Can be nil
+        }
+        currentAide=@"";
+        //<item
         [currentItems addObject:[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        
         //NSLog(@"Item: %@",[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]);
     } // Fin du if ([elementName isEqualToString:@"Item"]) {
     
@@ -249,10 +261,22 @@
     } // Fin du if ([elementName isEqualToString:@"Valeur"]) {
     
     else if ([elementName isEqualToString:@"Lignes"]) {
+        // Previous Aide
+        if ([currentItems count]>[currentAides count]) {
+            [currentAides addObject:currentAide];       // Can be nil
+        }
+        currentAide=@"";
+        
         //Ajout de la section au tableau
         [itemsDataSource addObject:currentItems];
         [valuesDataSource addObject:currentValues];
+        [aidesDataSource addObject:currentAides];
+        //NSLog(@"%@",currentAides);
     } // Fin du if ([elementName isEqualToString:@"Lignes"]) {
+    
+    else if ([elementName isEqualToString:@"Aide"]) {
+        currentAide=[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    } // Fin du if ([elementName isEqualToString:@"Aide"]) {
     
     else if ([elementName isEqualToString:@"Root"]) {
         /*NSLog(@"Section: %@",sectionsDataSource);
@@ -441,6 +465,25 @@
 //#########################################################################################################################################################
 #pragma mark -
 #pragma mark === UITableViewDelegate Protocol ===
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+    //NSLog(@"%@",[[aidesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]);
+    if (![[[aidesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@""]) {
+        UIAlertView *alert = [[[UIAlertView alloc] 
+                               initWithTitle:@"Aide contextuelle"
+                               message:[[aidesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]
+                               delegate:self
+                               cancelButtonTitle:@"OK"
+                               otherButtonTitles:nil]
+                              autorelease];
+        
+        [alert show];
+    }
+        
+} // Fin du - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@"Photo"]) {
