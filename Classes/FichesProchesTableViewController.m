@@ -406,7 +406,11 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     
         mainLabel.text=curFiche.nom;
     
-        detailLabel.text=[NSString stringWithFormat:@"Id: %d - Dist: %d - Prod: %@",curFiche.Id,curFiche.distance,curFiche.last_maj_prod];
+        detailLabel.text=[NSString stringWithFormat:@"%d km\nRaccordé le %02d/%d",curFiche.distance,curFiche.mois_rac,curFiche.annee_rac];
+    
+    
+    
+    
         
     
         if (curFiche.photo==nil) curFiche.photo=@"_pas_photo.jpg";
