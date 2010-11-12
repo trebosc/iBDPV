@@ -202,13 +202,18 @@ const int CNX_VERSION_OBSOLETE = -2;
 
     //NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
-   
+    NSLog(@"TODO - NSURL alloc,  mais jamais de release .....   Faudrait le faire dans le didFinishLoading ou on peut le faire avant ?");
+
 
 //    NSLog(@"--------------------------");
     // Create the request.
-     NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
+     NSURLRequest *theRequest=[NSURLRequest requestWithURL:url    // A priori requestWithUrl est différent de initWithUrl et renvoit un objet autorelease.
                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData  // On précise que l'on veut pas une lecture du cache
                                           timeoutInterval:10.0];
+    
+     [url release];
+     NSLog(@"TODO - Je tentele release ICI, à voir si cela pose des soucis");
+
 //    NSLog(@"Apres requestWithURL");
     // create the connection with the request
     // and start loading the data
@@ -238,7 +243,6 @@ const int CNX_VERSION_OBSOLETE = -2;
         [alert show];
     } // Fin du if (theConnection) {
     
-
 } // Fin du - (void)viewDidLoad {
 
 
@@ -256,14 +260,16 @@ const int CNX_VERSION_OBSOLETE = -2;
 //    NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     iEtatConnexion = CNX_EN_COURS_PARSING;
 
-    
     [alertAttenteTestCnx dismissWithClickedButtonIndex:0 animated:YES];
     
     
         //--------------
      // Lancement du parsing XML
      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:receivedData];
-     
+    
+    
+    
+    NSLog(@"TODO : look at Apple's XMLPerformance sample - it compares NSXMLParser and libxml performance - results are definitely in favour of the latter. ");     
 //     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
     
     
@@ -277,6 +283,10 @@ const int CNX_VERSION_OBSOLETE = -2;
      //Start parsing the XML file.
      BOOL success = [xmlParser parse];
      
+    
+     NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+     [xmlParser release];
+
      if(success) {
              //---------------------------------------------------------------------------------------------------        
             iEtatConnexion = CNX_OK;
@@ -363,6 +373,7 @@ const int CNX_VERSION_OBSOLETE = -2;
     // release the connection, and the data object
     [connection release];
     [receivedData release];
+    
 } // Fin du - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 
 
@@ -401,6 +412,7 @@ const int CNX_VERSION_OBSOLETE = -2;
     
     // receivedData is declared as a method instance elsewhere
     [receivedData release];
+
     
     // inform the user
     //NSLog(@"Connection failed! Error - %@ %@",[error localizedDescription], [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);

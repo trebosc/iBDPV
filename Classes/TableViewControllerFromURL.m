@@ -72,6 +72,9 @@
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
+    NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+     [xmlParser release];
+
     if(success) {
         //NSLog(@"XML loaded");
     } else { // Avec le  if(success)

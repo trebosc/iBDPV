@@ -23,19 +23,22 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)subtitle{
 	return @"Sub Title";
-}
+} // Fin  du - (NSString *)subtitle{
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)title{
 	return @"Title";
-}
+} // Fin du - (NSString *)title{
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
 	//NSLog(@"Annotation: %f,%f",c.latitude,c.longitude);
 	return self;
-}
+} // Fin  du -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
+
 
 @end
 
@@ -51,7 +54,8 @@
     //NSLog(@"touchesBegan - start: %f %f center: %f %f",_startLocation.x,_startLocation.y,_originalCenter.x,_originalCenter.y);
     //NSLog(@"%@",_startLocation);
     [super touchesBegan:touches withEvent:event];
-}
+} // Fin du - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -64,18 +68,19 @@
     if ((abs(newLocation.x - _startLocation.x) > 5.0) || (abs(newLocation.y - _startLocation.y) > 5.0)) {
         _isMoving = YES;
 		//NSLog(@"isMoving");
-    }
+    } // Fin du if ((abs(newLocation.x - _startLocation.x) > 5.0) || (abs(newLocation.y - _startLocation.y) > 5.0)) {
     
     // If dragging has begun, adjust the position of the view.
     if (_mapView && _isMoving) {
         newCenter.x = _originalCenter.x + (newLocation.x - _startLocation.x);
         newCenter.y = _originalCenter.y + (newLocation.y - _startLocation.y);
         self.center = newCenter;
-    } else {
+    } else { // Avec le if (_mapView && _isMoving) {
         // Let the parent class handle it.
         [super touchesMoved:touches withEvent:event];		
-    }
-}
+    } // Fin du if (_mapView && _isMoving) {
+} // Fin du - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -93,10 +98,11 @@
         _originalCenter = CGPointZero;
         _isMoving = NO;
 		//NSLog(@"Moving ended");
-    } else {
+    } else { // Avec le if (_mapView && _isMoving) {			
         [super touchesEnded:touches withEvent:event];		
-    }
-}
+    } // Fi du if (_mapView && _isMoving) {			
+} // Fin du - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -109,10 +115,11 @@
         _startLocation = CGPointZero;
         _originalCenter = CGPointZero;
         _isMoving = NO;
-    } else {
+    } else { // Avec le if (_mapView && _isMoving) {
         [super touchesCancelled:touches withEvent:event];		
-    }
-}
+    } // Fin du if (_mapView && _isMoving) {
+} // Fin du - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+
 
 @end
 
@@ -159,7 +166,8 @@
     [mapView setRegion:region];
      */
     
-}
+} // Fin  du - (void)viewWillAppear:(BOOL)animated {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -223,7 +231,8 @@
 	
 	// 4. Libération de la vue racine
 	[rootView release];
-}
+} // Fin du - (void)loadView {
+
 
 
 //#########################################################################################################################################################
@@ -239,9 +248,7 @@
         //Enabled Validate button
         self.validateItem.enabled=YES;
         return nil;
-    }
-    else
-        {
+    } else  { // Avec le if ([annotation isKindOfClass:[MKUserLocation class]]) {
         //Custom MKAnnotationView
         /*
         AddressAnnotationView *pinView=[[AddressAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
@@ -254,10 +261,9 @@
             //Enabled Validate button
             self.validateItem.enabled=YES;
             return pinView;
-        }
-    
-   
-}
+    } // Fin du if ([annotation isKindOfClass:[MKUserLocation class]]) {
+} // Fin du - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
@@ -281,9 +287,11 @@
             [mv regionThatFits:region];
             
             
-        }
-    }
-}
+        } // Fin du if(annotationView.annotation == mv.userLocation) {
+    } // Fin du for(MKAnnotationView *annotationView in views) {
+
+} // Fin du - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
+
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -309,7 +317,8 @@
         [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate
                                  animated:YES];
     }*/
-}
+} // Fin du -(void)observeValueForKeyPath:(NSString *)keyPath  
+
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -342,14 +351,16 @@
     
     
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -359,12 +370,14 @@
     if (self.toolbarSearchAddress!=nil) {
         [self.toolbarSearchAddress removeFromSuperview];
         //[self.toolbarSearchAddress release];
-    }
+    } // Fin du if (self.toolbarSearchAddress!=nil) {
+
     
     [mapView release];
     [pinAnnotation release];
     
-}
+} // Fin du - (void)dealloc {
+
 
 
 //#########################################################################################################################################################
@@ -384,16 +397,18 @@
 	if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
 		latitude = [[listItems objectAtIndex:2] doubleValue];
 		longitude = [[listItems objectAtIndex:3] doubleValue];
-	}
-	else {
+	} else { // Avec le if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
 		//Show error
-	}
+        NSLog(@"TODO : c'est quoi l'erreur qu'il peut y avoir ???  Adresse pas trouvée ? (vu le 200 qui est le code pour dire adresse trouvée ");
+	} // Fin du if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+    
 	CLLocationCoordinate2D location;
 	location.latitude = latitude;
 	location.longitude = longitude;
 	
 	return location;
-}
+} // Fin du -(CLLocationCoordinate2D) addressLocation:(NSString *)address {
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -408,7 +423,8 @@
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
 	//[self.navigationController dismissModalViewControllerAnimated:YES];
-}
+} // Fin du -(void)actBack:(id)sender {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
@@ -422,12 +438,11 @@
         //Prendre la position de la pin  
         self.userData.latitude=pinAnnotation.coordinate.latitude;
         self.userData.longitude=pinAnnotation.coordinate.longitude;
-    }
-    else{
+    } else { // Avec le if (pinAnnotation!=nil) {
         //Prendre la position de l'utilisateur
         self.userData.latitude=self.mapView.userLocation.coordinate.latitude;
         self.userData.longitude=self.mapView.userLocation.coordinate.longitude;
-    }
+    } // Fin du if (pinAnnotation!=nil) {
     
     //NSLog(@"Longitude: %f - Latitude: %f",self.mapView.userLocation.coordinate.longitude,self.mapView.userLocation.coordinate.latitude);
     //NSLog(@"Longitude: %f - Latitude: %f",pinAnnotation.coordinate.longitude,pinAnnotation.coordinate.latitude);
@@ -476,9 +491,13 @@
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
+    NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+    [xmlParser release];
+    
+    
+
     if(success) {
         //NSLog(@"No Errors");
-    
     } else {  // Avec le if(success) {
         NSLog(@"TODO : Il faut voir comment traiter les erreurs - Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
         
@@ -492,7 +511,7 @@
         [alert show];
         
     } // Fin du if(success) {
-
+    
 	//Passage au controleur suivant (en fonction du bouton d'appel)
     if (self.menuOrigin==@"FichesProches") {
         
@@ -502,20 +521,16 @@
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         
-    }
-    else {
-        
+    } else { // Avec le if (self.menuOrigin==@"FichesProches") {
         Estim2PenteViewController *newController=[[Estim2PenteViewController alloc] init];
         newController.userData=self.userData;
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
         
-    }
+    } // Fin du if (self.menuOrigin==@"FichesProches") {
 	
-}
-
-
-
+    
+} // Fin du -(void)actValidate:(id)sender {
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actDisplayToolbarSearchAddress:(id)sender {
@@ -556,20 +571,18 @@
         [tobSearch release];
         [txtSearchItem release];
         [btnAnnulerItem release];  
-    }
-    
-    else
-        {
+    } else { // Avec le  if (self.toolbarSearchAddress==nil) {
         //Affichage de la ToolBar
         //[self.view addSubview:self.toolbarSearchAddress];     // Added to the hierarchy
         self.toolbarSearchAddress.hidden=NO;                    // Unhided
-        }
+        } // Fin du  if (self.toolbarSearchAddress==nil) {
         
     //Disabled Validate button
     self.validateItem.enabled=NO;
                                   
     
-}
+} // Fin  du -(void)actDisplayToolbarSearchAddress:(id)sender {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actAnnuler:(id)sender {
@@ -580,7 +593,8 @@
     
     //Enabled Validate button
     self.validateItem.enabled=YES;
-}
+} // Fin du -(void)actAnnuler:(id)sender {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -607,7 +621,8 @@
     pinAnnotation=nil;
     
     
-}
+} // Fin du -(void)actLocalize:(id)sender {
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -630,7 +645,7 @@
 		[mapView removeAnnotation:pinAnnotation];
 		[pinAnnotation release];
 		pinAnnotation = nil;
-	}
+	} // Fin du if(pinAnnotation != nil) {
 	
 	pinAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
 	[mapView addAnnotation:pinAnnotation];
@@ -639,7 +654,8 @@
 	[mapView regionThatFits:region];
 
     return YES;
-}
+} // Fin du - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -668,10 +684,12 @@
 	
     
 	if ([elementName isEqualToString:@"nombre_inst"]) { //sites
-                                                          // Init Sites
+        // Init Sites
 		NSLog(@"TODO - On a le code nombre_inst. Si pas assez de site, on peut rien faire");
-	}
-}
+	} // Fin  du if ([elementName isEqualToString:@"nombre_inst"]) { //sites
+
+} // Fin du - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Values
@@ -682,11 +700,13 @@
 	if (!currentStringValue) {
         // currentStringValue is an NSMutableString instance variable
         currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
-    }
+    } // Fin du if (!currentStringValue) {
+    
 	//NSLog(@"String: %@",string);
     [currentStringValue appendString:string];		
    
-}
+} // Fin du - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+
 
 //-------------------------------------------------------------------------
 // End tag
@@ -703,7 +723,7 @@
          self.userData.nbInstallationProche=[[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] intValue];
          //NSLog(@"XML userData.nbInstallationProche=%d",self.userData.nbInstallationProche);
          
-     }
+     } // FIn du if ([elementName isEqualToString:@"Reference"]) {
     
     [currentStringValue release];
 	currentStringValue=nil;

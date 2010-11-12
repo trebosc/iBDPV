@@ -120,6 +120,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     //Sauvegarde des données de l'utilisateur
+ 
     
     //On évite la racine
     if ([elementName isEqualToString:@"liste_utilisateur"]) return; 
@@ -221,10 +222,11 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         //Premier chargement
         
         // Lancement du parsing XML (mode SYNCHRONE)
+
         NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildSitesProchesURL]];
         NSLog(@"TODO : Possibilité de mettre un timeout ???");
         NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
-      
+
         
         //Set delegate
         [xmlParser setDelegate:self];
@@ -234,6 +236,9 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         //Start parsing the XML file.
         booXMLLoading=YES;
         BOOL success = [xmlParser parse];
+          NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+         [xmlParser release];
+
         
         if(success) {
             //NSLog(@"Loading first page synchrone. No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
@@ -253,7 +258,6 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         
         booXMLLoading=NO;
         indexToLoad=LIMIT;
-        
         
     } // Fin du if (indexToLoad==0) {
     
@@ -431,18 +435,21 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         
         [cell.contentView addSubview:asyncImage];
         
+         NSLog(@"TODO - Je tente un release ICI, à voir si cela pose des soucis");
+         [url release];
+
    
     
     //Synchronous call - NSData
     /*
-     TODO - On conserve ce commentaire (la réponse doit être donnée par Doudou)
+     TODO - On conserve ce commentaire ? (la réponse doit être donnée par Doudou)
     NSData *imgData=[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://www.bdpv.fr/image/install/nico81.jpg"]];
     cell.imageView.image=[UIImage imageWithData:imgData];
     */
     
     //AsyncImage View Class
     /*
-     TODO - On conserve ce commentaire (la réponse doit ^être donnée par Doudou)
+     TODO - On conserve ce commentaire ? (la réponse doit ^être donnée par Doudou)
     CGRect frame;
     frame.size.width=75; frame.size.height=50;
     frame.origin.x=0; frame.origin.y=0;
@@ -467,7 +474,6 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         
-        
         NSLog(@"TODO - Si erreur de timeout ou autres, est-ce que l'utilisateur peut facilement relancer le téléchargement ?");
         NSLog(@"TODO - Mettre un spinner d'attente");
 
@@ -482,7 +488,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
             // Inform the user that the connection failed.
             NSLog(@"TODO - A mettre dans une popup ? Loading Page: %d ERROR",indexToLoad);
         } // Fin du if (theConnection) {
-        
+
+                
     } // Fin du if ((arrFiches.count<userData.nbInstallationProche) && (indexPath.row==arrFiches.count-1) && (!booXMLLoading)) {
 
     
@@ -585,6 +592,10 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     booXMLLoading=YES;
     BOOL success = [xmlParser parse];
     
+    NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+     [xmlParser setDelegate:nil];
+     [xmlParser release];
+
     if (success){
         //NSLog(@"No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
     
@@ -606,8 +617,6 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         [alert show];
         
     } // Fin du if (success){
-        
-    
     
     [activityIndicator stopAnimating];
     
