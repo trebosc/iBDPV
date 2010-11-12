@@ -180,16 +180,18 @@
 	self.title=@"1: Localisez votre maison";
 	
 	//Désactivation du bouton Back
-	[self.navigationItem setHidesBackButton:YES];
+	//[self.navigationItem setHidesBackButton:YES];
 
 	//Affichage de la toolBar du Navigation Controller
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
 	//Création des boutons
-	//Retour
-	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
+	// Bouton Retour
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
     //Valider
 	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
     btnValidateItem.enabled=NO;
@@ -201,9 +203,8 @@
 
     
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,btnLocalizeItem,flexibleSpaceButtonItem,btnValidateItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnLocalizeItem,flexibleSpaceButtonItem,btnValidateItem,nil];
 
-	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
 	
 	// Création par programme de la hiérarchie de vues (p34) 

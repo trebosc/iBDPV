@@ -81,6 +81,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	
+    // Bouton Retour
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    
     //NSLog(@"viewDidLoad: Estim2PenteViewController");
 	
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];

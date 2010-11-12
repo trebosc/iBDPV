@@ -38,23 +38,20 @@
     
 	// Affichage de la barre de navigation
 	[self.navigationController setNavigationBarHidden:NO];
-	
-	//Désactivation du bouton Back
-	[self.navigationItem setHidesBackButton:YES];
     
 	//Affichage de la toolBar du Navigation Controller
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
 	//Création des boutons
-	//Retour
-	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
-	//Espacement
+	// Bouton Retour
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];  
+    
+    //Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,nil];
     
-	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
 	
 

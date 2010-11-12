@@ -112,25 +112,22 @@
 	
 	//Titre
 	self.title=@"3: Orientation de la toiture";
-	
-	//Désactivation du bouton Back
-	[self.navigationItem setHidesBackButton:YES];
+    
+	// Bouton Retour
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 
 	//Affichage de la toolBar du Navigation Controller
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
 	//Création des boutons
-	//Retour
-	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
-	//Espacement
+    //Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	//Valider
 	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
 	
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,btnValidateItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnValidateItem,nil];
 
-	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
 	
 } // Fin du - (void)loadView {

@@ -217,6 +217,9 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    
     if (indexToLoad==0) {
         
         //Premier chargement
@@ -276,15 +279,13 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 	//Titre
 	self.title=@"Fiches proches";
 	
-	//Désactivation du bouton Back
-	[self.navigationItem setHidesBackButton:YES];
-    
 	//Affichage de la toolBar du Navigation Controller
 	[self.navigationController setToolbarHidden:NO animated:YES];
     
     //Création des boutons
-	//Retour
-	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
+	// Bouton Retour
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	//Nb Fiches
@@ -304,9 +305,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     UIBarButtonItem *btnActivityIndicator=[[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
         
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,lblNbFichesItem,flexibleSpaceButtonItem,flexibleSpaceButtonItem,btnActivityIndicator, nil];
+	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,lblNbFichesItem,flexibleSpaceButtonItem,flexibleSpaceButtonItem,btnActivityIndicator, nil];
     
-	[btnBackItem release];
 	[flexibleSpaceButtonItem release];
     [lblNbFichesItem release];
     [btnActivityIndicator release];
@@ -435,8 +435,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         
         [cell.contentView addSubview:asyncImage];
         
-         NSLog(@"TODO - Je tente un release ICI, à voir si cela pose des soucis");
-         [url release];
+    //NSLog(@"TODO - Je tente un release ICI, à voir si cela pose des soucis");
+    //[url release];
 
    
     

@@ -55,8 +55,10 @@ const int CNX_VERSION_OBSOLETE = -2;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     //[super viewDidLoad];
-//    NSLog(@"viewDidLoad: MenuViewController");
-	
+
+	// Bouton Retour
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
 	// Création par programme de la hiérarchie de vues (p34) 
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -211,7 +213,7 @@ const int CNX_VERSION_OBSOLETE = -2;
                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData  // On précise que l'on veut pas une lecture du cache
                                           timeoutInterval:10.0];
     
-     [url release];
+    //[url release];
      NSLog(@"TODO - Je tentele release ICI, à voir si cela pose des soucis");
 
 //    NSLog(@"Apres requestWithURL");
@@ -544,12 +546,21 @@ const int CNX_VERSION_OBSOLETE = -2;
             Estim1GPSViewController *newController=[[Estim1GPSViewController alloc] init];
             newController.menuOrigin=@"FichesProches";
             newController.userData=self.userData;
+            /*[newController.navigationController setNavigationBarHidden:NO];
+            [newController.navigationController setNavigationBarHidden:NO];
+            UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+            newController.navigationItem.backBarButtonItem = backButton;*/
             [self.navigationController pushViewController:newController animated:YES];
             [newController release];        
         }
         else {
+            //Sites Proches
             FichesProchesTableViewController *newController=[[FichesProchesTableViewController alloc] init];
             newController.userData=self.userData;
+            /*[newController.navigationController setNavigationBarHidden:NO];
+            [newController.navigationController setNavigationBarHidden:NO];
+            UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+            newController.navigationItem.backBarButtonItem = backButton;*/
             [self.navigationController pushViewController:newController animated:YES];
             [newController release];
         }
