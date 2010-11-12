@@ -34,15 +34,12 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - init {
 	if (self = [super init]) {
-        NSLog(@"TODO - init : Appelé une seule fois .... a mettre ailleurs ? ou faire le setDelegate dans le viewWillAppear ?");
-        
         UIAlertImageView *alert = [[UIAlertImageView alloc] initWithTitle:@"Etape 2/3 - Pente"
-                                                                  message:@"Inclinez votre iPhone afin de faire correspondre votre toit avec son côté, comme sur la photo ci-dessous."
+                                                                  message:@"Inclinez votre iPhone afin de faire correspondre  son côté avec votre toit, comme sur la photo ci-dessous."
                                                                  delegate:self
                                    //												cancelButtonTitle:@"Cancel"
                                                         cancelButtonTitle:nil
                                                         otherButtonTitles:@"OK", nil];
-        NSLog(@"TODO - UIAlertImageView - voir comment lui donner le nom de l'image à télécharger (un attribut ?)");
         
         [alert show];
         [alert release];
@@ -63,7 +60,6 @@
         [[UIAccelerometer sharedAccelerometer] setDelegate:self];
 
         [super viewWillAppear:animated];
-        NSLog(@"TODO - Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
 } // FIn du - (void)viewWillAppear:(BOOL)animated {
 
 
@@ -129,7 +125,7 @@
 	//NSLog(@"Capacites : %d",[[UIDevice currentDevice] platformCapabilities]);
 	//int essai = UIDeviceBuiltInCamera & [[UIDevice currentDevice] platformCapabilities];
 	//if (essai == UIDeviceBuiltInCamera) 
-	//	NSLog(@"TODO - Pour la v2 et la gestion de la vue derrière l'iphone - Appareil photo présent sur le device");
+	//	NSLog(@"Pour la v2 et la gestion de la vue derrière l'iphone - Appareil photo présent sur le device");
 	//else 
 	//	NSLog(@"Pas d'appareil photo");
 
@@ -137,7 +133,6 @@
     //--------------------------------------------------------------------------------
 
     [super viewDidLoad];
-	NSLog(@"TODO - A voir pour TOUS les modules viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
 	
 } // Fin du - (void)viewDidLoad {
 

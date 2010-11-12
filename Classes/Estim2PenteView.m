@@ -35,10 +35,12 @@
     aController.bPenteVisible = true;
     
     return self;
-}
+} // Fin du - (id)initWithFrame:(CGRect)frame viewController:(Estim2PenteViewController *)aController {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
+    // L''image de la maison (en fond)
     UIImageView * photographieMaisonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"explication_pente_accelerometre.png"]];
     photographieMaisonView.center = self.center;
     photographieMaisonView.opaque = YES;
@@ -46,10 +48,7 @@
     frame.origin.x = 42.0;
     frame.origin.y = 20.0;
     photographieMaisonView.frame = frame;
-  	
-    // add view in proper order and location
     [self addSubview:photographieMaisonView];
-
     [photographieMaisonView release];
 
     // Texte d'explication
@@ -68,23 +67,17 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"Oui", @"Non", nil];
     choixVisible = [[UISegmentedControl alloc] initWithItems:itemArray];
-
     choixVisible.frame = CGRectMake(80, 275, 160, 40);
     choixVisible.segmentedControlStyle = UISegmentedControlStylePlain;
     choixVisible.selectedSegmentIndex = 0; // Choix "Oui"
-
-    [choixVisible addTarget:self
-                         action:@selector(pickOne:)
-               forControlEvents:UIControlEventValueChanged];
-
+    [choixVisible addTarget:self action:@selector(pickOne:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:choixVisible];
     [choixVisible release];
-    NSLog(@"TODO - Faire un release après tous les addSubView !");
-
     
     //----------------------------------------
     [self setNeedsDisplay];
-}
+} // Fin du - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -96,7 +89,8 @@
             self.viewController.bPenteVisible = true;
         else
             self.viewController.bPenteVisible = false;
-} 
+} // Fin du - (void) pickOne:(id)sender{
+
 
 
 //#########################################################################################################################################################
@@ -109,7 +103,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
 
 
 @end

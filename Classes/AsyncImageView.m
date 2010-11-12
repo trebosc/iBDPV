@@ -47,10 +47,7 @@
         connection = [[NSURLConnection alloc] initWithRequest: request delegate: self startImmediately: NO];
         [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         
-        
-        NSLog(@"TODO - Doit-on gérer les didFailWithError ? (sur le time-out par exemple) ?");        
-        
-        [connection start];
+         [connection start];
     } else { // Avec le if (imgPhoto==nil) {
         //Cached Image to make UIImageView
         [self makeImageView:imgPhoto];

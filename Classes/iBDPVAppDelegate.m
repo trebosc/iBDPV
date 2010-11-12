@@ -37,13 +37,15 @@
     [window makeKeyAndVisible];
 	
 	return YES;
-}
+} // Fin du - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)applicationWillTerminate:(UIApplication *)application {
 
     // Save data if appropriate.
-}
+} // Fin du - (void)applicationWillTerminate:(UIApplication *)application {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
@@ -54,6 +56,7 @@
     
     [window release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 @end

@@ -84,14 +84,8 @@
         
 	} // Fin du if (self = [super init]) {
 
-    NSLog(@"TODO PB - Ce code ne semble pas être exécuté à chaque chargement.");
-    NSLog (@"TODO - Mais attention, comme multiThread, Estim3OrientView est chargé AVANT le loadView ... Ou mettre code Boussole ???");
-
-    NSLog(@"TODO - Revoir tout le code pour mettre des commentaires");
-    NSLog(@"TODO - Revoir tout le code pour mettre des //Fin du ... ");
-    NSLog(@"TODO - Mettre des pragma Mark et organiser le code dans les .m  ");
-
 	return self;
+    
 } // Fin du Init
 
 
@@ -111,7 +105,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"3: Orientation de la toiture";
+	self.title=@"Orientation toiture";
     
 	// Bouton Retour
     self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
@@ -142,7 +136,6 @@
         // start the compass
         [locationManager startUpdatingHeading];
     } // Fin duif (bBoussoleAutom) { 
-    NSLog(@"TODO - Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
     [super viewWillAppear:animated];
 } // Fin du - (void)viewWillAppear:(BOOL)animated {
 
@@ -180,9 +173,7 @@
 	[rootView release];
 	
     [super viewDidLoad];
-	NSLog(@"TODO - viewDidLoad: appel su  super parce que .... pas fait dans code Doudou ?");
 
-	
 } // Fin du  - (void)viewDidLoad {
 
 

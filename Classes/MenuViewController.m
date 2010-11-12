@@ -155,7 +155,6 @@ const int CNX_VERSION_OBSOLETE = -2;
     
     NSString *uniqueIdentifierMD5;
     if (fileContents == nil) {
-        NSLog(@"TODO - Vérifier que la génération du ID Unique marche encore");
         //-----------------------------------------------------------------------
         // Génération d'un identifiant Unique pour ce device
         UIDevice *device = [UIDevice currentDevice];
@@ -204,7 +203,6 @@ const int CNX_VERSION_OBSOLETE = -2;
 
     //NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
-    NSLog(@"TODO - NSURL alloc,  mais jamais de release .....   Faudrait le faire dans le didFinishLoading ou on peut le faire avant ?");
 
 
 //    NSLog(@"--------------------------");
@@ -214,7 +212,7 @@ const int CNX_VERSION_OBSOLETE = -2;
                                           timeoutInterval:10.0];
     
     //[url release];
-     NSLog(@"TODO - Je tentele release ICI, à voir si cela pose des soucis");
+     NSLog(@"TODO - Je tenterais release ICI, vu que l'url est créée avec un init (théorème Doudou)");
 
 //    NSLog(@"Apres requestWithURL");
     // create the connection with the request
@@ -268,11 +266,7 @@ const int CNX_VERSION_OBSOLETE = -2;
         //--------------
      // Lancement du parsing XML
      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:receivedData];
-    
-    
-    
-    NSLog(@"TODO : look at Apple's XMLPerformance sample - it compares NSXMLParser and libxml performance - results are definitely in favour of the latter. ");     
-//     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
+    //     NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
     
     
      //---------------------------------------------------
@@ -286,8 +280,8 @@ const int CNX_VERSION_OBSOLETE = -2;
      BOOL success = [xmlParser parse];
      
     
-     NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-     [xmlParser release];
+     // A PRIORI PLANTE - NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+     // A PRIORI PLANTE - [xmlParser release];
 
      if(success) {
              //---------------------------------------------------------------------------------------------------        
@@ -358,8 +352,6 @@ const int CNX_VERSION_OBSOLETE = -2;
             } // Fin du switch (code_retour)
         
      }  else { // Avec le if(success)
-//         NSLog(@"Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
-         
          UIAlertView *alert = [[[UIAlertView alloc] 
                                 initWithTitle:@"Erreur parsing XML"
                                 message:@"Problème d'extraction du XML"
@@ -446,9 +438,6 @@ const int CNX_VERSION_OBSOLETE = -2;
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    NSLog(@"TODO - Est-ce que l'on fait quelque chose ? (libération self.UserData ? Et si non, est-ce que l'on garde cette fonction ou on l'efface ?");
- 
     // Release any cached data, images, etc that aren't in use.
 } // Fin du - (void)didReceiveMemoryWarning {
 
@@ -483,7 +472,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 #pragma mark === Actions du menu ===
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actEstimer:(id)sender {
-    // TODO - Faire une fonction pour les UIAlertView (il y en a 2 qui se répète)
+    // IMPORTANT  - Faire une fonction pour les UIAlertView (il y en a 2 qui se répète)
     if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Version iBDPV obsolète"
@@ -572,7 +561,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actOptions:(id)sender {
-    //TODO - En version 2.0
+    //IMPORTANT - En version 2.0
 } // Fin du -(void)actOptions:(id)sender {
 
 
@@ -582,7 +571,7 @@ const int CNX_VERSION_OBSOLETE = -2;
     
     
     AproposViewController *newController=[[AproposViewController alloc] init];
-    newController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;  // TODO - Voir pourquoi cela ne marche pas ..... (fait rien du tout :) ) 
+    newController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;  
     [self.navigationController pushViewController:newController animated:YES];
     [newController release];        
 

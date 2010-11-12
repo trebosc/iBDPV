@@ -57,7 +57,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)prepare {	
 	UIImage *imageChargee = [UIImage imageNamed:@"explication_pente_accelerometre.png"];
-    NSLog(@"TODO : prepareUIAlertImageView - Mettre en paramètre le nom de l'image !!!!)");
 
 	imageView = [[UIImageView alloc] initWithImage:imageChargee];
 	
@@ -81,6 +80,7 @@
 - (void)dealloc {
 	[imageView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 @end

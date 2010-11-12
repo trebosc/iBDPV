@@ -57,10 +57,7 @@
 
     // Chargement du XML
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:self.loadingURL];
-    NSLog(@"TODO : Possibilité de mettre un timeout ???");
-    NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
 
-    
     //Set delegate
     [xmlParser setDelegate:self];
     
@@ -69,14 +66,12 @@
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
-    NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-     [xmlParser release];
+    // A PRIORI PLANTE - NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
+    // A PRIORI PLANTE -  [xmlParser release];
 
     if(success) {
         //NSLog(@"XML loaded");
     } else { // Avec le  if(success)
-        NSLog(@"TODO : Gestion de l'erreur à faire - Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
-        
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
                                message:@"XML parsing Error"
@@ -119,7 +114,6 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    NSLog(@"TODO :  Est-ce que cela sert de faire un delegate pour ne rien faire dedans ?????");
     
     // Release any cached data, images, etc that aren't in use.
 } // Fin du - (void)didReceiveMemoryWarning {
@@ -128,7 +122,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
-    NSLog(@"TODO :  Est-ce que cela sert de faire un delegate pour ne rien faire dedans ?????");
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 } // Fin du - (void)viewDidUnload {
@@ -390,9 +383,6 @@
         if (image == nil) {
             NSString *photoURL=[NSString stringWithFormat:@"http://www.bdpv.fr/image/install/%@",[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:photoURL]];
-            NSLog(@"TODO : Possibilité de mettre un timeout ???");
-            NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
-
             image = [[UIImage alloc] initWithData:imageData];
         
             //Stockage de l'image

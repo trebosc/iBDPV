@@ -22,10 +22,10 @@ float FctModulo360(float angle) {
     
 	if (angle <0) 
 		angle = 360 + angle;
-	else {
+	else { // Avec le if (angle <0) 
 		if (angle >=360) 
 			angle = angle - 360;
-	}
+	} // Fin du if (angle <0) 
 	
 	//NSLog(@"Angle Out :%0.0f",angle);
     
@@ -59,9 +59,11 @@ float CalculeAngle(CGPoint position, float angleInit) {
 	
 	return angleResult;
     
-}
+} // Fin du float CalculeAngle(CGPoint position, float angleInit) {
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------
 
 
 @interface Estim3OrientView (PrivateMethods)
@@ -107,7 +109,6 @@ float CalculeAngle(CGPoint position, float angleInit) {
     frame.origin.x = 55.0;
     frame.origin.y = -90.0;
     maison_vue_dessusView.frame = frame;
-    NSLog(@"TODO : Estim3OrientView - Utile de mettre des variables globales ? Le release peut pas être immédiat ? (sauf pour boussole)");
 
     /*
     if (self.viewController.bBoussoleAutom) 
@@ -131,7 +132,6 @@ float CalculeAngle(CGPoint position, float angleInit) {
     lblFace.textAlignment = UITextAlignmentCenter;
     [self addSubview:lblFace];
     [lblFace release];
-    NSLog(@"TODO : lblFace est utilisé 2 fois (voir plus bas) avec un release et 2 alloc. Faire plus propre");
     
     
     boussoleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"boussole.png"]];
@@ -178,7 +178,9 @@ float CalculeAngle(CGPoint position, float angleInit) {
 
     
     [self setNeedsDisplay];
-}
+    
+} // Fin du - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
@@ -187,7 +189,8 @@ float CalculeAngle(CGPoint position, float angleInit) {
 	[boussoleView release];
     [degreeDisplayView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 
 //#########################################################################################################################################################
@@ -207,8 +210,10 @@ float CalculeAngle(CGPoint position, float angleInit) {
 		// Send to the dispatch method, which will make sure the appropriate subview is acted upon
 		[self dispatchFirstTouchAtPoint:[touch locationInView:self] forEvent:nil];
 		touchCount++;  
-	}	
-}
+	} // Fin du for (UITouch *touch in touches) {
+
+} // Fin du -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Checks to see which view, or views, the point is in and then calls a method to perform the opening animation,

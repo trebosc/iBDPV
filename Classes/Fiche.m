@@ -16,7 +16,7 @@
     [last_maj_inst release];
     [last_maj_prod release];
     [super dealloc];
-}
+} // Fin du -(void)dealloc {
 
 
 @end

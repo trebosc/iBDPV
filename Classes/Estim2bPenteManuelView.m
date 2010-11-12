@@ -3,7 +3,6 @@
 //  iBDPV
 // JMD & DTR
 
-//TODO - Revoir les commentaires en entêtes de tous les fichier pour mettre le bon commentaire.
 
 #import "Estim2bPenteManuelView.h"
 #import "Estim2bPenteManuelViewController.h"
@@ -46,9 +45,11 @@ const float ANGLE=45.0;
         angleToit=45.0; // la pente initiale est à 45°
 
 		[self setupSubviewsWithContentFrame:frame];
-    }
+    } // Fin du     if (self != nil) {
+
     return self;
-}
+} // Fin  du - (id)initWithFrame:(CGRect)frame viewController:(Estim2bPenteManuelViewController *)aController {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
@@ -98,7 +99,6 @@ const float ANGLE=45.0;
     CGRect frame = CGRectMake(80.0, 330.0, 220.0, 10.0);
     UISlider *slider = [[UISlider alloc] initWithFrame:frame];
     [slider addTarget:self.viewController action:@selector(fixeAngleToit:) forControlEvents:UIControlEventValueChanged];
-
     [slider setBackgroundColor:[UIColor clearColor]];
     slider.minimumValue = 0.0;
     slider.maximumValue = 90.0;
@@ -107,7 +107,7 @@ const float ANGLE=45.0;
     [self addSubview:slider];
 
     self.viewController.slider = slider;
-    NSLog(@"TODO - On doit faire un release sur e slider ou pas ??   JE DIRAIS OUI car AddSubView");
+    NSLog(@"TODO - On doit faire un release sur e slider ou pas ??   JE DIRAIS OUI car AddSubView mais comme il est passé à self.viwcontroller :( ");
 
     
     //---------------------------------
@@ -119,11 +119,13 @@ const float ANGLE=45.0;
     frame.origin.y = 50.0;
     photographieMaisonView.frame = frame;
     [self addSubview:photographieMaisonView];
-
+    [photographieMaisonView release];
  
     
     [self setNeedsDisplay];
-}
+    
+} // Fin de - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
+
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -332,6 +334,7 @@ const float ANGLE=45.0;
     [degreeDisplayView release];
     [pourcentDisplayView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 @end

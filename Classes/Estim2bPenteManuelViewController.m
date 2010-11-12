@@ -28,7 +28,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"2: Pente de votre toiture";
+	self.title=@"Pente toiture";
 	
 	// Bouton Retour
     self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
@@ -56,8 +56,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillAppear 
 - (void)viewWillAppear:(BOOL)animated {
-    	NSLog(@"TODO - viewWillAppear: Estim2PenteViewController - la navigation Bar doit pas apparaitre !");
-        NSLog(@"TODO - Pas fait sur Etape 3 (Pente), mais que sur 1 et 2");
         [self.navigationController setNavigationBarHidden:NO];  
         [self.navigationController setToolbarHidden:NO animated:YES];
     
@@ -168,8 +166,6 @@
 	[slider setValue:newAngle animated:NO];
 } // Fin du -(void)angleToitModifie:(float)newAngle {
 
-
-// TODO - Mettre un Fin du if,     ou Fin -(void)angleToitModifie:(float)newAngle {    dans tout le code !!!!!
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################

@@ -53,10 +53,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     levelFrontGaucheView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"penteBackgroundGauche.png"]];
     levelFrontGaucheView.center = self.center;
     levelFrontGaucheView.opaque = YES;
-    
-    NSLog(@"TODO - viewDidLoad: Estim2PenteView - Penser à mettre des versions Retina (si cela est important) - suffit de mettre une version 2x dans le répertoire");
-
-    
+        
 	
 	//-----------------------------
     //  darkTextColor:YES];
@@ -97,13 +94,12 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     
     #define kStdButtonWidth		106.0
     #define kStdButtonHeight	40.0
+    #define okShiftRight        240.0
+    #define okShiftDown         45.0
 
     
     //----------------------------
     // set up OK  button
-	float okShiftRight = 240.0;
-    float okShiftDown = 45.0;
-	NSLog(@"TODO - Pourquoi define d'une cote et float de l'autre ?");
 
 	UIImage *buttonOkImage = [UIImage imageNamed:@"blueButton.png"];
 	UIButton *okButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -136,7 +132,6 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 	// Transform for rotating textual display
 	CATransform3D landscapeTransform = CATransform3DIdentity;
     landscapeTransform = CATransform3DRotate(landscapeTransform, DegreesToRadians3(-90), 0, 0, 1);
-    NSLog(@"TODO - Duplication des fonctions DegreesToRadians  en v2 et v3 .... mettre dans une classe outils.");
 
     degreeDisplayView.layer.transform = landscapeTransform;
     pourcentDisplayView.layer.transform = landscapeTransform;
@@ -154,6 +149,9 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     [self addSubview:pourcentDisplayView];
     [self addSubview:okButton];
     [self addSubview:retourButton];
+
+    NSLog(@"TODO - okButton et retourButton ne sont jamais release. Ils sont crées en retain. Faut release ou pas ????");
+
     
     [self setNeedsDisplay];
 } // Fin du - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
@@ -161,14 +159,11 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
-// TODO - Mettre des ##  avant chaque Pragma
 #pragma mark -
 #pragma mark === Fin de vie de la classe ===
 #pragma mark -
 
 //-------------------------------------------------------------------------------------------------------------------------------
-//TODO mettre avant chaque fonction :  //-------------------------------------------------------------------------------------------------------------------------------
- 
 - (void)dealloc {
 	[levelFrontDroiteView release];
 	[levelFrontGaucheView release];

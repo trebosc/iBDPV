@@ -52,8 +52,8 @@
         [self.navigationController setToolbarHidden:NO animated:YES];    
  
         [super viewWillAppear:animated];
- NSLog(@"TODO : Vérifier que l'on appele les 'super' dans toutes les fonctions dérivées");
-}
+} // Fin du - (void)viewWillAppear:(BOOL)animated {
+
 
 
 /*
@@ -73,7 +73,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"2: Pente de votre toiture";
+	self.title=@"Pente toiture";
     
     // Bouton Retour
     self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
@@ -92,9 +92,8 @@
     
 	[flexibleSpaceButtonItem release];
 	
-    
-	
-}
+} // Fin du - (void)loadView {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -109,10 +108,7 @@
     applicationFrame.origin.y   = 0;   //  Voir le code de Doudou ..... (sur le menu)
 	//NSLog(@"viewDidLoad: Estim2PenteViewController  Bout de code pas beau  : applicationFrame.origin.y = 0");
     
-	// Création par programme de la hiérarchie de vues (p34) 
-	// Désactivé par Doudou - self.wantsFullScreenLayout=YES;   // Faire une rechercher dans le document PDF  ViewControlletPGforiPhoneOS
-	NSLog(@"TODO - Voir le commentatire sur wantsFullScreenLayout - modifs réalisées par Doudou sur le Generic View pas été répercutées sur les EstimXXXX.m ou .h");
-    
+  
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
 	UIView *rootView=[[UIView alloc] initWithFrame:applicationFrame];
@@ -137,14 +133,8 @@
 	[rootView release];
 	
     
-     
-
-    
-    
-    [super viewDidLoad];
-	NSLog(@"TODO  - Est-ce à la fin des fonctions delegate on doit pas appeler systématiquement le super (pour donner la main au père ?) - viewDidLoad: appel  super parce que .... pas fait dans code Doudou ?");
-	
-}
+    [super viewDidLoad];	
+} // Fin du - (void)viewDidLoad {
 
 
 
@@ -164,21 +154,24 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
+} // Fin du - (void)didReceiveMemoryWarning {
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
+} // Fin du - (void)viewDidUnload {
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     [estim2PenteView release];
     [super dealloc];
-}
+} // Fin du - (void)dealloc {
+
 
 
 
@@ -211,7 +204,7 @@
             [newController release];
         } // Fin du if (bPenteVisible)  { 
     
-    NSLog(@"TODO - Duplication du cote ...  de 2 variables (une finissant par A et l'autre par B ... on doit pouvoir faire mieux ...");
+    // ATTENTION :  Duplication du code et utilisation de 2 variables (une finissant par A et l'autre par B ... on doit pouvoir faire mieux ...");
 
 } // Fin du -(void)actValidate:(id)sender {
 

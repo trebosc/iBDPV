@@ -87,10 +87,11 @@
     
     if (_mapView && _isMoving) {				
         // Update the map coordinate to reflect the new position.
-// TODO - A virer ?        CGPoint newCenter = self.center;
-// TODO - A virer ?        AddressAnnotationView* theAnnotation = (AddressAnnotationView *)self.annotation;
-// TODO - A virer ?        CLLocationCoordinate2D newCoordinate = [_mapView convertPoint:newCenter toCoordinateFromView:self.superview];
-        
+/* TODO - A virer ? DOUDOU, C'est toi qui doit répondre. ET virier si nécessaire.
+ CGPoint newCenter = self.center;
+ AddressAnnotationView* theAnnotation = (AddressAnnotationView *)self.annotation;
+ CLLocationCoordinate2D newCoordinate = [_mapView convertPoint:newCenter toCoordinateFromView:self.superview];
+*/        
         //[theAnnotation changeCoordinate:newCoordinate];
         
         // Clean up the state information.
@@ -153,19 +154,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //NSLog(@"TODO : viewWillAppear: Esti1GPSiewController - On redit que la navigation Bar  doit  apparaitre !!!");
-    //NSLog(@"TODO : Je comprends pas pourquoi on doit pas le faire pour l'étape 3 qui est juste après l'étape 2 (qui cache la navigation Bar)");
     // Permet de remettre les bonnes propriétés au navigation Controller
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
-    /*
-    CLLocationCoordinate2D coord = {latitude: 37.423617, longitude: -122.220154};
-    MKCoordinateSpan span = {latitudeDelta: 1, longitudeDelta: 1};
-    MKCoordinateRegion region = {coord, span};
-    [mapView setRegion:region];
-     */
-    
+        
 } // Fin  du - (void)viewWillAppear:(BOOL)animated {
 
 
@@ -177,7 +169,7 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"1: Localisez votre maison";
+	self.title=@"Localisez votre maison";
 	
 	//Désactivation du bouton Back
 	//[self.navigationItem setHidesBackButton:YES];
@@ -227,7 +219,7 @@
 	[btnSearch setBackgroundImage:buttonOkImage forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(actDisplayToolbarSearchAddress:) forControlEvents:UIControlEventTouchDown];
     [rootView addSubview:btnSearch];
-    NSLog(@"TODO : Faut pas faire un release de UIImage ? "); 
+    NSLog(@"TODO : Faut faire un release de UIImage ? "); 
 
 	
 	// 3. Assignation de la vue racine à la propriété view du controlleur
@@ -369,7 +361,6 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
-    [super dealloc];
     
     if (self.toolbarSearchAddress!=nil) {
         [self.toolbarSearchAddress removeFromSuperview];
@@ -379,7 +370,8 @@
     
     [mapView release];
     [pinAnnotation release];
-    
+    [super dealloc];
+
 } // Fin du - (void)dealloc {
 
 
@@ -392,7 +384,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(CLLocationCoordinate2D) addressLocation:(NSString *)address {
 	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", [address stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding  error:NULL]; // TODO: Gestion des erreurs à faire et vérifier l'encodage
+	NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding  error:NULL]; 
 	NSArray *listItems = [locationString componentsSeparatedByString:@","];
 	
 	double latitude = 0.0;
@@ -474,14 +466,6 @@
     // Lancement du parsing XML (mode SYNCHRONE)
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [url release];
-    NSLog(@"TODO : LIRE LE CODE CAR EXEMPLE POUR RECUPERER CONTENU AVEC NSURLRequest puis parsing avec XML Passer. Permet de mettre un timeout !");
-    NSLog(@"TODO : Si erreur de chargement sur timeout ou autre, par quelle fonction estce capté ?");
-// L'exemple est dessous    
-//    NSString *u = [NSString stringWithFormat:url];
-//    NSURLRequest* chRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:u] cachePolicy: NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-//    NSError* theError;
-//    NSData* response = [NSURLConnection sendSynchronousRequest:chRequest returningResponse:nil error:&theError]; 
-//    localCityParser = [[NSXMLParser alloc] initWithData:response];
 
  
     //NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
@@ -495,17 +479,15 @@
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
-    NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-    [xmlParser release];
+    // A PRIORI PLANTE - NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser %d.",[xmlParser retainCount]);
+    // A PRIORI PLANTE - [xmlParser release];
     
     
 
     if(success) {
         //NSLog(@"No Errors");
     } else {  // Avec le if(success) {
-        NSLog(@"TODO : Il faut voir comment traiter les erreurs - Error Error Error!!! - Soit erreur dans le XML, soit erreur de connexion Internet");
-        
-        UIAlertView *alert = [[[UIAlertView alloc] 
+         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
                                message:@"Pb du parsing XML"
                                delegate:self
@@ -692,7 +674,6 @@
     
 	if ([elementName isEqualToString:@"nombre_inst"]) { //sites
         // Init Sites
-		NSLog(@"TODO - On a le code nombre_inst. Si pas assez de site, on peut rien faire");
 	} // Fin  du if ([elementName isEqualToString:@"nombre_inst"]) { //sites
 
 } // Fin du - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
