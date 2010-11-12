@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63073718128D24F700DD3522 /* recherche_adresse.png in Resources */ = {isa = PBXBuildFile; fileRef = 63073717128D24F700DD3522 /* recherche_adresse.png */; };
+		63073733128D42D200DD3522 /* localiser_adresse.png in Resources */ = {isa = PBXBuildFile; fileRef = 63073732128D42D200DD3522 /* localiser_adresse.png */; };
 		6340E8CD12806FEC00EAFAC7 /* AproposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6340E8CC12806FEC00EAFAC7 /* AproposViewController.m */; };
 		841B03F6126A3FEA004E6240 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B03F5126A3FEA004E6240 /* UserData.m */; };
 		841B03FE126A40D8004E6240 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B03FD126A40D8004E6240 /* MenuViewController.m */; };
@@ -53,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63073717128D24F700DD3522 /* recherche_adresse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recherche_adresse.png; path = ressources/recherche_adresse.png; sourceTree = "<group>"; };
+		63073732128D42D200DD3522 /* localiser_adresse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = localiser_adresse.png; path = ressources/localiser_adresse.png; sourceTree = "<group>"; };
 		6320ADED1284B2CE008AB5A7 /* UserData_api_secret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData_api_secret.h; sourceTree = "<group>"; };
 		6340E8CB12806FEC00EAFAC7 /* AproposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AproposViewController.h; sourceTree = "<group>"; };
 		6340E8CC12806FEC00EAFAC7 /* AproposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AproposViewController.m; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		84CA454F126A30AE00A46E6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63073732128D42D200DD3522 /* localiser_adresse.png */,
+				63073717128D24F700DD3522 /* recherche_adresse.png */,
 				841B0405126A4268004E6240 /* blueButton.png */,
 				841B0406126A4268004E6240 /* boussole.png */,
 				841B0407126A4268004E6240 /* Default.png */,
@@ -317,6 +323,8 @@
 				841B041E126A4268004E6240 /* silhouette_vue_dessus.png in Resources */,
 				841B041F126A4268004E6240 /* silhouette_vue_dessus@2x.png in Resources */,
 				841B0420126A4268004E6240 /* whiteButton.png in Resources */,
+				63073718128D24F700DD3522 /* recherche_adresse.png in Resources */,
+				63073733128D42D200DD3522 /* localiser_adresse.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

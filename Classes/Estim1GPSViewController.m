@@ -196,8 +196,9 @@
     self.validateItem=btnValidateItem;
     
     //Localize
-    UIBarButtonItem *btnLocalizeItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actLocalize:)];
-    
+    UIImage *buttonOkImage2 = [UIImage imageNamed:@"localiser_adresse.png"];
+    UIBarButtonItem *btnLocalizeItem=[[UIBarButtonItem alloc] initWithImage:buttonOkImage2 style:UIBarButtonItemStylePlain target:self action:@selector(actLocalize:)];
+
     
 	// Ajout des boutons dans la toolBar
 	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,btnLocalizeItem,flexibleSpaceButtonItem,btnValidateItem,nil];
@@ -218,13 +219,15 @@
     self.mapView.showsUserLocation=YES;
     
 	// 2. Ajout de subViews
-	UIButton *btnSearch=[UIButton buttonWithType:UIButtonTypeContactAdd];
+    UIImage *buttonOkImage = [UIImage imageNamed:@"recherche_adresse.png"];
+	UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnSearch.backgroundColor = [UIColor clearColor];
+    btnSearch.frame = CGRectMake(2.0, 2.0, 24.0, 24.0);
+	[btnSearch setBackgroundImage:buttonOkImage forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(actDisplayToolbarSearchAddress:) forControlEvents:UIControlEventTouchDown];
-    //[btnSearch setFrame:CGRectMake(0.0, 0.0, 100.0, 100.0)];
-    //btnSearch.center=rootView.center;
-    //[btnSearch setTitle:@"Add" forState:UIControlStateNormal];
     [rootView addSubview:btnSearch];
-    
+    NSLog(@"TODO : Faut pas faire un release de UIImage ? "); 
+
 	
 	// 3. Assignation de la vue racine à la propriété view du controlleur
 	self.view=rootView;
@@ -548,7 +551,10 @@
         txtSearch.backgroundColor=[UIColor clearColor];
         txtSearch.borderStyle=UITextBorderStyleRoundedRect;
         txtSearch.placeholder=@"<Entrez une adresse>";
+#if TARGET_IPHONE_SIMULATOR
         txtSearch.text=@"hotel-dieu 75004 paris";   //Debug
+#endif
+
         txtSearch.autocorrectionType=UITextAutocorrectionTypeNo;
         txtSearch.returnKeyType=UIReturnKeyDone;
         txtSearch.clearButtonMode=UITextFieldViewModeWhileEditing;

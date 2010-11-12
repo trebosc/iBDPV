@@ -103,7 +103,8 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     // set up OK  button
 	float okShiftRight = 240.0;
     float okShiftDown = 45.0;
-	
+	NSLog(@"TODO - Pourquoi define d'une cote et float de l'autre ?");
+
 	UIImage *buttonOkImage = [UIImage imageNamed:@"blueButton.png"];
 	UIButton *okButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	okButton.backgroundColor = [UIColor clearColor];
