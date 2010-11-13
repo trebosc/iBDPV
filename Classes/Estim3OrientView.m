@@ -261,11 +261,11 @@ float CalculeAngle(CGPoint position, float angleInit) {
 	if (bTouchBoussole) {
 		//NSLog(@"Phase: Touches moved");
 		float angleResult = CalculeAngle(position,angleDepartTouch);
-        
         //		NSLog(@"angleActuelAbsolu :%0.0f",angleActuelAbsolu);
-        [self updateDisplayAngle:angleResult];
         [self updateBoussoleAngle:angleResult];
-
+        
+        angleResult = 360-angleResult;
+        [self updateDisplayAngle:angleResult];
 
 	} // Fin du if (bTouchBoussole) {
 } // Fin du -(void)dispatchTouchMoveEvent:(UIView *)theView toPosition:(CGPoint)position
@@ -316,15 +316,12 @@ float CalculeAngle(CGPoint position, float angleInit) {
 	if (bTouchBoussole) {
 		//NSLog(@"Phase: Touches END !!!");
 		float angleResult = CalculeAngle(position,angleDepartTouch);
-		//angleActuelAbsolu = angleActuelAbsolu + angleResult;
-		angleActuelAbsolu = angleResult;
-		angleActuelAbsolu = FctModulo360(angleActuelAbsolu);
-		
-        //		NSLog(@"angleActuelAbsolu :%0.0f",angleActuelAbsolu);
-        [self updateDisplayAngle:angleResult];
-
-        
-		return;		
+        angleActuelAbsolu = angleResult;
+		angleActuelAbsolu = FctModulo360(angleActuelAbsolu); //  A VIRER ??????  vu que angleActuelAbsolu est écrasé juste après.
+        angleResult = 360-angleResult;
+        angleActuelAbsolu = round(angleResult);
+		[self updateDisplayAngle:angleResult];
+ 		return;		
 	} // Fin du 	if (bTouchBoussole) {
 
 } // Fin du -(void)dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position
@@ -342,6 +339,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
     NSString *angleStringWithDegree = [newAngleString stringByAppendingString:@"º"];
     degreeDisplayView.text = angleStringWithDegree;
     [degreeDisplayView setNeedsDisplay];
+    angleActuelAbsolu = round(angle); // Pour la maj automatique qui ne positionne pas cette variable.
 } // Fin du - (void)updateDisplayAngle:(float)angle {
 
 

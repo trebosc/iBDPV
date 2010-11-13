@@ -36,9 +36,10 @@
     NSString *sUrl =[self.userData genere_requete:myArray fichier_php:sParam];
     
     //NSLog(@"%@",sUrl);     
-    return [[[NSURL alloc] initWithString:sUrl] autorelease];
+   return [[[NSURL alloc] initWithString:sUrl] autorelease];
     
-}
+} // Fin du -(NSURL *)buildURL {
+
 
 /*
  //-------------------------------------------------------------------------------------------------------------------------------
@@ -265,7 +266,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
-    // Stockage de l'orientation de la boussole dans la classe UserData qui ets utilisée partout.
+    // Stockage de l'orientation de la boussole dans la classe UserData qui est utilisée partout.
     self.userData.orientation= [estim3OrientView LectureAngleBoussole];
     
 	//Passage au controleur suivant
