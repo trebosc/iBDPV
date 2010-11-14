@@ -13,7 +13,7 @@
 @implementation Estim3OrientViewController
 
 @synthesize locationManager;
-@synthesize bBoussoleAutom, Orientation,userData;
+@synthesize bBoussoleAutom, Orientation,userData, activityIndicator;
 
 
 //#########################################################################################################################################################
@@ -117,13 +117,23 @@
 	//Création des boutons
     //Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-	//Valider
-	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
 	
+    //Valider
+	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider3" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
+	
+    //Activity Indicator
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(190.0, 0.0, 20.0, 20.0)];
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicator.hidesWhenStopped = YES;
+    
+    UIBarButtonItem *btnActivityIndicator=[[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+        
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnValidateItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnActivityIndicator,btnValidateItem,nil];
 
 	[flexibleSpaceButtonItem release];
+    [btnActivityIndicator release];
+    [btnValidateItem release];
 	
 } // Fin du - (void)loadView {
 
@@ -189,11 +199,14 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewWillDisappear 
 - (void)viewWillDisappear:(BOOL)animated {
+   
     // Stop the compass
     if (bBoussoleAutom) {
         [locationManager stopUpdatingHeading];
      } // Fin du if (bBoussoleAutom) {
-    //NSLog(@"viewWillDisappear: Arrêt de la boussole");
+    
+    [self.activityIndicator stopAnimating];
+    
 } // Fin du - (void)viewWillDisappear:(BOOL)animated {
 
 
@@ -209,6 +222,7 @@
 - (void)dealloc {
     [estim3OrientView release];
     [locationManager release];
+    [activityIndicator release];
     [super dealloc];
 } // - (void)dealloc {
 
@@ -266,6 +280,17 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 //Action Validate
 -(void)actValidate:(id)sender {
+    
+    [activityIndicator startAnimating];
+    
+    // Queue instead of executing it straight away to allow spinner to start animating
+    [self performSelector:@selector(displayNextScreen) withObject:nil afterDelay:0];
+   
+    
+} // Fin du -(void)actValidate:(id)sender {
+
+-(void)displayNextScreen {
+    
     // Stockage de l'orientation de la boussole dans la classe UserData qui est utilisée partout.
     self.userData.orientation= [estim3OrientView LectureAngleBoussole];
     
@@ -277,8 +302,7 @@
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
     
-} // Fin du -(void)actValidate:(id)sender {
-
+}
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################

@@ -19,16 +19,21 @@
     BOOL bBoussoleAutom; // A vrai si le device à la capacité "Boussole"
     UserData *userData;
     
+    UIActivityIndicatorView *activityIndicator;
+    
 }
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property  BOOL bBoussoleAutom;
 @property  CLLocationDirection Orientation;
 @property (nonatomic,retain) UserData *userData;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
 //Action Back
 -(void)actBack:(id)sender;
 //Action Validate
 -(void)actValidate:(id)sender;
+
+-(void)displayNextScreen;
 
 //Build URLs
 -(NSURL *)buildURL;
