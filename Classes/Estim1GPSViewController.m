@@ -127,7 +127,7 @@
 
 @implementation Estim1GPSViewController
 
-@synthesize mapView, menuOrigin,toolbarSearchAddress,userData,validateItem;
+@synthesize mapView, menuOrigin,toolbarSearchAddress,userData,validateItem,activityIndicator;
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildSitesProchesURL {
@@ -160,6 +160,13 @@
         
 } // Fin  du - (void)viewWillAppear:(BOOL)animated {
 
+//-------------------------------------------------------------------------------------------------------------------------------
+// Implement viewWillDisappear 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [self.activityIndicator stopAnimating];
+    
+} // Fin du - (void)viewWillDisappear:(BOOL)animated {
 
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -189,16 +196,25 @@
     btnValidateItem.enabled=NO;
     self.validateItem=btnValidateItem;
     
+    //Activity Indicator
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(190.0, 0.0, 20.0, 20.0)];
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicator.hidesWhenStopped = YES;
+    
+    UIBarButtonItem *btnActivityIndicator=[[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    
     //Localize
     UIImage *buttonOkImage2 = [UIImage imageNamed:@"localiser_adresse.png"];
     UIBarButtonItem *btnLocalizeItem=[[UIBarButtonItem alloc] initWithImage:buttonOkImage2 style:UIBarButtonItemStylePlain target:self action:@selector(actLocalize:)];
 
     
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnLocalizeItem,flexibleSpaceButtonItem,btnValidateItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:btnLocalizeItem,flexibleSpaceButtonItem,btnActivityIndicator,btnValidateItem,nil];
 
 	[flexibleSpaceButtonItem release];
-	
+    [btnActivityIndicator release];
+	[btnLocalizeItem release];
+    
 	// Création par programme de la hiérarchie de vues (p34) 
 	
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -362,14 +378,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)dealloc {
     
-    if (self.toolbarSearchAddress!=nil) {
-        [self.toolbarSearchAddress removeFromSuperview];
-        //[self.toolbarSearchAddress release];
-    } // Fin du if (self.toolbarSearchAddress!=nil) {
-
-    
+    [self.toolbarSearchAddress removeFromSuperview];    // Message to nil is ok
     [mapView release];
     [pinAnnotation release];
+    [activityIndicator release];
     [super dealloc];
 
 } // Fin du - (void)dealloc {
@@ -427,9 +439,18 @@
 -(void)actValidate:(id)sender {
     //Sauvegarde des données de l'utilisateur
     
+    [activityIndicator startAnimating];
+    
+    // Queue instead of executing it straight away to allow spinner to start animating
+    [self performSelector:@selector(displayNextScreen) withObject:nil afterDelay:0];
+        
+} // Fin du -(void)actValidate:(id)sender {
+
+//-------------------------------------------------------------------------------------------------------------------------------
+-(void)displayNextScreen {
     //Debug
     self.userData.distance=100;
-        
+    
     if (pinAnnotation!=nil) {
         //Prendre la position de la pin  
         self.userData.latitude=pinAnnotation.coordinate.latitude;
@@ -447,7 +468,7 @@
     //Lecture du nombre d'installations proches
     //self.userData.nbInstallationProche=10;
     
-
+    
     // Génération de l'url
     NSString *sParam = @"n.php";
     NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
@@ -456,18 +477,18 @@
                                 [NSString  stringWithFormat:@"d=%d",self.userData.distance],
                                 nil];
     NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
-
+    
     
     //NSLog(@"URL %@",sUrl);
-
+    
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
     [sUrl release];
     
     // Lancement du parsing XML (mode SYNCHRONE)
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [url release];
-
- 
+    
+    
     //NSLog(@"Ici xmlParser contient le contenu data qui a été téléchargé");
     
     //Set delegate
@@ -483,11 +504,11 @@
     // A PRIORI PLANTE - [xmlParser release];
     
     
-
+    
     if(success) {
         //NSLog(@"No Errors");
     } else {  // Avec le if(success) {
-         UIAlertView *alert = [[[UIAlertView alloc] 
+        UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Error"
                                message:@"Pb du parsing XML"
                                delegate:self
@@ -512,11 +533,8 @@
         newController.userData=self.userData;
         [self.navigationController pushViewController:newController animated:YES];
         [newController release];
-        
-    } // Fin du if (self.menuOrigin==@"FichesProches") {
-	
-    
-} // Fin du -(void)actValidate:(id)sender {
+}
+}  
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actDisplayToolbarSearchAddress:(id)sender {

@@ -44,6 +44,8 @@
     UserData *userData;
     
     UIBarButtonItem *validateItem;
+    
+    UIActivityIndicatorView *activityIndicator;
 }
 
 @property(nonatomic,retain) MKMapView *mapView;
@@ -51,6 +53,7 @@
 @property (nonatomic,retain) UIToolbar *toolbarSearchAddress;
 @property (nonatomic,retain) UserData *userData;
 @property (nonatomic,retain) UIBarButtonItem *validateItem;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
 //Action Back
 -(void)actBack:(id)sender;
@@ -64,7 +67,8 @@
 -(void)actLocalize:(id)sender;
 
 -(NSURL *)buildSitesProchesURL;
-
+-(void)displayNextScreen;
+    
 -(CLLocationCoordinate2D) addressLocation:(NSString *)address;
 
 @end

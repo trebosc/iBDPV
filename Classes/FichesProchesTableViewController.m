@@ -429,24 +429,6 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         [cell.contentView addSubview:asyncImage];
         
     
-    //Synchronous call - NSData
-    /*
-     TODO - On conserve ce commentaire ? (la réponse doit être donnée par Doudou - DOUDOU Tu peux supprimer si tu veux !!!!)
-    NSData *imgData=[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://www.bdpv.fr/image/install/nico81.jpg"]];
-    cell.imageView.image=[UIImage imageWithData:imgData];
- 
-    
-    //AsyncImage View Class
-    CGRect frame;
-    frame.size.width=75; frame.size.height=50;
-    frame.origin.x=0; frame.origin.y=0;
-    AsyncImageView *imgView=[[[AsyncImageView alloc] initWithFrame:frame] autorelease];
-    imgView.tag=999;
-    [imgView loadImageFromURL:[NSURL URLWithString:@"http://www.bdpv.fr/image/install/nico81.jpg"]];
-    
-    [cell.contentView addSubview:imgView];
-    */
-    
     //Next Page loading (asynchrone)
     if ((arrFiches.count<userData.nbInstallationProche) && (indexPath.row==arrFiches.count-1) && (!booXMLLoading)) {
         booXMLLoading=YES;
@@ -517,11 +499,15 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning {
+    
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
-
+    
+    // Clean image cache
+    [self.dicoPhoto removeAllObjects];
+    
 } // Fin du - (void)didReceiveMemoryWarning {
 
 
