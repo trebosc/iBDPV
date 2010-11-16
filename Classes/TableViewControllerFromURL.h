@@ -28,6 +28,8 @@
     
     NSMutableDictionary *dicoPhoto;
     
+    UIActivityIndicatorView *activityIndicator;
+    
     
 }
 
@@ -35,11 +37,12 @@
 @property (nonatomic, assign) NSURL *loadingURL;
 //@property (nonatomic, retain) NSMutableArray *arrDataSource;
 @property (nonatomic, retain) NSMutableDictionary *dicoPhoto;
-
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
 //Action Back
 -(void)actBack:(id)sender;
 
+-(void)displayNextScreen:(NSIndexPath *)indexPath;
 
 -(NSURL *)buildOuvreURLg:(NSArray *)params;
 -(NSURL *)buildSitesProchesURL;

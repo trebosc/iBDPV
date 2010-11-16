@@ -9,7 +9,7 @@
 
 @implementation TableViewControllerFromURL
 
-@synthesize userData, loadingURL, dicoPhoto;
+@synthesize userData, loadingURL, dicoPhoto, activityIndicator;
  
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -49,11 +49,18 @@
     //Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	
+    //Activity Indicator
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(190.0, 0.0, 20.0, 20.0)];
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicator.hidesWhenStopped = YES;
+    
+    UIBarButtonItem *btnActivityIndicator=[[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,nil];
+	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnActivityIndicator,nil];
     
 	[flexibleSpaceButtonItem release];
-	
+	[btnActivityIndicator release];
 
     // Chargement du XML
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:self.loadingURL];
@@ -136,10 +143,17 @@
     [valuesDataSource release];
     [aidesDataSource release];
     [dicoPhoto release];
+    [activityIndicator release];
     
     [super dealloc];
 } // Fin du - (void)dealloc {
 
+// Implement viewWillDisappear 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [self.activityIndicator stopAnimating];
+    
+} // Fin du - (void)viewWillDisappear:(BOOL)animated {
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
@@ -489,7 +503,18 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     
-    NSArray *params= [[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] componentsSeparatedByString:@"+"];
+    [activityIndicator startAnimating];
+    
+    // Queue instead of executing it straight away to allow spinner to start animating
+    [self performSelector:@selector(displayNextScreen:) withObject:indexPath afterDelay:0];
+    
+    
+
+} // Fin du - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+
+//-------------------------------------------------------------------------------------------------------------------------------
+-(void)displayNextScreen:(NSIndexPath *)indexPath {
+    NSArray *params= [[[valuesDataSource objectAtIndex:(NSIndexPath *)indexPath.section] objectAtIndex:(NSIndexPath *)indexPath.row] componentsSeparatedByString:@"+"];
     
     NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
     
@@ -503,23 +528,20 @@
         [newController release];
         
     }
-         else if (([[params objectAtIndex:2] isEqualToString:@"l2.php"])) {
-             FichesProchesTableViewController *newController=[[FichesProchesTableViewController alloc] init];
-             newController.userData=self.userData;
-             newController.loadingURL=[self buildSitesProchesURL];
-             [self.navigationController pushViewController:newController animated:YES];
-             [newController release];
-         }
-                
-             
-        
-     else { // Avec le if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
-             NSLog(@"URL: %@",[params objectAtIndex:2]);
+    else if (([[params objectAtIndex:2] isEqualToString:@"l2.php"])) {
+        FichesProchesTableViewController *newController=[[FichesProchesTableViewController alloc] init];
+        newController.userData=self.userData;
+        newController.loadingURL=[self buildSitesProchesURL];
+        [self.navigationController pushViewController:newController animated:YES];
+        [newController release];
+    }
+    
+    
+    
+    else { // Avec le if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
+        NSLog(@"URL: %@",[params objectAtIndex:2]);
     } // Fin du if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
-
-} // Fin du - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-
-
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSURL *)buildOuvreURLg:(NSArray *)params {
