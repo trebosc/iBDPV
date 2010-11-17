@@ -27,20 +27,20 @@
 	self.title=@"A propos";
 	
 	//Désactivation du bouton Back
-	[self.navigationItem setHidesBackButton:YES];
+	//[self.navigationItem setHidesBackButton:YES];
 
 	//Affichage de la toolBar du Navigation Controller
-	[self.navigationController setToolbarHidden:NO animated:YES];
+	//[self.navigationController setToolbarHidden:NO animated:YES];
 	
 	//Création des boutons
 	//Retour
-	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
+	//UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
 	//Espacement
 
 	// Ajout des boutons dans la toolBar
-	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,nil];
+	//self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,nil];
 
-	[btnBackItem release];
+	//[btnBackItem release];
 	
     //Création de la hiérarchie des Views
     // 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -50,7 +50,7 @@
     rootView.opaque = YES;
     
 	// 2. Ajout de subViews
-    UIWebView * sTextView = [[UIWebView alloc] initWithFrame:CGRectMake(25.0, 125.0, 275, 200)];
+    UIWebView * sTextView = [[UIWebView alloc] initWithFrame:CGRectMake(25.0, 125.0, 275, 270)];
     sTextView.opaque = NO;
     sTextView.backgroundColor = [UIColor clearColor];
     sTextView.delegate = self;
