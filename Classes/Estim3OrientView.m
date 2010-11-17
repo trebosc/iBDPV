@@ -110,13 +110,6 @@ float CalculeAngle(CGPoint position, float angleInit) {
     frame.origin.y = -90.0;
     maison_vue_dessusView.frame = frame;
 
-    /*
-    if (self.viewController.bBoussoleAutom) 
-            NSLog(@"BOUSSOLE OK =!!!");
-    else
-            NSLog(@"Pas de boussole");
-     */
-    
     silhouette_vue_dessusView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"silhouette_vue_dessus.png"]];
     silhouette_vue_dessusView.opaque = YES;
     frame = silhouette_vue_dessusView.frame;
@@ -317,10 +310,8 @@ float CalculeAngle(CGPoint position, float angleInit) {
 		//NSLog(@"Phase: Touches END !!!");
 		float angleResult = CalculeAngle(position,angleDepartTouch);
         angleActuelAbsolu = angleResult;
-		angleActuelAbsolu = FctModulo360(angleActuelAbsolu); //  A VIRER ??????  vu que angleActuelAbsolu est écrasé juste après.
-        angleResult = 360-angleResult;
-        angleActuelAbsolu = round(angleResult);
-		[self updateDisplayAngle:angleResult];
+		angleActuelAbsolu = FctModulo360(angleActuelAbsolu);
+//        [self updateDisplayAngle:angleResult];  IMPORTANT - Mauvais affichage et je comprends pas pourquoi. A corrgier un jour car décalage 1° entre aff et resultat simul
  		return;		
 	} // Fin du 	if (bTouchBoussole) {
 
@@ -335,11 +326,15 @@ float CalculeAngle(CGPoint position, float angleInit) {
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)updateDisplayAngle:(float)angle {
+    
+
+//    if (!self.viewController.bBoussoleAutom) angle = round(360-angle);
+    angleAff = angle; // Stockage pour pouvoir ressortir cette valeur en fin "d'action boussole"
+    
     NSString *newAngleString = [NSString stringWithFormat:@"%0.0f", angle];
     NSString *angleStringWithDegree = [newAngleString stringByAppendingString:@"º"];
     degreeDisplayView.text = angleStringWithDegree;
     [degreeDisplayView setNeedsDisplay];
-    angleActuelAbsolu = round(angle); // Pour la maj automatique qui ne positionne pas cette variable.
 } // Fin du - (void)updateDisplayAngle:(float)angle {
 
 
@@ -354,10 +349,9 @@ float CalculeAngle(CGPoint position, float angleInit) {
 } // Fin du - (void)updateBoussoleAngle:(float)angle {
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (int)LectureAngleBoussole {
-    
-    return (int)angleActuelAbsolu;
-} // Fin du - (int)LectureAngleBoussole {
+- (int)LectureAngleBoussoleAff {
+    return (int)angleAff;
+} // Fin du - (int)LectureAngleBoussoleAff {
 
 
 @end

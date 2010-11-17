@@ -292,7 +292,7 @@
 -(void)displayNextScreen {
     
     // Stockage de l'orientation de la boussole dans la classe UserData qui est utilisée partout.
-    self.userData.orientation= [estim3OrientView LectureAngleBoussole];
+    self.userData.orientation= [estim3OrientView LectureAngleBoussoleAff];
     
 	//Passage au controleur suivant
 	TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
