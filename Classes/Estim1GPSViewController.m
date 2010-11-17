@@ -449,7 +449,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)displayNextScreen {
     //Debug
-    self.userData.distance=100;
+    self.userData.distance=75;
     
     if (pinAnnotation!=nil) {
         //Prendre la position de la pin  

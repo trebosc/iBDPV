@@ -234,7 +234,7 @@ const int CNX_VERSION_OBSOLETE = -2;
         iEtatConnexion = CNX_BAD;
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Pas de connexion"
-                               message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet."
+                               message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet et de relancer iBDPV."
                                delegate:self
                                cancelButtonTitle:@"Cancel"
                                otherButtonTitles:nil]
@@ -417,7 +417,7 @@ const int CNX_VERSION_OBSOLETE = -2;
      
     UIAlertView *alert = [[[UIAlertView alloc] 
                            initWithTitle:@"Pas de connexion"
-                           message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet."
+                           message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet et de relancer iBDPV."
                            delegate:self
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:nil]
@@ -486,7 +486,7 @@ const int CNX_VERSION_OBSOLETE = -2;
     else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"IMPOSSIBLE"
-                               message:@"Pas de connexion Internet"
+                               message:@"Pas de connexion Internet\nMerci d'activer votre connexion Internet et de relancer iBDPV."
                                delegate:self
                                cancelButtonTitle:@"Annuler"
                                otherButtonTitles:nil]
@@ -521,7 +521,7 @@ const int CNX_VERSION_OBSOLETE = -2;
     } else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Fonction non disponible"
-                               message:@"Pas de connexion Internet"
+                               message:@"Pas de connexion Internet\nMerci d'activer votre connexion Internet et de relancer iBDPV."
                                delegate:self
                                cancelButtonTitle:@"Annuler"
                                otherButtonTitles:nil]
