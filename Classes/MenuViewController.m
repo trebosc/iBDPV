@@ -279,10 +279,8 @@ const int CNX_VERSION_OBSOLETE = -2;
      //Start parsing the XML file.
      BOOL success = [xmlParser parse];
      
-    
-     // A PRIORI PLANTE - NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-     // A PRIORI PLANTE - [xmlParser release];
-
+	[xmlParser release];
+	
      if(success) {
              //---------------------------------------------------------------------------------------------------        
             iEtatConnexion = CNX_OK;
