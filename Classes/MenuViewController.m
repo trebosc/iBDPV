@@ -205,29 +205,28 @@ const int CNX_VERSION_OBSOLETE = -2;
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
 
 
-//    NSLog(@"--------------------------");
+
     // Create the request.
      NSURLRequest *theRequest=[NSURLRequest requestWithURL:url    // A priori requestWithUrl est différent de initWithUrl et renvoit un objet autorelease.
                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData  // On précise que l'on veut pas une lecture du cache
                                           timeoutInterval:10.0];
     
-    //[url release];
-     NSLog(@"TODO - Je tenterais release ICI, vu que l'url est créée avec un init (théorème Doudou)");
 
-//    NSLog(@"Apres requestWithURL");
+
     // create the connection with the request
     // and start loading the data
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-//    NSLog(@"apres NSURLConnection");
+
     iEtatConnexion = CNX_DEBUT;
     
     if (theConnection) {
         // Create the NSMutableData to hold the received data.
         // receivedData is an instance variable declared elsewhere.
-//        NSLog(@"dans the Connexion 1");
+
         receivedData = [[NSMutableData data] retain];
-//        NSLog(@"dans the Connexion 2");
+
     } else { // Avec le if (theConnection) {
+        
         // Inform the user that the connection failed.
         [alertAttenteTestCnx dismissWithClickedButtonIndex:0 animated:YES];
 

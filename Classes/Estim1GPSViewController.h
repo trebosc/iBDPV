@@ -9,16 +9,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "UserData.h"
 
-@interface AddressAnnotationView : MKPinAnnotationView {
-    @private
-    
-    CGPoint _startLocation;
-    CGPoint _originalCenter;
-    bool _isMoving;
-    MKMapView *_mapView;
-}
-@end
-
 @interface AddressAnnotation : NSObject<MKAnnotation> {
 	
     CLLocationCoordinate2D coordinate;
