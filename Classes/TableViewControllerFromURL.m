@@ -472,10 +472,11 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    //NSLog(@"%@",[[aidesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]);
+    
+    //Aide contextuelle
     if (![[[aidesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] isEqualToString:@""]) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"Aide contextuelle"
+                               initWithTitle:[[itemsDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]
                                message:[[aidesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]
                                delegate:self
                                cancelButtonTitle:@"OK"
@@ -514,7 +515,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)displayNextScreen:(NSIndexPath *)indexPath {
-    NSArray *params= [[[valuesDataSource objectAtIndex:(NSIndexPath *)indexPath.section] objectAtIndex:(NSIndexPath *)indexPath.row] componentsSeparatedByString:@"+"];
+    NSArray *params= [[[valuesDataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] componentsSeparatedByString:@"+"];
     
     //NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
     

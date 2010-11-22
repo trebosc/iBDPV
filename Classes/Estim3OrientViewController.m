@@ -62,7 +62,8 @@
 
         // check if the hardware has a compass
         //NSLog(@"TODO - Fonction deprecated, mais cela marche. Voir comment la remplacer");
-        if (locationManager.headingAvailable == NO) {
+        // if (locationManager.headingAvailable == NO) {
+        if ([CLLocationManager headingAvailable] == NO) {
             // No compass is available. This application cannot function without a compass, 
             // so a dialog will be displayed and no magnetic data will be measured.
             self.locationManager = nil;
@@ -289,6 +290,8 @@
     
 } // Fin du -(void)actValidate:(id)sender {
 
+//-------------------------------------------------------------------------------------------------------------------------------
+//
 -(void)displayNextScreen {
     
     // Stockage de l'orientation de la boussole dans la classe UserData qui est utilisée partout.
@@ -302,7 +305,7 @@
 	[self.navigationController pushViewController:newController animated:YES];
 	[newController release];
     
-}
+} // Fin du -(void)displayNextScreen {
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################

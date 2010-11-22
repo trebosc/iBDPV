@@ -42,88 +42,6 @@
 
 @end
 
-@implementation AddressAnnotationView
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    // The view is configured for single touches only.
-    UITouch* aTouch = [touches anyObject];
-    _startLocation = [aTouch locationInView:[self superview]];
-    _originalCenter = self.center;
-    //NSLog(@"touchesBegan - start: %f %f center: %f %f",_startLocation.x,_startLocation.y,_originalCenter.x,_originalCenter.y);
-    //NSLog(@"%@",_startLocation);
-    [super touchesBegan:touches withEvent:event];
-} // Fin du - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    UITouch* aTouch = [touches anyObject];
-    CGPoint newLocation = [aTouch locationInView:[self superview]];
-    CGPoint newCenter;
-    
-    // If the user's finger moved more than 5 pixels, begin the drag.
-    if ((abs(newLocation.x - _startLocation.x) > 5.0) || (abs(newLocation.y - _startLocation.y) > 5.0)) {
-        _isMoving = YES;
-		//NSLog(@"isMoving");
-    } // Fin du if ((abs(newLocation.x - _startLocation.x) > 5.0) || (abs(newLocation.y - _startLocation.y) > 5.0)) {
-    
-    // If dragging has begun, adjust the position of the view.
-    if (_mapView && _isMoving) {
-        newCenter.x = _originalCenter.x + (newLocation.x - _startLocation.x);
-        newCenter.y = _originalCenter.y + (newLocation.y - _startLocation.y);
-        self.center = newCenter;
-    } else { // Avec le if (_mapView && _isMoving) {
-        // Let the parent class handle it.
-        [super touchesMoved:touches withEvent:event];		
-    } // Fin du if (_mapView && _isMoving) {
-} // Fin du - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    if (_mapView && _isMoving) {				
-        // Update the map coordinate to reflect the new position.
-/* TODO - A virer ? DOUDOU, C'est toi qui doit répondre. ET virier si nécessaire.
- CGPoint newCenter = self.center;
- AddressAnnotationView* theAnnotation = (AddressAnnotationView *)self.annotation;
- CLLocationCoordinate2D newCoordinate = [_mapView convertPoint:newCenter toCoordinateFromView:self.superview];
-*/        
-        //[theAnnotation changeCoordinate:newCoordinate];
-        
-        // Clean up the state information.
-        _startLocation = CGPointZero;
-        _originalCenter = CGPointZero;
-        _isMoving = NO;
-		//NSLog(@"Moving ended");
-    } else { // Avec le if (_mapView && _isMoving) {			
-        [super touchesEnded:touches withEvent:event];		
-    } // Fi du if (_mapView && _isMoving) {			
-} // Fin du - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    if (_mapView && _isMoving) {
-        // Move the view back to its starting point.
-        self.center = _originalCenter;
-        
-        // Clean up the state information.
-        _startLocation = CGPointZero;
-        _originalCenter = CGPointZero;
-        _isMoving = NO;
-    } else { // Avec le if (_mapView && _isMoving) {
-        [super touchesCancelled:touches withEvent:event];		
-    } // Fin du if (_mapView && _isMoving) {
-} // Fin du - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-
-
-@end
-
 
 @implementation Estim1GPSViewController
 
@@ -256,18 +174,12 @@
 
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         //if ([annotation class]==MKUserLocation.class) {
-        //NSLog(@"UserLocation");
+       
         //Enabled Validate button
         self.validateItem.enabled=YES;
         return nil;
     } else  { // Avec le if ([annotation isKindOfClass:[MKUserLocation class]]) {
-        //Custom MKAnnotationView
-        /*
-        AddressAnnotationView *pinView=[[AddressAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
-        pinView.pinColor=MKPinAnnotationColorPurple;
-        pinView.draggable=YES;
-        */
-            
+       
         //Standard View
         MKPinAnnotationView *pinView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
             //Enabled Validate button
