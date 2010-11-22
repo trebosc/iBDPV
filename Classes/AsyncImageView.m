@@ -53,7 +53,9 @@
         [self makeImageView:imgPhoto];
         
     } // Fin du if (imgPhoto==nil) {
-        
+    
+    [imgPhoto release];
+	
 } // Fin du - (void)loadImageFromURL:(NSURL*)url {
 
 
@@ -138,7 +140,8 @@
 - (void)dealloc {
 	[connection cancel]; //in case the URL is still downloading
 	[connection release];
-	[data release]; 
+	[data release];
+	[urlPhoto release];
     [super dealloc];
 } // Fin du - (void)dealloc {
 

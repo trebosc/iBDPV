@@ -235,8 +235,8 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
         //Start parsing the XML file.
         booXMLLoading=YES;
         BOOL success = [xmlParser parse];
-        // A PRIORI PLANTE -   NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-         // A PRIORI PLANTE - [xmlParser release];
+        
+		[xmlParser release];
 
         
         if(success) {
@@ -567,8 +567,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     booXMLLoading=YES;
     BOOL success = [xmlParser parse];
     
-    // A PRIORI PLANTE - NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-    // A PRIORI PLANTE -  [xmlParser release];
+    [xmlParser release];
 
     if (success){
         //NSLog(@"No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);

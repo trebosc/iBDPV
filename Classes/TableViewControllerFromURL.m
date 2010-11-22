@@ -73,8 +73,7 @@
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
-    // A PRIORI PLANTE - NSLog(@"TODO - POUR INFOS : Rajout d'un release sur le xmlParser.");
-    // A PRIORI PLANTE -  [xmlParser release];
+    [xmlParser release];
 
     if(success) {
         //NSLog(@"XML loaded");
@@ -144,7 +143,8 @@
     [aidesDataSource release];
     [dicoPhoto release];
     [activityIndicator release];
-    
+    [loadingURL release];
+	
     [super dealloc];
 } // Fin du - (void)dealloc {
 
