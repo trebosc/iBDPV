@@ -150,7 +150,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     [self addSubview:okButton];
     [self addSubview:retourButton];
 
-    NSLog(@"TODO - okButton et retourButton ne sont jamais release. Ils sont crées en retain. Faut release ou pas ????");
+    //NSLog(@"TODO - okButton et retourButton ne sont jamais release. Ils sont crées en retain. Faut release ou pas ????");
 
     
     [self setNeedsDisplay];

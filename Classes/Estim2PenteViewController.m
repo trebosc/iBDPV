@@ -120,7 +120,7 @@
     //***********************************
     //On rajoute une vue qui va afficher tout ce qui concerne la pente (angle, image maison, ...) 
     estim2PenteView = [[Estim2PenteView alloc] initWithFrame:applicationFrame viewController:self];
-    NSLog(@"TODO Je ne comprends pas pourquoi il y a un pb 'incompatible Objectiv-C types' .... pourquoi il attend un Estim2bPenteManuelViewController");
+    //NSLog(@"TODO Je ne comprends pas pourquoi il y a un pb 'incompatible Objectiv-C types' .... pourquoi il attend un Estim2bPenteManuelViewController");
     
     [rootView addSubview:estim2PenteView];
 

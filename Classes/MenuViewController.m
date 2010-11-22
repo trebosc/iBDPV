@@ -159,7 +159,7 @@ const int CNX_VERSION_OBSOLETE = -2;
         // Génération d'un identifiant Unique pour ce device
         UIDevice *device = [UIDevice currentDevice];
         NSString *uniqueIdentifier = [device uniqueIdentifier];
-        [device release];
+//      [device release];  - Retiré car faisait planté a chaque "premier démarrage".
 //        NSLog(@"  UID du device: %@",uniqueIdentifier);
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -212,7 +212,7 @@ const int CNX_VERSION_OBSOLETE = -2;
                                           timeoutInterval:10.0];
     
     //[url release];
-     NSLog(@"TODO - Je tenterais release ICI, vu que l'url est créée avec un init (théorème Doudou)");
+     // NSLog(@"TODO - Je tenterais release ICI, vu que l'url est créée avec un init (théorème Doudou)");
 
 //    NSLog(@"Apres requestWithURL");
     // create the connection with the request

@@ -69,7 +69,7 @@
 - (void)viewDidLoad {
 
 	
-	NSLog(@"viewDidLoad: Estim2PenteViewController");
+	//NSLog(@"viewDidLoad: Estim2PenteViewController");
 	
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     applicationFrame.origin.y   = 0;   //  Voir le code de Doudou ..... (sur le menu)

@@ -516,7 +516,7 @@
 -(void)displayNextScreen:(NSIndexPath *)indexPath {
     NSArray *params= [[[valuesDataSource objectAtIndex:(NSIndexPath *)indexPath.section] objectAtIndex:(NSIndexPath *)indexPath.row] componentsSeparatedByString:@"+"];
     
-    NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
+    //NSLog(@"OUVRE: %@",[params objectAtIndex:2]);
     
     if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
         
@@ -539,7 +539,7 @@
     
     
     else { // Avec le if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
-        NSLog(@"URL: %@",[params objectAtIndex:2]);
+        //NSLog(@"URL: %@",[params objectAtIndex:2]);
     } // Fin du if ([[params objectAtIndex:2] isEqualToString:@"g.php"]) {
 }
 
@@ -549,7 +549,7 @@
     // Génération de l'url
     //Récupération du nom du fichier PHP
     NSString *sParam = [params objectAtIndex:2];
-    NSLog(@"Params %@",params);
+    //NSLog(@"Params %@",params);
     NSMutableArray  *myArray = [[NSMutableArray alloc] init];
     
     //Boucle sur les paramètres
@@ -559,7 +559,7 @@
     
     NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
     
-    NSLog(@"%@",sUrl); 
+    //NSLog(@"%@",sUrl); 
     
     return [[[NSURL alloc] initWithString:sUrl] autorelease];
     

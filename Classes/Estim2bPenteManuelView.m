@@ -107,7 +107,7 @@ const float ANGLE=45.0;
     [self addSubview:slider];
 
     self.viewController.slider = slider;
-    NSLog(@"TODO - On doit faire un release sur e slider ou pas ??   JE DIRAIS OUI car AddSubView mais comme il est passé à self.viwcontroller :( ");
+    //NSLog(@"TODO - On doit faire un release sur e slider ou pas ??   JE DIRAIS OUI car AddSubView mais comme il est passé à self.viwcontroller :( ");
 
     
     //---------------------------------

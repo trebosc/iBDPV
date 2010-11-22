@@ -235,7 +235,7 @@
 	[btnSearch setBackgroundImage:buttonOkImage forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(actDisplayToolbarSearchAddress:) forControlEvents:UIControlEventTouchDown];
     [rootView addSubview:btnSearch];
-    NSLog(@"TODO : Faut faire un release de UIImage ? "); 
+    //NSLog(@"TODO : Faut faire un release de UIImage ? "); 
 
 	
 	// 3. Assignation de la vue racine à la propriété view du controlleur
@@ -407,7 +407,7 @@
 		longitude = [[listItems objectAtIndex:3] doubleValue];
 	} else { // Avec le if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
 		//Show error
-        NSLog(@"TODO : c'est quoi l'erreur qu'il peut y avoir ???  Adresse pas trouvée ? (vu le 200 qui est le code pour dire adresse trouvée ");
+       // NSLog(@"TODO : c'est quoi l'erreur qu'il peut y avoir ???  Adresse pas trouvée ? (vu le 200 qui est le code pour dire adresse trouvée ");
 	} // Fin du if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
     
 	CLLocationCoordinate2D location;

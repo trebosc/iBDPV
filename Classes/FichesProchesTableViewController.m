@@ -561,7 +561,7 @@ http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api
     //Set delegate
     [xmlParser setDelegate:self];
     
-    NSLog(@"Parsing XML");
+    //NSLog(@"Parsing XML");
     
     //Start parsing the XML file.
     booXMLLoading=YES;

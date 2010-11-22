@@ -58,6 +58,7 @@
 		63073717128D24F700DD3522 /* recherche_adresse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recherche_adresse.png; path = ressources/recherche_adresse.png; sourceTree = "<group>"; };
 		63073732128D42D200DD3522 /* localiser_adresse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = localiser_adresse.png; path = ressources/localiser_adresse.png; sourceTree = "<group>"; };
 		6320ADED1284B2CE008AB5A7 /* UserData_api_secret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData_api_secret.h; sourceTree = "<group>"; };
+		6328E7081295C1E9007D40EA /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		6340E8CB12806FEC00EAFAC7 /* AproposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AproposViewController.h; sourceTree = "<group>"; };
 		6340E8CC12806FEC00EAFAC7 /* AproposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AproposViewController.m; sourceTree = "<group>"; };
 		841B03F4126A3FEA004E6240 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 				84CA454F126A30AE00A46E6B /* Resources */,
 				84CA4550126A30AE00A46E6B /* Frameworks */,
 				84CA4556126A30AE00A46E6B /* Products */,
+				6328E7081295C1E9007D40EA /* Entitlements.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -381,6 +383,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		63D17199129486B000057246 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Trebosc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: David Trebosc";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "6AB69CFC-8573-47E3-AE7D-B257BA29A6EB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6AB69CFC-8573-47E3-AE7D-B257BA29A6EB";
+				SDKROOT = iphoneos;
+			};
+			name = Distribution;
+		};
+		63D1719A129486B000057246 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: David Trebosc";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
+				INFOPLIST_FILE = "iBDPV-Info.plist";
+				PRODUCT_NAME = iBDPV;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6AB69CFC-8573-47E3-AE7D-B257BA29A6EB";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
 		84CA456B126A30AE00A46E6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -418,16 +458,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				CODE_SIGN_ENTITLEMENTS = "~/Desktop/iBDPV/Entitlements.plist";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Trebosc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: David Trebosc";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
-				PROVISIONING_PROFILE = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -437,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/Desktop/iBDPV/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
 				COPY_PHASE_STRIP = YES;
@@ -460,6 +500,7 @@
 			buildConfigurations = (
 				84CA456B126A30AE00A46E6B /* Debug */,
 				84CA456C126A30AE00A46E6B /* Release */,
+				63D17199129486B000057246 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -469,6 +510,7 @@
 			buildConfigurations = (
 				84CA456E126A30AE00A46E6B /* Debug */,
 				84CA456F126A30AE00A46E6B /* Release */,
+				63D1719A129486B000057246 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
