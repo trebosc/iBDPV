@@ -54,7 +54,7 @@
         
     } // Fin du if (imgPhoto==nil) {
     
-    [imgPhoto release];
+    // [imgPhoto release]; Ce release fait planté l'application lors du scroll sur les sites
 	
 } // Fin du - (void)loadImageFromURL:(NSURL*)url {
 
