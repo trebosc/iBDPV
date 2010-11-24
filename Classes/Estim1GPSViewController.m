@@ -12,7 +12,7 @@
 
 /*
  Nombre d'installation proches
- http://www.bdpv.fr/ajax/iBDPV/n.php?api_sig=75a6831188d5f79394f2b00852595741&api_demandeur=iBDPV&uid=090392&l=43.5140120623541&o=1.51143550872803&d=100
+ http://www.ibdpv.fr/ajax/iBDPV/n.php?api_sig=75a6831188d5f79394f2b00852595741&api_demandeur=iBDPV&uid=090392&l=43.5140120623541&o=1.51143550872803&d=100
  */
 
 

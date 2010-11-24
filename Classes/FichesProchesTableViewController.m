@@ -21,11 +21,11 @@
 #pragma mark -
 #pragma mark URLs de test
 /*
-http://www.bdpv.fr/fiche_utilisateur.php?util=nico81
-http://www.bdpv.fr/image/install/nico81.jpg
+http://www.ibdpv.fr/fiche_utilisateur.php?util=nico81
+http://www.ibdpv.fr/image/install/nico81.jpg
 
 Liste d'utilisateurs
-http://www.bdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api_demandeur=iBDPV&uid=090392&l=43.5140120623541&o=1.51143550872803&d=100&n=10&i=0
+http://www.ibdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&api_demandeur=iBDPV&uid=090392&l=43.5140120623541&o=1.51143550872803&d=100&n=10&i=0
  
  */
 

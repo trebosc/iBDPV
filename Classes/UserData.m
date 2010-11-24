@@ -10,7 +10,7 @@
 //*********************************************************************************************************
 #include "UserData_api_secret.h" 
 // Ce fichier n'est pas publié dans GITHUB car il est personnel et secret. Vous devez le demander par email à contact@ibdpv.fr
-// L'objectif est de protéger l'accès aux serveurs http://www.bdpv.fr
+// L'objectif est de protéger l'accès aux serveurs http://www.ibdpv.fr
 // Sont contenu est le suivant : 
 //static NSString *const API_SECRET    = @"XXXXXX";
 //static NSString *const API_DEMANDEUR = @"XXXXXXX";
@@ -72,7 +72,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 -(NSString*)genere_requete:(NSMutableArray*)paramTabString fichier_php:(NSString *)sParam;
 {
-     NSString *sTrv = [NSString  stringWithFormat:@"http://www.bdpv.fr/ajax/iBDPV/%@?",sParam];
+     NSString *sTrv = [NSString  stringWithFormat:@"http://www.ibdpv.fr/ajax/iBDPV/%@?",sParam];
     
     // On rajoute le demandeur et l'identifieur
     [paramTabString  addObject:[NSString  stringWithFormat:@"uid=%@",self.uniqueIdentifierMD5]];

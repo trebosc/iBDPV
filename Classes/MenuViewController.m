@@ -23,7 +23,7 @@
 @synthesize sTexte_erreur;
 
 
-// Différent état de la connexion au serveur BDPV.fr
+// Différent état de la connexion au serveur iBDPV.fr
 const int CNX_RIEN = 0;
 const int CNX_DEBUT = 2;
 const int CNX_EN_COURS_DOWNLOAD = 2;
@@ -122,7 +122,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	
     
     //-------------------------------------------------------
-    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:@"Vérification connexion BDPV.fr\nVeuillez patienter ..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];    
+    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:@"Vérification connexion iBDPV.fr\nVeuillez patienter ..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];    
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [alertAttenteTestCnx show];
   
@@ -199,6 +199,7 @@ const int CNX_VERSION_OBSOLETE = -2;
                            [NSString  stringWithFormat:@"n=%@",sVersion],
                           nil];
     NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
+	//NSLog(@"url: %@",sUrl);
 
 
     //NSLog(@"Récupération des infos de l'URL: %@",sUrl);
@@ -324,7 +325,7 @@ const int CNX_VERSION_OBSOLETE = -2;
                 case -99:
                     alert = [[[UIAlertView alloc] 
                               initWithTitle:@"Erreur"
-                              message:[NSString stringWithFormat:@"Erreur inconnue (%@) renvoyée par le serveur BDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr",sTexte_erreur]
+                              message:[NSString stringWithFormat:@"Erreur inconnue (%@) renvoyée par le serveur iBDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr",sTexte_erreur]
                               delegate:self
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil]
@@ -336,7 +337,7 @@ const int CNX_VERSION_OBSOLETE = -2;
                 default:
                     alert = [[[UIAlertView alloc] 
                               initWithTitle:@"Erreur inconnue"
-                              message:[NSString stringWithFormat:@"Erreur inconnue renvoyée par le serveur BDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr"]
+                              message:[NSString stringWithFormat:@"Erreur inconnue renvoyée par le serveur iBDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr"]
                               delegate:self
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil]
