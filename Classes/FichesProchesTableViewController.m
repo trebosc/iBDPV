@@ -222,8 +222,7 @@ http://www.ibdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&ap
     if (indexToLoad==0) {
         
         //Premier chargement
-        tyyy§è!!u
-        // Lancement du parsing XML (mode SYNCHRONE)
+		// Lancement du parsing XML (mode SYNCHRONE)
 
         NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[self buildSitesProchesURL]];
         
@@ -567,7 +566,7 @@ http://www.ibdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&ap
     booXMLLoading=YES;
     BOOL success = [xmlParser parse];
     
-    [xmlParser release];
+    //[xmlParser release];
 
     if (success){
         //NSLog(@"No Errors:%d - %d",userData.nbInstallationProche/LIMIT,userData.nbInstallationProche % LIMIT);
