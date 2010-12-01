@@ -412,7 +412,7 @@
     //Start parsing the XML file.
     BOOL success = [xmlParser parse];
     
-    [xmlParser release];
+    //[xmlParser release];
     
     if(success) {
         //NSLog(@"No Errors");
