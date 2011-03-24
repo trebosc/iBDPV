@@ -45,6 +45,7 @@
 	// Ajout des boutons dans la toolBar
 	self.toolbarItems=[NSArray arrayWithObjects:flexibleSpaceButtonItem,btnValidateItem,nil];
     
+    [btnValidateItem release];
 	[flexibleSpaceButtonItem release];
 
 } // Fin du - (void)loadView {

@@ -49,7 +49,8 @@
 	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,btnValidateItem,nil];
 
 	[btnBackItem release];
-	[flexibleSpaceButtonItem release];
+	[btnValidateItem release];
+    [flexibleSpaceButtonItem release];
 	
     //Création de la hiérarchie des Views
     // 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -89,9 +90,7 @@
 		
 
 }
-/*
 
-/*
  //-------------------------------------------------------------------------------------------------------------------------------
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -130,7 +129,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 //Action Back
 -(void)actBack:(id)sender {
-			NSLog(@"Top: @%",self.navigationController.topViewController);
 	
 	//Retour au controlleur précédent
 	[self.navigationController popViewControllerAnimated:YES];
