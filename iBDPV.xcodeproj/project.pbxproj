@@ -383,6 +383,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		63BAA6CE12A2739C00DBA2BF /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Trebosc (938AUZ6CRM)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = "Distribution AppStore";
+		};
+		63BAA6CF12A2739C00DBA2BF /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Trebosc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: David Trebosc";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
+				INFOPLIST_FILE = "iBDPV-Info.plist";
+				PRODUCT_NAME = iBDPV;
+				PROVISIONING_PROFILE = "646E323C-1106-4564-8262-D84CA884798A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "646E323C-1106-4564-8262-D84CA884798A";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Distribution AppStore";
+		};
 		63D17199129486B000057246 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -414,7 +449,7 @@
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6AB69CFC-8573-47E3-AE7D-B257BA29A6EB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "646E323C-1106-4564-8262-D84CA884798A";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -467,7 +502,7 @@
 				GCC_PREFIX_HEADER = iBDPV_Prefix.pch;
 				INFOPLIST_FILE = "iBDPV-Info.plist";
 				PRODUCT_NAME = iBDPV;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -486,7 +521,7 @@
 				PRODUCT_NAME = iBDPV;
 				PROVISIONING_PROFILE = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3BAA69A-6556-4C59-ACF1-4AE9E5D668B8";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -500,6 +535,7 @@
 			buildConfigurations = (
 				84CA456B126A30AE00A46E6B /* Debug */,
 				84CA456C126A30AE00A46E6B /* Release */,
+				63BAA6CE12A2739C00DBA2BF /* Distribution AppStore */,
 				63D17199129486B000057246 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -510,6 +546,7 @@
 			buildConfigurations = (
 				84CA456E126A30AE00A46E6B /* Debug */,
 				84CA456F126A30AE00A46E6B /* Release */,
+				63BAA6CF12A2739C00DBA2BF /* Distribution AppStore */,
 				63D1719A129486B000057246 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
