@@ -17,7 +17,7 @@
     // Override point for customization after application launch.
 	//NSLog(@"didFinishLaunchingWithOptions iPhone");
     
-    //Initialisation de la propriété userData
+    //Initialisation de la propriete userData
     self.userData=[[UserData alloc] init];
     
     //Cr�ation du MenuViewController = rootViewController
@@ -31,7 +31,7 @@
     [menuViewController release];
     
     
-    //Affectation de la premi√®re View du Navigation Controller √† la Window
+    //Affectation de la premiere View du Navigation Controller   la Window
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [window addSubview:navController.view];
     [window makeKeyAndVisible];

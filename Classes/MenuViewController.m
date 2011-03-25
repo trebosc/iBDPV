@@ -75,24 +75,39 @@ const int CNX_VERSION_OBSOLETE = -2;
 	float btnWidth= 250.0;
 	float btnHeight = 40.0;
 	float btnInterval = 10.0;
-	
+
+    
+    NSString *sTexteEstimer = NSLocalizedString(@"Estimate my production",
+                                              @"Bouton du menu d'accueil - option Estimer ma production.");
+    
+    NSString *sTexteFiche_Proches = NSLocalizedString(@"Near installations",
+                                                        @"Bouton du menu d'accueil - option Fiches proches.");
+
+    NSString *sTexteAbout = NSLocalizedString(@"About",
+                                              @"Bouton du menu d'accueil - option Fiche proche.");
+    
+    
 	// ----- Bouton Estimer ma production
 	CGRect btnRect= CGRectMake(btnX, btnFirstY, btnWidth, btnHeight);
 	//UIButton *btnEstimer=[[UIButton alloc] initWithFrame:btnRect];
 	UIButton *btnEstimer=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	//btnEstimer.backgroundColor=[UIColor clearColor];
 	btnEstimer.frame=btnRect;
-	[btnEstimer setTitle:@"Estimer ma production" forState:UIControlStateNormal];
+//	[btnEstimer setTitle:@"Estimer ma production" forState:UIControlStateNormal];
+	[btnEstimer setTitle:sTexteEstimer forState:UIControlStateNormal];
 	//[btnEstimer setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 	[btnEstimer addTarget:self action:@selector(actEstimer:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnEstimer];
 	[btnEstimer release];
 	
+    
+    
 	// ----- Bouton Fiches proches
 	btnRect= CGRectMake(btnX, btnFirstY + btnHeight + btnInterval, btnWidth, btnHeight);
 	UIButton *btnFichesProches=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	btnFichesProches.frame=btnRect;
-	[btnFichesProches setTitle:@"Fiches proches" forState:UIControlStateNormal];
+//	[btnFichesProches setTitle:@"Fiches proches" forState:UIControlStateNormal];
+	[btnFichesProches setTitle:sTexteFiche_Proches forState:UIControlStateNormal];
 	[btnFichesProches addTarget:self action:@selector(actFichesProches:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnFichesProches];
 	[btnFichesProches release];
@@ -107,12 +122,16 @@ const int CNX_VERSION_OBSOLETE = -2;
 	[rootView addSubview:btnOptions];
 	[btnOptions release];
 */
+    
+    
+
 	
 	// ----- Bouton A propos
 	btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*3, btnWidth, btnHeight);
 	UIButton *btnAPropos=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	btnAPropos.frame=btnRect;
-	[btnAPropos setTitle:@"A propos" forState:UIControlStateNormal];
+//	[btnAPropos setTitle:@"A propos" forState:UIControlStateNormal];
+	[btnAPropos setTitle:sTexteAbout forState:UIControlStateNormal];
 	[btnAPropos addTarget:self action:@selector(actAPropos:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnAPropos];
 	[btnAPropos release];
