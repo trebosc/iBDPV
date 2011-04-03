@@ -40,7 +40,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 
 //-------------------------------------------------------------------------------------------------------------------------------
  - init {
-         if (self = [super init]) {
+         if ((self = [super init])) {
         //     NSLog(@"Premiere initialisation");
              iEtatConnexion = CNX_RIEN;
          } // Fin du if (self = [super init]) {
@@ -55,10 +55,10 @@ const int CNX_VERSION_OBSOLETE = -2;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     //[super viewDidLoad];
-
+    
 	// Bouton Retour
     self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-
+    
 	// Création par programme de la hiérarchie de vues (p34) 
     
 	// 1. Création de la vue racine du controlleur de la taille de l'écran
@@ -68,21 +68,21 @@ const int CNX_VERSION_OBSOLETE = -2;
     //rootView.center = self.parentViewController.view.center;
     rootView.opaque = YES;
     
-
+    
     // 2. Ajout de subViews             
 	float btnX = 40.0;
 	float btnFirstY=160.0;
 	float btnWidth= 250.0;
 	float btnHeight = 40.0;
 	float btnInterval = 10.0;
-
+    
     
     NSString *sTexteEstimer = NSLocalizedString(@"Estimate my production",
-                                              @"Bouton du menu d'accueil - option Estimer ma production.");
+                                                @"Bouton du menu d'accueil - option Estimer ma production.");
     
     NSString *sTexteFiche_Proches = NSLocalizedString(@"Near installations",
-                                                        @"Bouton du menu d'accueil - option Fiches proches.");
-
+                                                      @"Bouton du menu d'accueil - option Fiches proches.");
+    
     NSString *sTexteAbout = NSLocalizedString(@"About",
                                               @"Bouton du menu d'accueil - option Fiche proche.");
     
@@ -93,7 +93,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	UIButton *btnEstimer=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	//btnEstimer.backgroundColor=[UIColor clearColor];
 	btnEstimer.frame=btnRect;
-//	[btnEstimer setTitle:@"Estimer ma production" forState:UIControlStateNormal];
+    //	[btnEstimer setTitle:@"Estimer ma production" forState:UIControlStateNormal];
 	[btnEstimer setTitle:sTexteEstimer forState:UIControlStateNormal];
 	//[btnEstimer setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 	[btnEstimer addTarget:self action:@selector(actEstimer:) forControlEvents:UIControlEventTouchUpInside];
@@ -106,54 +106,53 @@ const int CNX_VERSION_OBSOLETE = -2;
 	btnRect= CGRectMake(btnX, btnFirstY + btnHeight + btnInterval, btnWidth, btnHeight);
 	UIButton *btnFichesProches=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	btnFichesProches.frame=btnRect;
-//	[btnFichesProches setTitle:@"Fiches proches" forState:UIControlStateNormal];
+    //	[btnFichesProches setTitle:@"Fiches proches" forState:UIControlStateNormal];
 	[btnFichesProches setTitle:sTexteFiche_Proches forState:UIControlStateNormal];
 	[btnFichesProches addTarget:self action:@selector(actFichesProches:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnFichesProches];
 	[btnFichesProches release];
-
-/* // Pour la v2.0
-	// ----- Bouton Options
-	btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*2, btnWidth, btnHeight);
-	UIButton *btnOptions=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
-	btnOptions.frame=btnRect;
-	[btnOptions setTitle:@"Options" forState:UIControlStateNormal];
-	[btnOptions addTarget:self action:@selector(actOptions:) forControlEvents:UIControlEventTouchUpInside];
-	[rootView addSubview:btnOptions];
-	[btnOptions release];
-*/
+    
+    /* // Pour la v2.0
+     // ----- Bouton Options
+     btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*2, btnWidth, btnHeight);
+     UIButton *btnOptions=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
+     btnOptions.frame=btnRect;
+     [btnOptions setTitle:@"Options" forState:UIControlStateNormal];
+     [btnOptions addTarget:self action:@selector(actOptions:) forControlEvents:UIControlEventTouchUpInside];
+     [rootView addSubview:btnOptions];
+     [btnOptions release];
+     */
     
     
-
+    
 	
 	// ----- Bouton A propos
 	btnRect= CGRectMake(btnX, btnFirstY + (btnHeight + btnInterval)*3, btnWidth, btnHeight);
 	UIButton *btnAPropos=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	btnAPropos.frame=btnRect;
-//	[btnAPropos setTitle:@"A propos" forState:UIControlStateNormal];
+    //	[btnAPropos setTitle:@"A propos" forState:UIControlStateNormal];
 	[btnAPropos setTitle:sTexteAbout forState:UIControlStateNormal];
 	[btnAPropos addTarget:self action:@selector(actAPropos:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnAPropos];
 	[btnAPropos release];
-
+    
 	// 3. Assignation de la vue racine à la propriété view du controlleur
 	self.view=rootView;
-	
-    
-    //-------------------------------------------------------
-    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:@"Vérification connexion iBDPV.fr\nVeuillez patienter ..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];    
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [alertAttenteTestCnx show];
-  
-    // Adjust the indicator so it is up a few pixels from the bottom of the alert
-    indicator.center = CGPointMake(alertAttenteTestCnx.bounds.size.width / 2, alertAttenteTestCnx.bounds.size.height - 50);
-    [indicator startAnimating];
-    [alertAttenteTestCnx addSubview:indicator];
-    [indicator release];
     
 	// 4. Libération de la vue racine
 	[rootView release];
     
+    //-------------------------------------------------------
+    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:@"Vérification connexion iBDPV.fr\nVeuillez patienter ..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
+    // Adjust the indicator so it is up a few pixels from the bottom of the alert
+    indicator.center = CGPointMake(alertAttenteTestCnx.bounds.size.width / 2, alertAttenteTestCnx.bounds.size.height - 50);
+    [alertAttenteTestCnx addSubview:indicator];
+    [indicator release];
+    
+    [alertAttenteTestCnx show];
+    [indicator startAnimating];
     
     //************************************************************************************
     //************************************************************************************
@@ -161,7 +160,7 @@ const int CNX_VERSION_OBSOLETE = -2;
     
     NSString *sVersion;
     sVersion = [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
-//    NSLog(@"Num_versionUID (trouvé dans le .plist): %@",sVersion);
+    //    NSLog(@"Num_versionUID (trouvé dans le .plist): %@",sVersion);
     
     //-----------------------------------------------------------------------
     // Récupération de diverses informations sur le disque de l'Iphone
@@ -178,33 +177,33 @@ const int CNX_VERSION_OBSOLETE = -2;
         // Génération d'un identifiant Unique pour ce device
         UIDevice *device = [UIDevice currentDevice];
         NSString *uniqueIdentifier = [device uniqueIdentifier];
-//      [device release];  - Retiré car faisait planté a chaque "premier démarrage".
-//        NSLog(@"  UID du device: %@",uniqueIdentifier);
+        //      [device release];  - Retiré car faisait planté a chaque "premier démarrage".
+        //        NSLog(@"  UID du device: %@",uniqueIdentifier);
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"HHmmss"];
         NSString * sHeure = [dateFormatter stringFromDate:[NSDate date]];    
         [dateFormatter release];
-//        NSLog(@"  sHeure: %@",sHeure);
+        //        NSLog(@"  sHeure: %@",sHeure);
         
         NSString *uniqueIdentifier_a_convertir = [NSString  stringWithFormat:@"%@%@",uniqueIdentifier,sHeure];
-//        NSLog(@"  uniqueIdentifier_a_convertir: %@",uniqueIdentifier_a_convertir);
+        //        NSLog(@"  uniqueIdentifier_a_convertir: %@",uniqueIdentifier_a_convertir);
         
         uniqueIdentifierMD5 = [self.userData md5:uniqueIdentifier_a_convertir];
-//        NSLog(@"  UID du device MD5: %@",uniqueIdentifierMD5);
+        //        NSLog(@"  UID du device MD5: %@",uniqueIdentifierMD5);
         uniqueIdentifierMD5 = [uniqueIdentifierMD5 substringToIndex:8];
-//        NSLog(@"  UID du device MD5 (8 premiers): %@",uniqueIdentifierMD5);
+        //        NSLog(@"  UID du device MD5 (8 premiers): %@",uniqueIdentifierMD5);
         
         //--------
         // Stockage de l'information UID Unique dans un fichier dans l'iPhone
-//        NSLog(@"Ecriture du UID dans le fichier de préférences");
+        //        NSLog(@"Ecriture du UID dans le fichier de préférences");
         NSString *string = [NSString  stringWithFormat:@"UID:%@",uniqueIdentifierMD5];
         [string writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
     } else {    
-//        NSLog(@"Contenu du fichier : %@", fileContents);
+        //        NSLog(@"Contenu du fichier : %@", fileContents);
         uniqueIdentifierMD5 = [fileContents substringFromIndex:4];
-//        NSLog(@"UID du device MD5: %@",uniqueIdentifierMD5);
+        //        NSLog(@"UID du device MD5: %@",uniqueIdentifierMD5);
         
     } // Fin du if (fileContents == nil) {
     
@@ -215,39 +214,39 @@ const int CNX_VERSION_OBSOLETE = -2;
     // Paramètre de l'appel
     NSString *sParam = @"v.php";
     NSMutableArray  *myArray = [NSMutableArray arrayWithObjects:
-                           [NSString  stringWithFormat:@"n=%@",sVersion],
-                          nil];
+                                [NSString  stringWithFormat:@"n=%@",sVersion],
+                                nil];
     NSString *sUrl = [self.userData genere_requete:myArray fichier_php:sParam];
 	//NSLog(@"url: %@",sUrl);
-
-
+    
+    
     //NSLog(@"Récupération des infos de l'URL: %@",sUrl);
     NSURL *url = [[NSURL alloc] initWithString:sUrl];
-
-
-
+    
+    
+    
     // Create the request.
-     NSURLRequest *theRequest=[NSURLRequest requestWithURL:url    // A priori requestWithUrl est différent de initWithUrl et renvoit un objet autorelease.
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:url    // A priori requestWithUrl est différent de initWithUrl et renvoit un objet autorelease.
                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData  // On précise que l'on veut pas une lecture du cache
                                           timeoutInterval:10.0];
     
     // create the connection with the request
     // and start loading the data
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-
+    
     iEtatConnexion = CNX_DEBUT;
     
     if (theConnection) {
         // Create the NSMutableData to hold the received data.
         // receivedData is an instance variable declared elsewhere.
-
+        
         receivedData = [[NSMutableData data] retain];
-
+        
     } else { // Avec le if (theConnection) {
         
         // Inform the user that the connection failed.
         [alertAttenteTestCnx dismissWithClickedButtonIndex:0 animated:YES];
-
+        
         iEtatConnexion = CNX_BAD;
         UIAlertView *alert = [[[UIAlertView alloc] 
                                initWithTitle:@"Pas de connexion"
@@ -260,9 +259,14 @@ const int CNX_VERSION_OBSOLETE = -2;
         [alert show];
     } // Fin du if (theConnection) {
     
+    
+    
 } // Fin du - (void)viewDidLoad {
 
+- (void)viewDidAppear:(BOOL)animated {
+    //Méthode appelée à chaque affichage alors que le Load n'est appelé qu'une seule fois
 
+}
 
 //#########################################################################################################################################################
 //#########################################################################################################################################################
