@@ -40,6 +40,9 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
+    NSString *sTexteOui = NSLocalizedString(@"Yes","");
+    NSString *sTexteNon = NSLocalizedString(@"No","");
+
     // L''image de la maison (en fond)
     UIImageView * photographieMaisonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"explication_pente_accelerometre.png"]];
     photographieMaisonView.center = self.center;
@@ -53,19 +56,19 @@
 
     // Texte d'explication
     UILabel	*lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 220.0, 320, 20)];
-	lblFace.text=@"Voyez-vous le côté de votre toiture";
+	lblFace.text= NSLocalizedString(@"Do you see your roof side","");
     lblFace.textAlignment = UITextAlignmentCenter;
     [self addSubview:lblFace];
     [lblFace release];
 
     // Texte d'explication
     lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 240.0, 320, 20)];
-	lblFace.text=@"comme sur cette photographie ?";
+	lblFace.text=NSLocalizedString(@"like on the picture ?","");
     lblFace.textAlignment = UITextAlignmentCenter;
     [self addSubview:lblFace];
     [lblFace release];
     
-    NSArray *itemArray = [NSArray arrayWithObjects: @"Oui", @"Non", nil];
+    NSArray *itemArray = [NSArray arrayWithObjects: sTexteOui, sTexteNon, nil];
     choixVisible = [[UISegmentedControl alloc] initWithItems:itemArray];
     choixVisible.frame = CGRectMake(80, 275, 160, 40);
     choixVisible.segmentedControlStyle = UISegmentedControlStylePlain;

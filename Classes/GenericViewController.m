@@ -30,6 +30,9 @@
 	
 	//Titre
 	self.title=@"Generic Title";
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
+    NSString *sTexteValider = NSLocalizedString(@"Ok","");
+
 	
 	//Désactivation du bouton Back
 	[self.navigationItem setHidesBackButton:YES];
@@ -39,11 +42,11 @@
 	
 	//Création des boutons
 	//Retour
-	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
+	UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:sTexteRetour style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	//Valider
-	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleBordered target:self action:@selector(actValidate:)];
+	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:sTexteValider style:UIBarButtonItemStyleBordered target:self action:@selector(actValidate:)];
 	
 	// Ajout des boutons dans la toolBar
 	self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,flexibleSpaceButtonItem,btnValidateItem,nil];

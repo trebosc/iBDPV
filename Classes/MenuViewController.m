@@ -56,8 +56,11 @@ const int CNX_VERSION_OBSOLETE = -2;
 - (void)viewDidLoad {
     //[super viewDidLoad];
     
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
+
+    
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     
 	// Création par programme de la hiérarchie de vues (p34) 
     
@@ -143,7 +146,8 @@ const int CNX_VERSION_OBSOLETE = -2;
 	[rootView release];
     
     //-------------------------------------------------------
-    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:@"Vérification connexion iBDPV.fr\nVeuillez patienter ..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
+    NSString *sTextePatienter = NSLocalizedString(@"Checking connection iBDPV.fr\nPlease have patience ...","");
+    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:sTextePatienter message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
     // Adjust the indicator so it is up a few pixels from the bottom of the alert
@@ -586,25 +590,11 @@ const int CNX_VERSION_OBSOLETE = -2;
 
 //-------------------------------------------------------------------------------------------------------------------------------
 -(void)actAPropos:(id)sender {
-
-    
-    
     AproposViewController *newController=[[AproposViewController alloc] init];
     newController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;  
     [self.navigationController pushViewController:newController animated:YES];
     [newController release];        
 
-    
-     /* ALL Code
-     AproposViewController *newController=[[AproposViewController alloc] init];
-     newController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-     
-     //Navigation Controller
-     UINavigationController *navController=[[UINavigationController alloc] initWithRootViewController:newController];
-     [newController release];
-     [self presentModalViewController:navController animated:YES];
-     [navController release];
- */
 } // Fin du -(void)actAPropos:(id)sender {
 
 

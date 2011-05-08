@@ -94,8 +94,10 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Localisez votre maison";
-	
+    self.title=NSLocalizedString(@"Locate your house","");
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
+    NSString *sTexteValider = NSLocalizedString(@"Ok","");
+
 	//Désactivation du bouton Back
 	//[self.navigationItem setHidesBackButton:YES];
 
@@ -104,13 +106,13 @@
 	
 	//Création des boutons
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Valider
-	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
+	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:sTexteValider style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
     btnValidateItem.enabled=NO;
     self.validateItem=btnValidateItem;
     

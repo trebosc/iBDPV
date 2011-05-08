@@ -269,20 +269,21 @@ http://www.ibdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&ap
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Fiches proches";
+    self.title=NSLocalizedString(@"Near by installations","");
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
 	
 	//Affichage de la toolBar du Navigation Controller
 	[self.navigationController setToolbarHidden:NO animated:YES];
     
     //Création des boutons
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	//Nb Fiches
     self.lblNbFiches=[[UILabel alloc] initWithFrame:CGRectMake(0 , 0, 180, 20)];
-    self.lblNbFiches.text=@"Nb fiches: ";
+    self.lblNbFiches.text=NSLocalizedString(@"Number of Installation:","");
     self.lblNbFiches.textColor=[UIColor whiteColor];
     self.lblNbFiches.backgroundColor=[UIColor clearColor];
     self.lblNbFiches.textAlignment=UITextAlignmentCenter;
@@ -326,8 +327,8 @@ http://www.ibdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&ap
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    
-    self.lblNbFiches.text=[NSString stringWithFormat:@"%@ %d / %d",@"Nb fiches: ", [arrFiches count],self.userData.nbInstallationProche];
+    NSString *sTexteNbInst = NSLocalizedString(@"Number of Installation:","");
+    self.lblNbFiches.text=[NSString stringWithFormat:@"%@ %d / %d",sTexteNbInst, [arrFiches count],self.userData.nbInstallationProche];
     
     return [arrFiches count];
 } // Fin de - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -107,10 +107,13 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"Orientation toiture";
+    self.title=NSLocalizedString(@"Orientation roof","");
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
+    NSString *sTexteValider = NSLocalizedString(@"Ok","");
+
     
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 
 	//Affichage de la toolBar du Navigation Controller
 	[self.navigationController setToolbarHidden:NO animated:YES];
@@ -120,7 +123,7 @@
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	
     //Valider
-	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:@"Valider" style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
+	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:sTexteValider style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
 	
     //Activity Indicator
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(190.0, 0.0, 20.0, 20.0)];

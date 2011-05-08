@@ -35,6 +35,8 @@
     [super loadView];
     
     //NSLog(@"loadView: %@",self.userData);
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
+
     
 	// Affichage de la barre de navigation
 	[self.navigationController setNavigationBarHidden:NO];
@@ -44,7 +46,7 @@
 	
 	//Création des boutons
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Retour" style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];  
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];  
     
     //Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];

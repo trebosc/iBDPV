@@ -24,24 +24,8 @@
 	[self.navigationController setNavigationBarHidden:NO];
 	
 	//Titre
-	self.title=@"A propos";
-	
-	//Désactivation du bouton Back
-	//[self.navigationItem setHidesBackButton:YES];
-
-	//Affichage de la toolBar du Navigation Controller
-	//[self.navigationController setToolbarHidden:NO animated:YES];
-	
-	//Création des boutons
-	//Retour
-	//UIBarButtonItem *btnBackItem=[[UIBarButtonItem alloc]initWithTitle:@"Retour" style:UIBarButtonItemStyleBordered target:self action:@selector(actBack:)];
-	//Espacement
-
-	// Ajout des boutons dans la toolBar
-	//self.toolbarItems=[NSArray arrayWithObjects:btnBackItem,nil];
-
-	//[btnBackItem release];
-	
+	self.title=NSLocalizedString(@"About","");
+		
     //Création de la hiérarchie des Views
     // 1. Création de la vue racine du controlleur de la taille de l'écran
 	// Background
@@ -55,10 +39,9 @@
     sTextView.backgroundColor = [UIColor clearColor];
     sTextView.delegate = self;
 
-     NSString *sHtml =@"IBDPV vous permet de calculer la quantité d'électricité photovoltaïque que vous produiriez en installant des panneaux PV sur votre toit, mais également de découvrir les installations photovoltaïque proches de chez vous.<br><br>L'application IBDPV est UNIQUE car l'estimation de votre production est réalisée à partir de chiffres REELS, provenant d'installation PV en cours de fonctionnement se trouvant proche de chez vous. iBDPV utilise les données saisies, par des milliers de particuliers, sur le site bdpv.fr (description en dessous).<br><br><b>Glossaire :</b><br>Panneaux photovoltaïque : appelé aussi panneaux PV, il s'agit de panneaux posés sur votre toiture et capable de produire de l'électricité verte a partir du soleil.<br><br><b>Description du site <a href=http://www.bdpv.fr>http://www.bdpv.fr</a> :</b><br>Le site BDPV permet aux propriétaires de panneaux photovoltaïques de suivre l'évolution de leur production d’électricité au fil des ans et de la comparer à des installations proches. BDPV aide à savoir si un système PV se comporte comme simulé par l’installateur, qu’il ne faiblit pas dans le temps, qu’il réagit comme d’autres installations proches, …. Tout cela gratuitement.<br>    BDPV fournit un ensemble de graphiques pour analyser vos données, graphiques que vous pouvez aussi insérer dans votre blog ou site web.<br>Pour ceux n’ayant pas encore de panneaux solaires, BDPV apporte la possibilité de visualiser, sur une carte, les installations de sa région, de voir le matériel utilisé (onduleur, …), la production attendue, les graphiques de production, …<br><br><b>Partenaires :</b><br><a href=http://forum-photovoltaique.fr>http://forum-photovoltaique.fr</a> : Ce forum s'adresse à tous ceux qui s'intéressent, ont déjà ou aimeraient avoir une installation photovoltaïque. Que vous soyez un particulier, un professionnel ou autres, ce forum vous permettra de partager votre expérience, de poser des questions, de trouver des conseils sur le matériel, sur quoi acheter, ce qu'il faut vérifier, ....<br><a href=http://gppep.org>http://gppep.org</a> : GPPEP est une association créée par des particuliers ayant des panneaux photovoltaïques, pour des particuliers ayant déjà une installation ou désirant en posséder une. GPPEP signifie : Groupement des Particuliers Producteurs d’Electricité Photovoltaïque<br><br>Une question ou une remarque : contact@ibdpv.fr<br>Plus d'informations sur iBDPV : <a href=http://www.ibdpv.fr>http://www.ibdpv.fr</a><br><br><i>IBDPV a été développé par Jean-Mathieu D. et David T.</i>";
+     NSString *sHtml =@"IBDPV not only enables you to calculate the quantity of photovoltaic electricity that you could produce by installing PV panels on your roof, but also to discover the photovoltaic installations in your area.<br><br> The iBDPV application is realistic because the estimate of your production is calculated by using REAL figures, based on data from installations operating in your area. iBDPV uses the collected data, provided by thousands of private individuals, on the site bdpv.fr (description in lower part).<br><br><b>Glossary</b>: Photovoltaic Panels: also called Solar Panels, are installed on your roof and produce Green Electricity using the light from the sun. Description of the <a href=http://www.bdpv.fr>http://www.bdpv.fr</a> :</b><br> site: BDPV allows to the owners photovoltaic panels to log and view their historical production data and to compare it with neighbouring. BDPV helps understand if a installation behaves as simulated by the fitter and allows system age degradation to be monitored,Ö. All that free. BDPV provides a whole host of graphs to analyze your data, graphs which you can also insert in your blog or Web site. For those not yet having solar panels, BDPV brings the possibility of visualizing, on a chart, the installations of its area, of seeing the equipment used (inverter,Ö), actual production, graphs of production,…<br><br><b>Partners</b><br><a href=http://forum-photovoltaique.fr>http://forum-photovoltaique.fr</a> : This forum is for the use of everyone who is interested in, already have or would like to have a photovoltaic installation. Whether you are a private individual, a professional or other, this forum will enable you to share your experiences, to put questions, to find answers about the material, on what to buy, etc,… .http://gppep.org: GPPEP is an association created by private individuals having photovoltaic panels, who have or wish to install Solar PV. GPPEP means: Group of the Producing Private individuals of Electricity Photovoltaic question or a note:: contact@ibdpv.fr<br> Plus  information on iBDPV: <a href=http://www.ibdpv.fr>http://www.ibdpv.fr</a><br><br><i>iBDPV was developed by Jean-Mathieu D. and David T.</i>";
     
-    NSString *sTexteHtml = NSLocalizedString(sHtml,
-                                                @"Texte About");
+    NSString *sTexteHtml = NSLocalizedString(sHtml, @"Texte html About");
 
 
     [sTextView loadHTMLString:sTexteHtml baseURL:[NSURL URLWithString:@""]]; 

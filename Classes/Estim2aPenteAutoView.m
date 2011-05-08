@@ -100,12 +100,14 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     
     //----------------------------
     // set up OK  button
+    NSString *sTexteRetour = NSLocalizedString(@"Back","");
+    NSString *sTexteValider = NSLocalizedString(@"Ok1","");
 
 	UIImage *buttonOkImage = [UIImage imageNamed:@"blueButton.png"];
 	UIButton *okButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	okButton.backgroundColor = [UIColor clearColor];
     okButton.frame = CGRectMake(okShiftRight, okShiftDown, kStdButtonWidth, kStdButtonHeight);
-	[okButton setTitle:@"Ok" forState:UIControlStateNormal];	
+	[okButton setTitle:sTexteValider forState:UIControlStateNormal];	
 	[okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];	
 	[okButton setBackgroundImage:[buttonOkImage stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0] forState:UIControlStateNormal];
 	
@@ -121,7 +123,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 	UIButton *retourButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	retourButton.backgroundColor = [UIColor clearColor];
     retourButton.frame = CGRectMake(retourShiftRight, retourShiftDown, kStdButtonWidth, kStdButtonHeight);
-	[retourButton setTitle:@"Retour" forState:UIControlStateNormal];	
+	[retourButton setTitle:sTexteRetour forState:UIControlStateNormal];	
 	[retourButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];	
 	[retourButton setBackgroundImage:[buttonRetourImage stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0] forState:UIControlStateNormal];
 	
