@@ -18,6 +18,7 @@
 	UILabel *shadowDegreeDisplayView;
 	UILabel *pourcentDisplayView;
 	UILabel *shadowPourcentDisplayView;
+    UILabel *AlignTextDisplayView;
     int Pente;
 }
 

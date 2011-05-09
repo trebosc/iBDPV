@@ -56,11 +56,9 @@ const int CNX_VERSION_OBSOLETE = -2;
 - (void)viewDidLoad {
     //[super viewDidLoad];
     
-    NSString *sTexteRetour = NSLocalizedString(@"Back","");
-
     
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back","") style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     
 	// Création par programme de la hiérarchie de vues (p34) 
     
@@ -79,17 +77,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	float btnHeight = 40.0;
 	float btnInterval = 10.0;
     
-    
-    NSString *sTexteEstimer = NSLocalizedString(@"Estimate my production",
-                                                @"Bouton du menu d'accueil - option Estimer ma production.");
-    
-    NSString *sTexteFiche_Proches = NSLocalizedString(@"Near installations",
-                                                      @"Bouton du menu d'accueil - option Fiches proches.");
-    
-    NSString *sTexteAbout = NSLocalizedString(@"About",
-                                              @"Bouton du menu d'accueil - option Fiche proche.");
-    
-    
+        
 	// ----- Bouton Estimer ma production
 	CGRect btnRect= CGRectMake(btnX, btnFirstY, btnWidth, btnHeight);
 	//UIButton *btnEstimer=[[UIButton alloc] initWithFrame:btnRect];
@@ -97,7 +85,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	//btnEstimer.backgroundColor=[UIColor clearColor];
 	btnEstimer.frame=btnRect;
     //	[btnEstimer setTitle:@"Estimer ma production" forState:UIControlStateNormal];
-	[btnEstimer setTitle:sTexteEstimer forState:UIControlStateNormal];
+	[btnEstimer setTitle:NSLocalizedString(@"Estimate my production","") forState:UIControlStateNormal];
 	//[btnEstimer setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 	[btnEstimer addTarget:self action:@selector(actEstimer:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnEstimer];
@@ -110,7 +98,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	UIButton *btnFichesProches=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	btnFichesProches.frame=btnRect;
     //	[btnFichesProches setTitle:@"Fiches proches" forState:UIControlStateNormal];
-	[btnFichesProches setTitle:sTexteFiche_Proches forState:UIControlStateNormal];
+	[btnFichesProches setTitle:NSLocalizedString(@"Near installations","") forState:UIControlStateNormal];
 	[btnFichesProches addTarget:self action:@selector(actFichesProches:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnFichesProches];
 	[btnFichesProches release];
@@ -134,7 +122,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	UIButton *btnAPropos=[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];	// retain???
 	btnAPropos.frame=btnRect;
     //	[btnAPropos setTitle:@"A propos" forState:UIControlStateNormal];
-	[btnAPropos setTitle:sTexteAbout forState:UIControlStateNormal];
+	[btnAPropos setTitle:NSLocalizedString(@"About","") forState:UIControlStateNormal];
 	[btnAPropos addTarget:self action:@selector(actAPropos:) forControlEvents:UIControlEventTouchUpInside];
 	[rootView addSubview:btnAPropos];
 	[btnAPropos release];
@@ -146,8 +134,7 @@ const int CNX_VERSION_OBSOLETE = -2;
 	[rootView release];
     
     //-------------------------------------------------------
-    NSString *sTextePatienter = NSLocalizedString(@"Checking connection iBDPV.fr\nPlease have patience ...","");
-    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:sTextePatienter message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
+    alertAttenteTestCnx = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Checking connection iBDPV.fr\nPlease have patience ...","") message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
     // Adjust the indicator so it is up a few pixels from the bottom of the alert
@@ -253,10 +240,10 @@ const int CNX_VERSION_OBSOLETE = -2;
         
         iEtatConnexion = CNX_BAD;
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"Pas de connexion"
-                               message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet et de relancer iBDPV."
+                               initWithTitle:NSLocalizedString(@"No connexion","")
+                               message:NSLocalizedString(@"Unable to connect to the BDPV server.\nPlease check your Internet Connection and try iBDPV again.","")
                                delegate:self
-                               cancelButtonTitle:@"Cancel"
+                               cancelButtonTitle:NSLocalizedString(@"Cancel","")
                                otherButtonTitles:nil]
                               autorelease];
         
@@ -314,22 +301,22 @@ const int CNX_VERSION_OBSOLETE = -2;
             {
                 case -1:
                     alert = [[[UIAlertView alloc] 
-                              initWithTitle:@"Version iBDPV obsolète"
-                              message:[NSString  stringWithFormat:@"Il est nécessaire de télécharger la nouvelle version (v%@).",Num_version_act]
-                              delegate:self
-                              cancelButtonTitle:@"Plus tard"
-                              otherButtonTitles:@"Télécharger",nil]
+                              initWithTitle:NSLocalizedString(@"iBDPV Obsolete version","")
+                              message:[NSString stringWithFormat:NSLocalizedString(@"It is necessary to download the new version (v%@).",""),Num_version_act]
+                               delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"Later","")
+                              otherButtonTitles:NSLocalizedString(@"Download",""),nil]
                              autorelease];
                     [alert show];
                     iEtatConnexion = CNX_VERSION_OBSOLETE;
                     break;
                 case 0:
                     alert = [[[UIAlertView alloc] 
-                              initWithTitle:@"Nouvelle version iBDPV"
-                              message:[NSString stringWithFormat:@"Une version plus récente (v%@) est disponible.",Num_version_act]
+                              initWithTitle:NSLocalizedString(@"New iBDPV version","")
+                              message:[NSString stringWithFormat:NSLocalizedString(@"A newer version (v%@) is available.",""),Num_version_act]
                               delegate:self
-                              cancelButtonTitle:@"Plus tard"
-                              otherButtonTitles: @"Télécharger",nil]
+                              cancelButtonTitle:NSLocalizedString(@"Later","")
+                              otherButtonTitles: NSLocalizedString(@"Download",""),nil]
                              autorelease];
                     [alert show];
                     break;
@@ -340,10 +327,10 @@ const int CNX_VERSION_OBSOLETE = -2;
                     
                 case 2:
                     alert = [[[UIAlertView alloc] 
-                              initWithTitle:@"version iBDPV béta"
-                              message:@"Félicitation, vous utilisez une version béta, non disponible actuellement."
+                              initWithTitle:NSLocalizedString(@"iBDPV béta version","")
+                              message:NSLocalizedString(@"Congratulation, you are using a bèta version.","")
                               delegate:self
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:NSLocalizedString(@"Ok1","")
                               otherButtonTitles: nil]
                              autorelease];
                     [alert show];
@@ -351,10 +338,10 @@ const int CNX_VERSION_OBSOLETE = -2;
                     
                 case -99:
                     alert = [[[UIAlertView alloc] 
-                              initWithTitle:@"Erreur"
-                              message:[NSString stringWithFormat:@"Erreur inconnue (%@) renvoyée par le serveur iBDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr",sTexte_erreur]
+                              initWithTitle:NSLocalizedString(@"Error","")
+                              message:[NSString stringWithFormat:NSLocalizedString(@"Unknown error (%@) from iBDPV.com server.\nPlease send a mail to contact@ibdpv.fr",""),sTexte_erreur]
                               delegate:self
-                              cancelButtonTitle:@"Ok"
+                              cancelButtonTitle:NSLocalizedString(@"Ok1","")
                               otherButtonTitles:nil]
                              autorelease];
                     [alert show];
@@ -363,10 +350,10 @@ const int CNX_VERSION_OBSOLETE = -2;
                     
                 default:
                     alert = [[[UIAlertView alloc] 
-                              initWithTitle:@"Erreur inconnue"
-                              message:[NSString stringWithFormat:@"Erreur inconnue renvoyée par le serveur iBDPV.fr\nMerci d'envoyer un mail à contact@ibdpv.fr"]
+                              initWithTitle:NSLocalizedString(@"Unknown error","")
+                              message:NSLocalizedString(@"Unknown error from iBDPV.com server.\nPlease send a mail to contact@ibdpv.fr","")
                               delegate:self
-                              cancelButtonTitle:@"Ok"
+                              cancelButtonTitle:NSLocalizedString(@"Ok1","")
                               otherButtonTitles:nil]
                              autorelease];
                     [alert show];
@@ -376,10 +363,10 @@ const int CNX_VERSION_OBSOLETE = -2;
         
      }  else { // Avec le if(success)
          UIAlertView *alert = [[[UIAlertView alloc] 
-                                initWithTitle:@"Erreur parsing XML"
-                                message:@"Problème d'extraction du XML"
+                                initWithTitle:NSLocalizedString(@"Error parsing XML","")
+                                message:NSLocalizedString(@"Problem extracting XML data","")
                                 delegate:self
-                                cancelButtonTitle:@"Annuler"
+                                cancelButtonTitle:NSLocalizedString(@"Cancel","")
                                 otherButtonTitles:nil]
                                autorelease];
          [alert show];
@@ -439,13 +426,13 @@ const int CNX_VERSION_OBSOLETE = -2;
     [alertAttenteTestCnx dismissWithClickedButtonIndex:0 animated:YES];
      
     UIAlertView *alert = [[[UIAlertView alloc] 
-                           initWithTitle:@"Pas de connexion"
-                           message:@"Impossible de se connecter au serveur BDPV\nMerci d'activer votre connexion Internet et de relancer iBDPV."
+                           initWithTitle:NSLocalizedString(@"No connexion","")
+                           message:NSLocalizedString(@"Unable to connect to the BDPV server.\nPlease check your Internet Connection and try iBDPV again.","")
                            delegate:self
-                           cancelButtonTitle:@"Cancel"
+                           cancelButtonTitle:NSLocalizedString(@"Cancel","")
                            otherButtonTitles:nil]
                           autorelease];
-    
+   
     
     [alert show];
         
@@ -498,20 +485,20 @@ const int CNX_VERSION_OBSOLETE = -2;
     // IMPORTANT  - Faire une fonction pour les UIAlertView (il y en a 2 qui se répète)
     if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"Version iBDPV obsolète"
-                               message:[NSString  stringWithFormat:@"Il est nécessaire de télécharger la nouvelle version."]
-                               delegate:self
-                               cancelButtonTitle:@"Plus tard"
-                               otherButtonTitles:@"Télécharger",nil]
+                               initWithTitle:NSLocalizedString(@"iBDPV Obsolete version","")
+                               message:NSLocalizedString(@"It is necessary to download the new version.","")
+                                delegate:self
+                               cancelButtonTitle:NSLocalizedString(@"Later","")
+                               otherButtonTitles: NSLocalizedString(@"Download",""),nil]
                               autorelease];
         [alert show];       
     } // Fin du if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
     else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"IMPOSSIBLE"
-                               message:@"Pas de connexion Internet\nMerci d'activer votre connexion Internet et de relancer iBDPV."
+                               initWithTitle:NSLocalizedString(@"No connexion","")
+                               message:NSLocalizedString(@"Unable to connect to the BDPV server.\nPlease check your Internet Connection and try iBDPV again.","")
                                delegate:self
-                               cancelButtonTitle:@"Annuler"
+                               cancelButtonTitle:NSLocalizedString(@"Cancel","")
                                otherButtonTitles:nil]
                               autorelease];
         
@@ -534,19 +521,19 @@ const int CNX_VERSION_OBSOLETE = -2;
     
     if (iEtatConnexion == CNX_VERSION_OBSOLETE) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                    initWithTitle:@"Version iBDPV obsolète"
-                    message:[NSString  stringWithFormat:@"Il est nécessaire de télécharger la nouvelle version."]
+                    initWithTitle:NSLocalizedString(@"iBDPV Obsolete version","")
+                    message:NSLocalizedString(@"It is necessary to download the new version.","")
                     delegate:self
-                    cancelButtonTitle:@"Plus tard"
-                    otherButtonTitles:@"Télécharger",nil]
+                    cancelButtonTitle:NSLocalizedString(@"Later","")
+                    otherButtonTitles: NSLocalizedString(@"Download",""),nil]
                     autorelease];
         [alert show];       
     } else if (iEtatConnexion == CNX_BAD) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"Fonction non disponible"
-                               message:@"Pas de connexion Internet\nMerci d'activer votre connexion Internet et de relancer iBDPV."
+                               initWithTitle:NSLocalizedString(@"No connexion","")
+                               message:NSLocalizedString(@"Unable to connect to the BDPV server.\nPlease check your Internet Connection and try iBDPV again.","")
                                delegate:self
-                               cancelButtonTitle:@"Annuler"
+                               cancelButtonTitle:NSLocalizedString(@"Cancel","")
                                otherButtonTitles:nil]
                               autorelease];
         

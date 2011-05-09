@@ -92,6 +92,14 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     shadowPourcentDisplayView.textAlignment = UITextAlignmentCenter;
     
     
+ //ATD  Pour ESSAI TEXTE =!!!!!!!!!!!!
+    AlignTextDisplayView = [[UILabel alloc] initWithFrame:CGRectMake(-78.0, 200.0, 300.0, 20.0)];
+    AlignTextDisplayView.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    AlignTextDisplayView.textColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0];
+    AlignTextDisplayView.backgroundColor = [UIColor clearColor];
+    AlignTextDisplayView.textAlignment = UITextAlignmentCenter;
+    AlignTextDisplayView.text = NSLocalizedString(@"Align your iPhone and your roof","");
+    
     #define kStdButtonWidth		106.0
     #define kStdButtonHeight	40.0
     #define okShiftRight        240.0
@@ -137,6 +145,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 
     degreeDisplayView.layer.transform = landscapeTransform;
     pourcentDisplayView.layer.transform = landscapeTransform;
+    AlignTextDisplayView.layer.transform = landscapeTransform;
     shadowDegreeDisplayView.layer.transform = landscapeTransform;
     shadowPourcentDisplayView.layer.transform = landscapeTransform;
     okButton.layer.transform = landscapeTransform;
@@ -147,6 +156,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
     [self addSubview:levelFrontGaucheView];
     [self addSubview:shadowDegreeDisplayView];
     [self addSubview:shadowPourcentDisplayView];
+    [self addSubview:AlignTextDisplayView];
     [self addSubview:degreeDisplayView];
     [self addSubview:pourcentDisplayView];
     [self addSubview:okButton];
@@ -171,6 +181,7 @@ CGFloat DegreesToPourcent3(CGFloat degrees) {return tan(DegreesToRadians3(degree
 	[levelFrontGaucheView release];
     [shadowDegreeDisplayView release];
     [shadowPourcentDisplayView release];
+    [AlignTextDisplayView release];
     [degreeDisplayView release];
     [pourcentDisplayView release];
     [super dealloc];

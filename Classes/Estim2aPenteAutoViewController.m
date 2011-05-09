@@ -34,12 +34,12 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - init {
 	if (self = [super init]) {
-        UIAlertImageView *alert = [[UIAlertImageView alloc] initWithTitle:@"Etape 2/3 - Pente"
-                                                                  message:@"Inclinez votre iPhone afin de faire correspondre  son côté avec votre toit, comme sur la photo ci-dessous."
+        UIAlertImageView *alert = [[UIAlertImageView alloc] initWithTitle:NSLocalizedString(@"Step 2/3 - Slope","")
+                                                                  message:NSLocalizedString(@"Incline your iPhone so that it lines up with your roof like on the picture below.","")
                                                                  delegate:self
                                    //												cancelButtonTitle:@"Cancel"
                                                         cancelButtonTitle:nil
-                                                        otherButtonTitles:@"OK", nil];
+                                                        otherButtonTitles:NSLocalizedString(@"Ok1",""), nil];
         
         [alert show];
         [alert release];
@@ -76,12 +76,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	
-    NSString *sTexteRetour = NSLocalizedString(@"Back","");
-
 
     // Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back","") style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     
     //NSLog(@"viewDidLoad: Estim2PenteViewController");
 	

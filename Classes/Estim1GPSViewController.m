@@ -95,8 +95,6 @@
 	
 	//Titre
     self.title=NSLocalizedString(@"Locate your house","");
-    NSString *sTexteRetour = NSLocalizedString(@"Back","");
-    NSString *sTexteValider = NSLocalizedString(@"Ok","");
 
 	//Désactivation du bouton Back
 	//[self.navigationItem setHidesBackButton:YES];
@@ -106,13 +104,13 @@
 	
 	//Création des boutons
 	// Bouton Retour
-    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:sTexteRetour style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back","") style: UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Valider
-	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:sTexteValider style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
+	UIBarButtonItem *btnValidateItem=[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Ok1","") style:UIBarButtonItemStyleDone target:self action:@selector(actValidate:)];
     btnValidateItem.enabled=NO;
     self.validateItem=btnValidateItem;
     
@@ -420,10 +418,10 @@
         //NSLog(@"No Errors");
     } else {  // Avec le if(success) {
         UIAlertView *alert = [[[UIAlertView alloc] 
-                               initWithTitle:@"Error"
-                               message:@"Pb du parsing XML"
+                               initWithTitle:NSLocalizedString(@"Error","")
+                               message:NSLocalizedString(@"Error parsing XML","")
                                delegate:self
-                               cancelButtonTitle:@"Cancel"
+                               cancelButtonTitle:NSLocalizedString(@"Cancel","")
                                otherButtonTitles:nil]
                               autorelease];
         [alert show];
@@ -462,7 +460,7 @@
         UITextField *txtSearch=[[UITextField alloc] initWithFrame:CGRectMake(0 , 0, 230, 28)];
         txtSearch.backgroundColor=[UIColor clearColor];
         txtSearch.borderStyle=UITextBorderStyleRoundedRect;
-        txtSearch.placeholder=@"<Entrez une adresse>";
+        txtSearch.placeholder=NSLocalizedString(@"Enter an address","");
 #if TARGET_IPHONE_SIMULATOR
         txtSearch.text=@"hotel-dieu 75004 paris";   //Debug
 #endif

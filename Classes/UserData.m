@@ -77,6 +77,11 @@
     // On rajoute le demandeur et l'identifieur
     [paramTabString  addObject:[NSString  stringWithFormat:@"uid=%@",self.uniqueIdentifierMD5]];
     [paramTabString  addObject:[NSString  stringWithFormat:@"api_demandeur=%@",API_DEMANDEUR]];
+    
+    // On rajoute la langue
+    NSString *sTextLangue= NSLocalizedString(@"Langue","");
+    [paramTabString  addObject:[NSString  stringWithFormat:@"langue=%@",sTextLangue]];
+
 
     // On calcule la signature
     NSString *api_sig;
