@@ -55,15 +55,15 @@ const float ANGLE=45.0;
 - (void)setupSubviewsWithContentFrame:(CGRect)frameRect {
     UILabel	*lblFace;
     lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 00.0, 320, 20)];
-	lblFace.text=@"Indiquez l'angle de votre toit";
+	lblFace.text=NSLocalizedString(@"Indicate the slope of your roof","");
     lblFace.textAlignment = UITextAlignmentCenter;
     lblFace.textColor = [UIColor whiteColor];
     lblFace.backgroundColor = [UIColor blackColor];
     [self addSubview:lblFace];
     [lblFace release];
     
-    lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 20.0, 320, 20)];
-	lblFace.text=@"avec le point rouge ou la glissière.";
+    lblFace=[[UILabel alloc] initWithFrame:CGRectMake(10.0, 20.0, 320, 20)];
+	lblFace.text=NSLocalizedString(@"with the red point or the slide.","");
     lblFace.textAlignment = UITextAlignmentCenter;
     lblFace.textColor = [UIColor whiteColor];
     lblFace.backgroundColor = [UIColor blackColor];
@@ -71,8 +71,8 @@ const float ANGLE=45.0;
     [lblFace release];
 
  
-    lblFace=[[UILabel alloc] initWithFrame:CGRectMake(15.0, 330.0, 60, 20)];
-	lblFace.text=@"angle :";
+    lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 330.0, 80, 20)];
+    lblFace.text=NSLocalizedString(@"Slope :","");
     lblFace.textColor = [UIColor whiteColor];
     lblFace.backgroundColor = [UIColor blackColor];
     lblFace.textAlignment = UITextAlignmentCenter;
@@ -96,7 +96,7 @@ const float ANGLE=45.0;
 
     
     //----------------------------------------------
-    CGRect frame = CGRectMake(80.0, 330.0, 220.0, 10.0);
+    CGRect frame = CGRectMake(100.0, 330.0, 220.0, 10.0);
     UISlider *slider = [[UISlider alloc] initWithFrame:frame];
     [slider addTarget:self.viewController action:@selector(fixeAngleToit:) forControlEvents:UIControlEventValueChanged];
     [slider setBackgroundColor:[UIColor clearColor]];

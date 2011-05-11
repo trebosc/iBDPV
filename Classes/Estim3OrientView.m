@@ -119,7 +119,7 @@ float CalculeAngle(CGPoint position, float angleInit) {
     
     
     UILabel	*lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 88.0, 320, 20)];
-	lblFace.text=@"Mettez-vous face à votre toiture";
+	lblFace.text=NSLocalizedString(@"Put yourself in front of your roof","");
     lblFace.textColor = [UIColor whiteColor];
     lblFace.backgroundColor = [UIColor blackColor];
     lblFace.textAlignment = UITextAlignmentCenter;
@@ -136,10 +136,10 @@ float CalculeAngle(CGPoint position, float angleInit) {
     
     lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 300.0, 320, 20)];
     if (self.viewController.bBoussoleAutom) 
-        lblFace.text=@"Attendez que la boussole s'arrête";
-    else
-        lblFace.text=@"Indiquez le Nord sur la boussole";
-
+        lblFace.text=NSLocalizedString(@"Wait until the compass s' stop","");
+     else
+        lblFace.text=NSLocalizedString(@"Indicate North on the compass","");
+ 
     lblFace.textColor = [UIColor whiteColor];
     lblFace.backgroundColor = [UIColor blackColor];
     lblFace.textAlignment = UITextAlignmentCenter;
@@ -148,9 +148,9 @@ float CalculeAngle(CGPoint position, float angleInit) {
 
     lblFace=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 320.0, 320, 20)];
     if (self.viewController.bBoussoleAutom) 
-        lblFace.text=@"puis appuyez sur le bouton 'Valider'";
+        lblFace.text=NSLocalizedString(@"then press 'Ok'","");
     else
-        lblFace.text=@"en la faisant tourner avec votre doigt";
+        lblFace.text=NSLocalizedString(@"by making it turn with your finger","");
     lblFace.textColor = [UIColor whiteColor];
     lblFace.backgroundColor = [UIColor blackColor];
     lblFace.textAlignment = UITextAlignmentCenter;

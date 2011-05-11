@@ -282,7 +282,7 @@ http://www.ibdpv.fr/ajax/iBDPV/l.php?api_sig=d3927ac7d93e94701882182067fbd70c&ap
 	//Espacement
 	UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	//Nb Fiches
-    self.lblNbFiches=[[UILabel alloc] initWithFrame:CGRectMake(0 , 0, 180, 20)];
+    self.lblNbFiches=[[UILabel alloc] initWithFrame:CGRectMake(0 , 0, 210, 20)];
     self.lblNbFiches.text=NSLocalizedString(@"Number of Installation:","");
     self.lblNbFiches.textColor=[UIColor whiteColor];
     self.lblNbFiches.backgroundColor=[UIColor clearColor];

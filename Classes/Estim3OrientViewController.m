@@ -67,7 +67,7 @@
             // No compass is available. This application cannot function without a compass, 
             // so a dialog will be displayed and no magnetic data will be measured.
             self.locationManager = nil;
-            UIAlertView *noCompassAlert = [[UIAlertView alloc] initWithTitle:@"Pas de boussole" message:@"Passage en mode manuel." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *noCompassAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Compass","") message:NSLocalizedString(@"Switch in manual mode.","") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [noCompassAlert show];
             [noCompassAlert release];
             bBoussoleAutom = false;
@@ -302,7 +302,7 @@
     
 	//Passage au controleur suivant
 	TableViewControllerFromURL *newController=[[TableViewControllerFromURL alloc] initWithStyle:UITableViewStyleGrouped];
-    newController.title=@"Résultat";
+    newController.title=NSLocalizedString(@"Result","");
     newController.userData=self.userData;
     newController.loadingURL=[self buildURL];
 	[self.navigationController pushViewController:newController animated:YES];
