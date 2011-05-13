@@ -72,10 +72,10 @@
 		63B46D47133D0CCF006D2B19 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		63B46D48133D0CD4006D2B19 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		63B46D49133D0CE9006D2B19 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		63D3D65413788B53009BC779 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file; name = nl; path = nl.lproj/Default.png; sourceTree = "<group>"; };
-		63D3D65513788B55009BC779 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Default.png; sourceTree = "<group>"; };
-		63D3D65613788B58009BC779 /* de */ = {isa = PBXFileReference; lastKnownFileType = file; name = de; path = de.lproj/Default.png; sourceTree = "<group>"; };
-		63D3D65713788B5A009BC779 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = es.lproj/Default.png; sourceTree = "<group>"; };
+		63D3D65413788B53009BC779 /* nl */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nl; path = nl.lproj/Default.png; sourceTree = "<group>"; };
+		63D3D65513788B55009BC779 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = fr.lproj/Default.png; sourceTree = "<group>"; };
+		63D3D65613788B58009BC779 /* de */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = de; path = de.lproj/Default.png; sourceTree = "<group>"; };
+		63D3D65713788B5A009BC779 /* es */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = es; path = es.lproj/Default.png; sourceTree = "<group>"; };
 		841B03F4126A3FEA004E6240 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		841B03F5126A3FEA004E6240 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		841B03FC126A40D8004E6240 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
